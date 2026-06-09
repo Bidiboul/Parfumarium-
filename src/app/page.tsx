@@ -1,6 +1,8 @@
 import FadeIn from "@/components/FadeIn";
 import Newsletter from "@/components/Newsletter";
+import Marquee from "@/components/Marquee";
 import Hero from "@/components/sections/Hero";
+import StatsStrip from "@/components/sections/StatsStrip";
 import BestSellers from "@/components/sections/BestSellers";
 import Story from "@/components/sections/Story";
 import WhyChoose from "@/components/sections/WhyChoose";
@@ -11,6 +13,10 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <Marquee />
+      <div className="py-16 md:py-20">
+        <StatsStrip />
+      </div>
       <BestSellers />
       <Story />
       <WhyChoose />

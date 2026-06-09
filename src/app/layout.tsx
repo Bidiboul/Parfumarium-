@@ -5,6 +5,7 @@ import { CartProvider } from "@/components/CartProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CartToast from "@/components/CartToast";
+import ScrollProgress from "@/components/ScrollProgress";
 
 // Police titres : serif élégante et raffinée
 const cormorant = Cormorant_Garamond({
@@ -62,6 +63,7 @@ export default function RootLayout({
     <html lang="fr" className={`${cormorant.variable} ${jost.variable}`}>
       <body>
         <CartProvider>
+          <ScrollProgress />
           <Header />
           <main className="min-h-screen">{children}</main>
           <Footer />
