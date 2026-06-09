@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useCart } from "./CartProvider";
+import Logo from "./Logo";
 
 const NAV_LINKS = [
   { href: "/", label: "Accueil" },
@@ -37,19 +38,14 @@ export default function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled || menuOpen
-          ? "border-b border-ink/8 bg-ivory/90 backdrop-blur-md"
+          ? "border-b border-ink/8 bg-white/90 backdrop-blur-md"
           : "border-b border-transparent bg-transparent"
       }`}
     >
       <div className="container-luxe flex h-[88px] items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="group flex flex-col leading-none" aria-label="Parfumarium — accueil">
-          <span className="font-serif text-2xl tracking-wide text-ink md:text-[28px]">
-            Parfum<span className="text-gold">arium</span>
-          </span>
-          <span className="mt-0.5 font-sans text-[9px] uppercase tracking-luxe text-warmgray">
-            Maison de Parfums
-          </span>
+        <Link href="/" aria-label="Parfumarium — accueil" className="group">
+          <Logo tone="gold" variant="row" size={42} className="transition-opacity group-hover:opacity-80" />
         </Link>
 
         {/* Navigation desktop */}

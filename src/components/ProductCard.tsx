@@ -46,7 +46,7 @@ export default function ProductCard({ product, priority }: ProductCardProps) {
         transform: `perspective(900px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
       }}
       className="tilt-card group relative flex flex-col overflow-hidden rounded-2xl border
-        border-ink/8 bg-white shadow-card transition-shadow duration-500 hover:border-gold/40
+        border-champagne bg-white shadow-card transition-shadow duration-500 hover:border-gold
         hover:shadow-card-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-gold
         focus-visible:ring-offset-2 focus-visible:ring-offset-ivory"
     >
@@ -108,7 +108,7 @@ export default function ProductCard({ product, priority }: ProductCardProps) {
             .join(" · ")}
         </p>
 
-        <div className="mt-5 flex items-center justify-between border-t border-ink/8 pt-4">
+        <div className="mt-5 -mx-6 -mb-6 flex items-center justify-between border-t border-champagne bg-cream px-6 py-4">
           <span className="font-serif text-xl text-amber">
             <span className="font-sans text-[11px] uppercase tracking-luxe text-warmgray">
               dès{" "}

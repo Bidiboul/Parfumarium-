@@ -125,15 +125,20 @@ Les fonctions utilitaires (`getBestSellers`, `getRelatedProducts`, `formatPrice`
 ### Couleurs
 **`tailwind.config.ts` → `theme.extend.colors`.** Toute l'identité visuelle y est centralisée :
 
-| Variable      | Rôle                        | Valeur     |
-| ------------- | --------------------------- | ---------- |
-| `ink`         | Noir profond chaud          | `#161311`  |
-| `ivory`       | Blanc cassé / ivoire (fond) | `#F7F3EC`  |
-| `champagne`   | Beige champagne             | `#E7D8BE`  |
-| `gold`        | Doré subtil (accents)       | `#B9975B`  |
-| `warmgray`    | Gris chaud (textes)         | `#8C857B`  |
-| `amber`       | Marron ambré                | `#7A4E2D`  |
-| `sand`        | Sable clair (sections)      | `#EFE7D8`  |
+| Variable      | Rôle                              | Valeur     |
+| ------------- | --------------------------------- | ---------- |
+| `ink`         | Noir profond chaud (texte)        | `#161311`  |
+| `ivory`       | **Blanc pur** (fond principal)    | `#FFFFFF`  |
+| `cream`       | Crème / beige (prix, accents)     | `#F6EFE1`  |
+| `champagne`   | Beige champagne (bordures)        | `#E7D8BE`  |
+| `gold`        | Doré subtil (logo, accents)       | `#B9975B`  |
+| `warmgray`    | Gris chaud (textes secondaires)   | `#8C857B`  |
+| `amber`       | Marron ambré (prix)               | `#7A4E2D`  |
+| `sand`        | Crème très clair (alternance)     | `#FAF6EF`  |
+
+> Le **logo** est un composant vectoriel (`src/components/Logo.tsx`),
+> recolorable en doré / noir / ivoire et utilisé dans le header, le footer,
+> le hero, etc. Le favicon est `src/app/icon.svg`.
 
 Changez une valeur ici et toute l'interface se met à jour.
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import FadeIn from "@/components/FadeIn";
+import Logo from "@/components/Logo";
 import SectionHeading from "@/components/sections/SectionHeading";
 
 export const metadata: Metadata = {
@@ -143,20 +144,18 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-ink py-20 text-center text-ivory md:py-24">
+      <section className="bg-cream py-20 text-center md:py-24">
         <div className="container-luxe">
-          <FadeIn>
-            <h2 className="mx-auto max-w-2xl font-serif text-3xl leading-tight text-balance sm:text-4xl">
+          <FadeIn className="flex flex-col items-center">
+            <Logo tone="gold" variant="icon" size={56} className="mb-8" />
+            <h2 className="mx-auto max-w-2xl font-serif text-3xl leading-tight text-balance text-ink sm:text-4xl">
               Trouvez la fragrance qui deviendra votre signature.
             </h2>
             <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-              <Link href="/collection" className="btn-gold">
+              <Link href="/collection" className="btn-primary">
                 Explorer la collection
               </Link>
-              <Link
-                href="/contact"
-                className="btn-outline border-champagne/30 text-ivory hover:text-gold"
-              >
+              <Link href="/contact" className="btn-outline">
                 Nous écrire
               </Link>
             </div>

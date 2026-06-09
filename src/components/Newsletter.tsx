@@ -59,17 +59,17 @@ export default function Newsletter({ variant = "panel" }: NewsletterProps) {
   }
 
   return (
-    <div className="relative overflow-hidden rounded-3xl bg-ink px-6 py-16 text-center md:px-16 md:py-20">
+    <div className="relative overflow-hidden rounded-3xl border border-champagne bg-cream px-6 py-16 text-center md:px-16 md:py-20">
       {/* Halo doré décoratif */}
-      <div className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-gold/10 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-amber/15 blur-3xl" />
+      <div className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-gold/15 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-champagne/40 blur-3xl" />
 
       <div className="relative mx-auto max-w-xl">
         <span className="eyebrow">Restons en contact</span>
-        <h2 className="mt-4 font-serif text-3xl text-ivory md:text-4xl">
+        <h2 className="mt-4 font-serif text-3xl text-ink md:text-4xl">
           Recevez nos fragrances en avant-première
         </h2>
-        <p className="mx-auto mt-4 max-w-md font-sans text-sm leading-relaxed text-champagne/80">
+        <p className="mx-auto mt-4 max-w-md font-sans text-sm leading-relaxed text-warmgray">
           Nouveautés, éditions limitées et offres privées. Un rendez-vous
           olfactif, sans jamais encombrer votre boîte de réception.
         </p>
@@ -89,16 +89,16 @@ export default function Newsletter({ variant = "panel" }: NewsletterProps) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Votre adresse e-mail"
-              className="w-full rounded-full border border-champagne/25 bg-white/5 px-6 py-3.5
-                font-sans text-sm text-ivory placeholder:text-champagne/50 focus:border-gold
+              className="w-full rounded-full border border-ink/15 bg-white px-6 py-3.5
+                font-sans text-sm text-ink placeholder:text-warmgray/70 focus:border-gold
                 focus:outline-none focus:ring-1 focus:ring-gold"
             />
-            <button type="submit" className="btn-gold shrink-0">
+            <button type="submit" className="btn-primary shrink-0">
               Je m'inscris
             </button>
           </form>
         )}
-        <p className="mt-4 font-sans text-[11px] text-champagne/50">
+        <p className="mt-4 font-sans text-[11px] text-warmgray/70">
           En vous inscrivant, vous acceptez de recevoir nos communications. Désinscription en un clic.
         </p>
       </div>

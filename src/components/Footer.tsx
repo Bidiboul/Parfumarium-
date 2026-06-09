@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Newsletter from "./Newsletter";
+import Logo from "./Logo";
 
 const SOCIALS = [
   { label: "Instagram", href: "#" },
@@ -14,10 +15,10 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-12 md:gap-8">
           {/* Marque */}
           <div className="md:col-span-4">
-            <Link href="/" className="font-serif text-3xl tracking-wide">
-              Parfum<span className="text-gold">arium</span>
+            <Link href="/" aria-label="Parfumarium — accueil" className="inline-block">
+              <Logo tone="gold" variant="row" size={48} />
             </Link>
-            <p className="mt-5 max-w-xs font-sans text-sm leading-relaxed text-champagne/70">
+            <p className="mt-6 max-w-xs font-sans text-sm leading-relaxed text-champagne/70">
               Un luxe discret, conçu pour le quotidien. Des fragrances raffinées,
               pensées pour sublimer chaque instant — sans le prix du luxe.
             </p>

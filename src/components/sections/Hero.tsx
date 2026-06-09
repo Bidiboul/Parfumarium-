@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getBestSellers } from "@/data/products";
 import HeroVisual from "./HeroVisual";
+import Logo from "@/components/Logo";
 
 // Positions des particules scintillantes (décoratif)
 const SPARKLES = [
@@ -40,6 +41,7 @@ export default function Hero() {
       <div className="container-luxe relative grid items-center gap-10 py-16 md:grid-cols-2 md:gap-8 md:py-24 lg:py-28">
         {/* Texte */}
         <div className="max-w-xl animate-fade-up">
+          <Logo tone="gold" variant="icon" size={48} className="mb-5 block" />
           <span className="eyebrow">Maison de parfums · 60 fragrances</span>
           <h1 className="mt-5 font-serif text-[2.7rem] leading-[1.05] text-ink text-balance sm:text-6xl lg:text-7xl">
             L'élégance d'un parfum,

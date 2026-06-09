@@ -15,14 +15,15 @@ const config: Config = {
     extend: {
       colors: {
         // Couleurs de marque
-        ink: "#161311", // Noir profond chaud
-        ivory: "#F7F3EC", // Blanc cassé / ivoire
-        champagne: "#E7D8BE", // Beige champagne
+        ink: "#161311", // Noir profond chaud (texte + ancrages)
+        ivory: "#FFFFFF", // Blanc pur (fond principal, cartes, texte sur sombre)
+        cream: "#F6EFE1", // Crème / beige (accents : prix, fonds doux)
+        champagne: "#E7D8BE", // Beige champagne (bordures, détails)
         gold: "#B9975B", // Doré subtil
         "gold-soft": "#CBB07E", // Doré clair
-        warmgray: "#8C857B", // Gris chaud
-        amber: "#7A4E2D", // Marron ambré
-        sand: "#EFE7D8", // Sable très clair (fonds de section)
+        warmgray: "#8C857B", // Gris chaud (textes secondaires)
+        amber: "#7A4E2D", // Marron ambré (prix, accents chauds)
+        sand: "#FAF6EF", // Crème très clair (légère alternance de sections)
       },
       fontFamily: {
         serif: ["var(--font-cormorant)", "Georgia", "serif"],

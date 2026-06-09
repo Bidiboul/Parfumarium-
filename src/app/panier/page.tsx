@@ -203,33 +203,37 @@ export default function CartPage() {
 
           {/* Récapitulatif */}
           <aside className="lg:col-span-4">
-            <div className="sticky top-28 rounded-2xl border border-ink/8 bg-ink p-7 text-ivory">
-              <h2 className="font-serif text-2xl">Récapitulatif</h2>
+            <div className="sticky top-28 rounded-2xl border border-champagne bg-white p-7 shadow-card">
+              <h2 className="font-serif text-2xl text-ink">Récapitulatif</h2>
               <div className="gold-rule mt-4" />
 
               {remaining > 0 && (
-                <p className="mt-5 rounded-xl bg-white/5 px-4 py-3 font-sans text-xs text-champagne/80">
+                <p className="mt-5 rounded-xl bg-cream px-4 py-3 font-sans text-xs text-warmgray">
                   Plus que{" "}
-                  <span className="text-gold">{formatPrice(remaining)}</span> pour
-                  la livraison offerte.
+                  <span className="font-medium text-amber">
+                    {formatPrice(remaining)}
+                  </span>{" "}
+                  pour la livraison offerte.
                 </p>
               )}
 
               <dl className="mt-6 space-y-3 font-sans text-sm">
-                <div className="flex justify-between text-champagne/80">
+                <div className="flex justify-between text-warmgray">
                   <dt>
                     Sous-total ({count} article{count > 1 ? "s" : ""})
                   </dt>
-                  <dd>{formatPrice(total)}</dd>
+                  <dd className="text-ink">{formatPrice(total)}</dd>
                 </div>
-                <div className="flex justify-between text-champagne/80">
+                <div className="flex justify-between text-warmgray">
                   <dt>Livraison</dt>
-                  <dd>{shipping === 0 ? "Offerte" : formatPrice(shipping)}</dd>
+                  <dd className="text-ink">
+                    {shipping === 0 ? "Offerte" : formatPrice(shipping)}
+                  </dd>
                 </div>
-                <div className="my-4 h-px bg-champagne/15" />
-                <div className="flex justify-between font-serif text-xl text-ivory">
+                <div className="my-4 h-px bg-champagne" />
+                <div className="flex justify-between font-serif text-xl text-ink">
                   <dt>Total</dt>
-                  <dd className="text-gold">{formatPrice(grandTotal)}</dd>
+                  <dd className="text-amber">{formatPrice(grandTotal)}</dd>
                 </div>
               </dl>
 
@@ -237,16 +241,16 @@ export default function CartPage() {
                 type="button"
                 onClick={handleCheckout}
                 disabled={loading}
-                className="btn-gold mt-7 w-full disabled:cursor-not-allowed disabled:opacity-70"
+                className="btn-primary mt-7 w-full disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {loading ? "Redirection en cours…" : "Passer la commande"}
               </button>
               {error && (
-                <p className="mt-3 text-center font-sans text-xs text-gold">
+                <p className="mt-3 text-center font-sans text-xs text-amber">
                   {error}
                 </p>
               )}
-              <p className="mt-4 text-center font-sans text-[11px] text-champagne/50">
+              <p className="mt-4 text-center font-sans text-[11px] text-warmgray/70">
                 Paiement 100% sécurisé · Livraison gérée par Shopify
               </p>
             </div>

@@ -179,25 +179,24 @@ export default function ProductPage({ params }: PageProps) {
       </section>
 
       {/* L'expérience Parfumarium */}
-      <section className="bg-ink py-20 text-ivory md:py-24">
+      <section className="bg-sand py-20 md:py-24">
         <div className="container-luxe">
           <FadeIn>
             <SectionHeading
               eyebrow="L'expérience Parfumarium"
               title="Plus qu'un parfum, un moment d'exception"
               subtitle="Chaque détail est pensé pour faire de votre achat une expérience à la hauteur de la fragrance."
-              light
             />
           </FadeIn>
           <div className="mt-14 grid gap-7 md:grid-cols-3">
             {EXPERIENCE.map((item, i) => (
               <FadeIn key={item.title} delay={i * 120}>
-                <div className="h-full rounded-2xl border border-champagne/15 bg-white/5 p-8">
+                <div className="h-full rounded-2xl border border-champagne bg-white p-8 shadow-card">
                   <span className="font-serif text-3xl text-gold">0{i + 1}</span>
-                  <h3 className="mt-4 font-serif text-xl text-ivory">
+                  <h3 className="mt-4 font-serif text-xl text-ink">
                     {item.title}
                   </h3>
-                  <p className="mt-3 font-sans text-sm leading-relaxed text-champagne/75">
+                  <p className="mt-3 font-sans text-sm leading-relaxed text-warmgray">
                     {item.text}
                   </p>
                 </div>
