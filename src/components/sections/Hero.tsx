@@ -64,7 +64,7 @@ export default function Hero() {
 
           {/* Réassurance */}
           <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3">
-            {["Livraison en 48h", "Dès 19,90 €", "Paiement sécurisé"].map(
+            {["Expédiée en 72h", "Dès 19,90 €", "Paiement sécurisé"].map(
               (item) => (
                 <span
                   key={item}

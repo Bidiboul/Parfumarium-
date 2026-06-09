@@ -18,12 +18,12 @@ const INFOS = [
 
 const FAQ = [
   {
-    q: "Quels sont les délais de livraison ?",
-    a: "Vos commandes sont expédiées sous 24h et livrées en 48h en France métropolitaine.",
+    q: "Quels sont les délais d'expédition ?",
+    a: "Vos commandes sont préparées et expédiées sous 72h en France métropolitaine.",
   },
   {
-    q: "Puis-je retourner un parfum ?",
-    a: "Oui, vous disposez de 30 jours pour changer d'avis. Les retours sont simples et offerts.",
+    q: "Comment choisir ma contenance ?",
+    a: "Chaque parfum existe en 15, 30, 50 et 100 ml. Le 15 ml est idéal pour découvrir, le 100 ml pour adopter une signature au quotidien.",
   },
   {
     q: "Vos parfums sont-ils testés sur les animaux ?",

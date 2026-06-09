@@ -42,8 +42,8 @@ const FEATURES = [
     ),
   },
   {
-    title: "Livraison rapide",
-    text: "Expédition sous 24h et livraison en 48h, dans un écrin soigné digne de la maison.",
+    title: "Expédition soignée",
+    text: "Votre commande est préparée et expédiée sous 72h, dans un écrin élégant digne de la maison.",
     icon: (
       <>
         <path

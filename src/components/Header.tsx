@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useCart } from "./CartProvider";
 import Logo from "./Logo";
+import SearchDialog from "./SearchDialog";
 
 const NAV_LINKS = [
   { href: "/", label: "Accueil" },
@@ -18,6 +19,7 @@ export default function Header() {
   const { count } = useCart();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -26,9 +28,10 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Ferme le menu mobile au changement de page
+  // Ferme le menu mobile et la recherche au changement de page
   useEffect(() => {
     setMenuOpen(false);
+    setSearchOpen(false);
   }, [pathname]);
 
   const isActive = (href: string) =>
@@ -69,7 +72,36 @@ export default function Header() {
         </nav>
 
         {/* Actions */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* Recherche */}
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            aria-label="Rechercher un parfum"
+            className="flex h-11 w-11 items-center justify-center rounded-full border
+              border-transparent text-ink transition-all duration-300 hover:border-gold/40
+              hover:text-amber"
+          >
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
+              <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.5" />
+              <path d="m20 20-3.2-3.2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </button>
+
+          {/* Compte */}
+          <Link
+            href="/compte"
+            aria-label="Mon compte"
+            className="flex h-11 w-11 items-center justify-center rounded-full border
+              border-transparent text-ink transition-all duration-300 hover:border-gold/40
+              hover:text-amber"
+          >
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="8" r="3.6" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M5 20c0-3.4 3.1-5.5 7-5.5s7 2.1 7 5.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </Link>
+
           <Link
             href="/panier"
             aria-label={`Panier, ${count} article${count > 1 ? "s" : ""}`}
@@ -149,8 +181,19 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/compte"
+            className={`py-4 font-sans text-sm uppercase tracking-luxe ${
+              isActive("/compte") ? "text-amber" : "text-ink"
+            }`}
+          >
+            Mon compte
+          </Link>
         </nav>
       </div>
+
+      {/* Recherche */}
+      <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 }

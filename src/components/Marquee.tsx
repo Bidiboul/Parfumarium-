@@ -1,10 +1,10 @@
 const DEFAULT_ITEMS = [
-  "Livraison en 48h",
+  "Expédiée en 72h",
   "Fabriqué avec soin",
   "60 fragrances d'exception",
   "Un luxe discret",
   "Paiement sécurisé",
-  "Satisfait ou remboursé",
+  "Inspiré des grandes maisons",
 ];
 
 /**

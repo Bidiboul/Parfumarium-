@@ -53,8 +53,8 @@ const EXPERIENCE = [
     text: "Des concentrations généreuses pour un sillage qui vous accompagne du matin au soir.",
   },
   {
-    title: "Satisfait ou remboursé",
-    text: "30 jours pour changer d'avis. Retours simples et sans frais cachés.",
+    title: "Paiement 100% sécurisé",
+    text: "Vos paiements sont protégés et traités en toute sécurité par Shopify.",
   },
 ];
 
@@ -162,7 +162,7 @@ export default function ProductPage({ params }: PageProps) {
 
             {/* Réassurance */}
             <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
-              {["Livraison 48h", "Retours offerts", "Paiement sécurisé"].map(
+              {["Expédiée en 72h", "Paiement sécurisé", "Fabriqué avec soin"].map(
                 (item) => (
                   <span
                     key={item}

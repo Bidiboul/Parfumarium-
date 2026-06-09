@@ -55,8 +55,8 @@ export default function Footer() {
               Informations
             </h3>
             <ul className="space-y-3 font-sans text-sm text-champagne/75">
-              <li><Link href="/contact" className="transition-colors hover:text-ivory">Livraison</Link></li>
-              <li><Link href="/contact" className="transition-colors hover:text-ivory">Retours &amp; échanges</Link></li>
+              <li><Link href="/contact" className="transition-colors hover:text-ivory">Expédition</Link></li>
+              <li><Link href="/contact" className="transition-colors hover:text-ivory">Suivi de commande</Link></li>
               <li><Link href="/contact" className="transition-colors hover:text-ivory">Mentions légales</Link></li>
               <li><Link href="/contact" className="transition-colors hover:text-ivory">CGV</Link></li>
             </ul>
@@ -77,7 +77,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Parfumarium. Tous droits réservés.
           </p>
           <p className="font-sans text-xs text-champagne/50">
-            Conçu avec soin en France · Paiement sécurisé · Livraison 48h
+            Conçu avec soin en France · Paiement sécurisé · Expédition 72h
           </p>
         </div>
       </div>

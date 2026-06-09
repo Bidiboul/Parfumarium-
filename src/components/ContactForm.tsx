@@ -60,7 +60,7 @@ export default function ContactForm() {
           </option>
           <option>Question sur un parfum</option>
           <option>Suivi de commande</option>
-          <option>Retour ou échange</option>
+          <option>Disponibilité d'un parfum</option>
           <option>Partenariat / Presse</option>
           <option>Autre</option>
         </select>

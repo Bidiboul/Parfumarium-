@@ -72,7 +72,7 @@ export default function CartPage() {
         </h1>
         <p className="mt-4 max-w-md font-sans text-warmgray">
           Ceci est une démonstration : aucun paiement n'a été effectué. Votre
-          sélection arriverait sous 48h, dans un écrin soigné.
+          sélection serait expédiée sous 72h, dans un écrin soigné.
         </p>
         <Link href="/collection" className="btn-primary mt-9">
           Continuer mes découvertes

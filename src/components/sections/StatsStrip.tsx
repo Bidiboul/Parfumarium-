@@ -11,8 +11,8 @@ interface Stat {
 const STATS: Stat[] = [
   { value: 60, label: "Fragrances signature" },
   { value: 4, label: "Contenances au choix" },
-  { value: 48, suffix: "h", label: "Livraison express" },
-  { value: 100, suffix: "%", label: "Satisfait ou remboursé" },
+  { value: 72, suffix: "h", label: "Expédition rapide" },
+  { value: 100, suffix: "%", label: "Paiement sécurisé" },
 ];
 
 /** Compteur qui s'incrémente quand l'élément entre dans le viewport. */
