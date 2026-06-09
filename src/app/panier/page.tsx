@@ -12,10 +12,53 @@ const SHIPPING_COST = 4.9;
 export default function CartPage() {
   const { items, total, count, setQuantity, removeItem, clear } = useCart();
   const [ordered, setOrdered] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const shipping = total >= SHIPPING_THRESHOLD || total === 0 ? 0 : SHIPPING_COST;
   const grandTotal = total + shipping;
   const remaining = Math.max(0, SHIPPING_THRESHOLD - total);
+
+  /**
+   * Passage de commande :
+   * - Si Shopify est branché → redirige vers le paiement sécurisé Shopify.
+   * - Sinon → affiche l'écran de confirmation de démonstration.
+   */
+  const handleCheckout = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: items.map((i) => ({
+            handle: i.slug,
+            volume: i.volume,
+            sku: i.sku,
+            quantity: i.quantity,
+          })),
+        }),
+      });
+      const data = await res.json();
+
+      if (data.url) {
+        // Redirection vers le checkout Shopify (paiement réel)
+        window.location.href = data.url;
+        return;
+      }
+      if (data.error) {
+        setError(data.error);
+        return;
+      }
+      // Mode démonstration (Shopify non configuré)
+      setOrdered(true);
+    } catch {
+      setError("Une erreur est survenue. Veuillez réessayer.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Écran de confirmation (simulation de commande)
   if (ordered) {
@@ -192,13 +235,19 @@ export default function CartPage() {
 
               <button
                 type="button"
-                onClick={() => setOrdered(true)}
-                className="btn-gold mt-7 w-full"
+                onClick={handleCheckout}
+                disabled={loading}
+                className="btn-gold mt-7 w-full disabled:cursor-not-allowed disabled:opacity-70"
               >
-                Passer la commande
+                {loading ? "Redirection en cours…" : "Passer la commande"}
               </button>
+              {error && (
+                <p className="mt-3 text-center font-sans text-xs text-gold">
+                  {error}
+                </p>
+              )}
               <p className="mt-4 text-center font-sans text-[11px] text-champagne/50">
-                Paiement 100% sécurisé · Démonstration sans transaction réelle
+                Paiement 100% sécurisé · Livraison gérée par Shopify
               </p>
             </div>
           </aside>
