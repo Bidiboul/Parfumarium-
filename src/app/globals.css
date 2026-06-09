@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --header-height: 88px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ivory text-ink font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-gold/30 text-ink;
+  }
+
+  /* Barre de défilement discrète */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-ivory;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-champagne rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gold-soft;
+  }
+}
+
+@layer components {
+  /* Conteneur centré standard */
+  .container-luxe {
+    @apply mx-auto w-full max-w-container px-6 md:px-10;
+  }
+
+  /* Sur-titre en petites capitales espacées */
+  .eyebrow {
+    @apply font-sans text-xs uppercase tracking-luxe text-gold;
+  }
+
+  /* Bouton principal (doré sur ink) */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5
+      font-sans text-sm uppercase tracking-luxe text-ivory transition-all duration-500
+      hover:bg-amber hover:shadow-soft focus:outline-none focus-visible:ring-2
+      focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ivory;
+  }
+
+  /* Bouton secondaire (contour) */
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink/30
+      px-8 py-3.5 font-sans text-sm uppercase tracking-luxe text-ink transition-all
+      duration-500 hover:border-gold hover:text-amber focus:outline-none
+      focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2
+      focus-visible:ring-offset-ivory;
+  }
+
+  /* Bouton doré plein */
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold px-8 py-3.5
+      font-sans text-sm uppercase tracking-luxe text-ink transition-all duration-500
+      hover:bg-gold-soft hover:shadow-soft focus:outline-none focus-visible:ring-2
+      focus-visible:ring-ink focus-visible:ring-offset-2;
+  }
+
+  /* Filet doré décoratif */
+  .gold-rule {
+    @apply h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent;
+  }
+}
+
+@layer utilities {
+  /* Etat initial des éléments animés au scroll (voir composant FadeIn) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Respect des préférences d'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
