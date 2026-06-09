@@ -5,20 +5,20 @@ const REVIEWS = [
   {
     name: "Camille L.",
     location: "Paris",
-    text: "Un sillage incroyable pour ce prix. On me demande sans cesse quel est mon parfum. Ambre Royal est devenu ma signature.",
-    product: "Ambre Royal",
+    text: "Un sillage incroyable pour ce prix. On me demande sans cesse quel est mon parfum. Creamy Milk est devenu ma signature.",
+    product: "Creamy Milk 590",
   },
   {
     name: "Théo M.",
     location: "Lyon",
-    text: "Bois Précieux tient toute la journée et reste élégant du matin au soir. La qualité n'a rien à envier aux grandes maisons.",
-    product: "Bois Précieux",
+    text: "Velvet Tobacco tient toute la journée et reste élégant du matin au soir. La qualité n'a rien à envier aux grandes maisons.",
+    product: "Velvet Tobacco 196",
   },
   {
     name: "Inès R.",
     location: "Bordeaux",
     text: "Le flacon est superbe, l'odeur sublime et l'emballage soigné. J'ai eu l'impression d'ouvrir un vrai cadeau de luxe.",
-    product: "Rose Impériale",
+    product: "Coffee Rose 562",
   },
 ];
 

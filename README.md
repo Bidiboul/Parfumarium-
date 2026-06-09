@@ -2,7 +2,9 @@
 
 > L'élégance d'un parfum, sans le prix du luxe.
 
-Site e-commerce premium pour la marque de parfums fictive **Parfumarium**, construit avec **Next.js 14 (App Router)**, **React 18**, **TypeScript** et **Tailwind CSS**. Design responsive, animations douces et expérience d'achat complète (panier persistant).
+Site e-commerce premium pour la marque de parfums **Parfumarium**, construit avec **Next.js 14 (App Router)**, **React 18**, **TypeScript** et **Tailwind CSS**. Design responsive, animations douces et expérience d'achat complète (panier persistant).
+
+**Catalogue réel** : 60 parfums issus de l'export Shopify officiel, chacun décliné en **4 contenances** (15 / 30 / 50 / 100 ML) avec photos HD, notes olfactives, famille et correspondance olfactive.
 
 ---
 
@@ -48,9 +50,8 @@ parfumarium/
 │   │   ├── Footer.tsx                # Pied de page complet + newsletter
 │   │   ├── CartProvider.tsx          # Contexte panier (état + persistance localStorage)
 │   │   ├── CartToast.tsx             # Notification d'ajout au panier
-│   │   ├── ProductCard.tsx           # Carte produit premium réutilisable
-│   │   ├── BottleVisual.tsx          # Illustration SVG du flacon (placeholder élégant)
-│   │   ├── AddToCartButton.tsx       # Sélecteur quantité + ajout panier
+│   │   ├── ProductCard.tsx           # Carte produit premium (photo réelle)
+│   │   ├── AddToCartButton.tsx       # Sélecteur contenance + quantité + ajout panier
 │   │   ├── CollectionGrid.tsx        # Grille filtrable par famille olfactive
 │   │   ├── ContactForm.tsx           # Formulaire de contact
 │   │   ├── Newsletter.tsx            # Bloc newsletter (2 variantes)
@@ -66,7 +67,10 @@ parfumarium/
 │   │       └── SectionHeading.tsx
 │   │
 │   └── data/
-│       └── products.ts               # ⭐ Catalogue des parfums (source unique de vérité)
+│       └── products.ts               # ⭐ Catalogue des 60 parfums (généré depuis Shopify)
+│
+├── public/
+│   └── products/                     # 📸 Photos HD des parfums (<code>.jpg)
 │
 ├── tailwind.config.ts                # ⭐ Palette de couleurs, polices, animations
 ├── next.config.mjs
@@ -78,35 +82,41 @@ parfumarium/
 
 ## 3. Où modifier les produits
 
-**Tout se passe dans `src/data/products.ts`.**
+**Tout se passe dans `src/data/products.ts`** (les 60 parfums y sont listés) et **`public/products/`** (les photos, nommées `<code>.jpg`).
 
-Chaque parfum est un objet du tableau `products`. Pour ajouter un parfum, copiez un bloc existant et adaptez les champs :
+Le fichier a été **généré depuis l'export Shopify** (`Parfumarium_Shopify_Import_Stock.csv`), mais reste un simple fichier TypeScript que vous pouvez éditer à la main. Chaque parfum suit cette structure :
 
 ```ts
 {
-  slug: "mon-parfum",          // identifiant unique → URL /produit/mon-parfum
-  name: "Mon Parfum",
-  tagline: "Une accroche courte",
-  price: 39.9,
-  family: "Ambré",             // Ambré | Boisé | Floral | Frais | Oriental
-  notes: ["Note 1", "Note 2", "Note 3"],
-  pyramid: {
-    head: ["..."], heart: ["..."], base: ["..."],
-  },
-  shortDescription: "Phrase d'accroche (cartes).",
-  description: "Description longue (page produit).",
-  volume: "100 ml",
-  bestSeller: true,            // (optionnel) affiché sur l'accueil
-  theme: {                     // couleurs du flacon SVG
-    liquidTop: "#D9A85C", liquidBottom: "#9A5E2C",
-    backdrop: "#F1E6D2", cap: "#7A4E2D",
-  },
+  slug: "creamy-milk-590",        // identifiant → URL /produit/creamy-milk-590
+  name: "Creamy Milk 590",
+  code: "590",                     // = nom du fichier image (public/products/590.jpg)
+  family: "Gourmand Lacté Vanillé",
+  group: "Gourmands / Sucrés / Addictifs",   // sert aux filtres de la collection
+  inspiration: "Bianco Latte",     // correspondance olfactive
+  gender: "unisex",
+  mood: "Doux, cocooning, addictif.",
+  shortDescription: "…",           // affiché sur les cartes
+  paragraphs: ["…", "…"],          // description longue (page produit)
+  notes: { head: [...], heart: [...], base: [...] },
+  image: "/products/590.jpg",
+  accent: "#9A5E2C",               // teinte de fond pendant le chargement
+  price: 19.9,                     // prix le plus bas (« dès … »)
+  variants: [                      // 4 contenances
+    { volume: "15 ML", price: 19.9, sku: "PARF-590-15ML" },
+    { volume: "30 ML", price: 29.9, sku: "PARF-590-30ML" },
+    { volume: "50 ML", price: 49.9, sku: "PARF-590-50ML" },
+    { volume: "100 ML", price: 79.9, sku: "PARF-590-100ML" },
+  ],
+  bestSeller: true,                // (optionnel) mis en avant sur l'accueil
 },
 ```
 
-> Les visuels sont des **illustrations SVG générées** à partir du `theme` (aucune image à fournir). Pour utiliser de vraies photos, ajoutez un champ `image` au produit et remplacez `<BottleVisual />` par le composant `<Image />` de Next.js dans `ProductCard.tsx`, `Hero.tsx` et la page produit.
+- **Changer une photo** : remplacez le fichier dans `public/products/` (ratio 4:5 recommandé).
+- **Mettre en avant un parfum** sur l'accueil : ajoutez `bestSeller: true`.
+- **Filtres de la collection** : définis par la liste `groups` (en bas du fichier).
 
-Les fonctions utilitaires en bas du fichier (`getBestSellers`, `getRelatedProducts`, `formatPrice`…) gèrent automatiquement l'affichage.
+Les fonctions utilitaires (`getBestSellers`, `getRelatedProducts`, `formatPrice`…) gèrent automatiquement l'affichage.
 
 ---
 
@@ -143,8 +153,8 @@ Définies dans `src/app/layout.tsx` (via `next/font`) :
 
 - **Paiement réel** : intégrer Stripe / PayPal sur la page panier (actuellement une simulation).
 - **Backend & CMS** : déplacer le catalogue vers une base de données ou un CMS headless (Sanity, Contentful) pour gérer les produits sans toucher au code.
-- **Photos produits** : remplacer les flacons SVG par de vraies photographies HD (champ `image` + `next/image`).
 - **Newsletter / Contact** : connecter un service réel (Brevo, Mailchimp, Resend, Formspree).
+- **Stock & disponibilité** : afficher les quantités en stock (présentes dans le CSV) et gérer les ruptures.
 - **Recherche & tri** : barre de recherche et tri par prix/nouveautés sur la collection.
 - **Comptes clients** : authentification, historique de commandes, liste de souhaits.
 - **Avis vérifiés** : système de notation et d'avis clients dynamiques.

@@ -1,7 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/data/products";
 import { formatPrice } from "@/data/products";
-import BottleVisual from "./BottleVisual";
 
 interface ProductCardProps {
   product: Product;
@@ -9,15 +9,15 @@ interface ProductCardProps {
 }
 
 /**
- * Carte produit premium : visuel du flacon, nom, prix, notes et CTA.
- * Animations douces au survol (zoom léger sur le visuel, élévation de la carte).
+ * Carte produit premium : photo du flacon, nom, famille, notes, prix.
+ * Animations douces au survol (zoom léger sur l'image, élévation de la carte).
  */
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, priority }: ProductCardProps) {
   return (
     <Link
       href={`/produit/${product.slug}`}
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-ink/8
-        bg-white/70 shadow-card transition-all duration-500 hover:-translate-y-1.5
+        bg-white shadow-card transition-all duration-500 hover:-translate-y-1.5
         hover:border-gold/40 hover:shadow-card-hover focus:outline-none
         focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2
         focus-visible:ring-offset-ivory"
@@ -32,14 +32,19 @@ export default function ProductCard({ product }: ProductCardProps) {
       )}
 
       {/* Visuel */}
-      <div className="relative overflow-hidden">
-        <BottleVisual
-          theme={product.theme}
-          name={product.name}
-          className="aspect-[4/5] w-full transition-transform duration-[1100ms]
-            ease-out group-hover:scale-105"
+      <div
+        className="relative aspect-[4/5] overflow-hidden"
+        style={{ backgroundColor: `${product.accent}14` }}
+      >
+        <Image
+          src={product.image}
+          alt={`${product.name} — ${product.family}`}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          priority={priority}
+          className="object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-105"
         />
-        <span className="pointer-events-none absolute inset-0 bg-ink/0 transition-colors duration-500 group-hover:bg-ink/[0.03]" />
+        <span className="pointer-events-none absolute inset-0 bg-ink/0 transition-colors duration-500 group-hover:bg-ink/[0.04]" />
       </div>
 
       {/* Contenu */}
@@ -48,19 +53,22 @@ export default function ProductCard({ product }: ProductCardProps) {
         <h3 className="font-serif text-2xl leading-tight text-ink">
           {product.name}
         </h3>
-        <p className="mt-1 font-sans text-sm text-warmgray">
-          {product.notes.join(" · ")}
+        <p className="mt-1 line-clamp-1 font-sans text-sm text-warmgray">
+          {[...product.notes.head, ...product.notes.heart].slice(0, 3).join(" · ")}
         </p>
 
         <div className="mt-5 flex items-center justify-between border-t border-ink/8 pt-4">
           <span className="font-serif text-xl text-amber">
+            <span className="font-sans text-[11px] uppercase tracking-luxe text-warmgray">
+              dès{" "}
+            </span>
             {formatPrice(product.price)}
           </span>
           <span
             className="inline-flex items-center gap-1.5 font-sans text-xs uppercase
               tracking-luxe text-ink transition-colors duration-300 group-hover:text-gold"
           >
-            Voir le parfum
+            Voir
             <svg
               width="16"
               height="16"

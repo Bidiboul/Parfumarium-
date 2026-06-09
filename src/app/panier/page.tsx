@@ -1,8 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import BottleVisual from "@/components/BottleVisual";
 import { useCart } from "@/components/CartProvider";
 import { formatPrice } from "@/data/products";
 
@@ -24,7 +24,9 @@ export default function CartPage() {
         <span className="flex h-16 w-16 items-center justify-center rounded-full bg-gold text-3xl text-ink">
           ✓
         </span>
-        <h1 className="mt-6 font-serif text-4xl text-ink">Merci pour votre commande</h1>
+        <h1 className="mt-6 font-serif text-4xl text-ink">
+          Merci pour votre commande
+        </h1>
         <p className="mt-4 max-w-md font-sans text-warmgray">
           Ceci est une démonstration : aucun paiement n'a été effectué. Votre
           sélection arriverait sous 48h, dans un écrin soigné.
@@ -61,9 +63,7 @@ export default function CartPage() {
         <div className="flex items-end justify-between">
           <div>
             <span className="eyebrow">Votre sélection</span>
-            <h1 className="mt-3 font-serif text-4xl text-ink sm:text-5xl">
-              Panier
-            </h1>
+            <h1 className="mt-3 font-serif text-4xl text-ink sm:text-5xl">Panier</h1>
           </div>
           <button
             type="button"
@@ -80,17 +80,19 @@ export default function CartPage() {
             <ul className="space-y-4">
               {items.map((item) => (
                 <li
-                  key={item.slug}
-                  className="flex gap-5 rounded-2xl border border-ink/8 bg-white/70 p-4 sm:p-5"
+                  key={item.sku}
+                  className="flex gap-5 rounded-2xl border border-ink/8 bg-white/80 p-4 sm:p-5"
                 >
                   <Link
                     href={`/produit/${item.slug}`}
-                    className="w-24 shrink-0 overflow-hidden rounded-xl border border-ink/8 sm:w-28"
+                    className="relative aspect-[4/5] w-24 shrink-0 overflow-hidden rounded-xl border border-ink/8 sm:w-28"
                   >
-                    <BottleVisual
-                      theme={item.theme}
-                      name={item.name}
-                      className="aspect-[4/5] w-full"
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      sizes="112px"
+                      className="object-cover"
                     />
                   </Link>
 
@@ -103,13 +105,13 @@ export default function CartPage() {
                         >
                           {item.name}
                         </Link>
-                        <p className="mt-0.5 font-sans text-xs text-warmgray">
+                        <p className="mt-0.5 font-sans text-xs uppercase tracking-luxe text-warmgray">
                           {item.volume} · Eau de parfum
                         </p>
                       </div>
                       <button
                         type="button"
-                        onClick={() => removeItem(item.slug)}
+                        onClick={() => removeItem(item.sku)}
                         aria-label={`Retirer ${item.name}`}
                         className="font-sans text-xs uppercase tracking-luxe text-warmgray transition-colors hover:text-amber"
                       >
@@ -118,11 +120,10 @@ export default function CartPage() {
                     </div>
 
                     <div className="mt-auto flex items-center justify-between pt-4">
-                      {/* Quantité */}
                       <div className="flex items-center rounded-full border border-ink/15">
                         <button
                           type="button"
-                          onClick={() => setQuantity(item.slug, item.quantity - 1)}
+                          onClick={() => setQuantity(item.sku, item.quantity - 1)}
                           aria-label="Diminuer"
                           className="flex h-9 w-9 items-center justify-center text-ink transition-colors hover:text-gold"
                         >
@@ -133,7 +134,7 @@ export default function CartPage() {
                         </span>
                         <button
                           type="button"
-                          onClick={() => setQuantity(item.slug, item.quantity + 1)}
+                          onClick={() => setQuantity(item.sku, item.quantity + 1)}
                           aria-label="Augmenter"
                           className="flex h-9 w-9 items-center justify-center text-ink transition-colors hover:text-gold"
                         >
@@ -166,14 +167,16 @@ export default function CartPage() {
               {remaining > 0 && (
                 <p className="mt-5 rounded-xl bg-white/5 px-4 py-3 font-sans text-xs text-champagne/80">
                   Plus que{" "}
-                  <span className="text-gold">{formatPrice(remaining)}</span>{" "}
-                  pour la livraison offerte.
+                  <span className="text-gold">{formatPrice(remaining)}</span> pour
+                  la livraison offerte.
                 </p>
               )}
 
               <dl className="mt-6 space-y-3 font-sans text-sm">
                 <div className="flex justify-between text-champagne/80">
-                  <dt>Sous-total ({count} article{count > 1 ? "s" : ""})</dt>
+                  <dt>
+                    Sous-total ({count} article{count > 1 ? "s" : ""})
+                  </dt>
                   <dd>{formatPrice(total)}</dd>
                 </div>
                 <div className="flex justify-between text-champagne/80">

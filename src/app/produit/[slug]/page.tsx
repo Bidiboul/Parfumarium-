@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import BottleVisual from "@/components/BottleVisual";
 import ProductCard from "@/components/ProductCard";
 import AddToCartButton from "@/components/AddToCartButton";
 import FadeIn from "@/components/FadeIn";
@@ -25,14 +25,20 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: PageProps): Metadata {
   const product = getProductBySlug(params.slug);
   if (!product) return { title: "Parfum introuvable" };
+  const allNotes = [
+    ...product.notes.head,
+    ...product.notes.heart,
+    ...product.notes.base,
+  ];
   return {
     title: `${product.name} — ${product.family}`,
-    description: `${product.shortDescription} Notes : ${product.notes.join(
-      ", ",
-    )}. ${formatPrice(product.price)} — ${product.volume}. Livraison rapide.`,
+    description: `${product.shortDescription} Notes : ${allNotes
+      .slice(0, 6)
+      .join(", ")}. À partir de ${formatPrice(product.price)}.`,
     openGraph: {
       title: `${product.name} · Parfumarium`,
       description: product.shortDescription,
+      images: [{ url: product.image }],
     },
   };
 }
@@ -40,7 +46,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
 const EXPERIENCE = [
   {
     title: "Un écrin soigné",
-    text: "Chaque flacon est livré dans un coffret élégant, prêt à offrir ou à s'offrir.",
+    text: "Chaque flacon est livré dans un emballage élégant, prêt à offrir ou à s'offrir.",
   },
   {
     title: "Une tenue longue durée",
@@ -56,7 +62,7 @@ export default function ProductPage({ params }: PageProps) {
   const product = getProductBySlug(params.slug);
   if (!product) notFound();
 
-  const related = getRelatedProducts(product.slug, 3);
+  const related = getRelatedProducts(product.slug, 4);
 
   return (
     <>
@@ -68,10 +74,7 @@ export default function ProductPage({ params }: PageProps) {
               Accueil
             </Link>
             <span className="mx-2">/</span>
-            <Link
-              href="/collection"
-              className="transition-colors hover:text-amber"
-            >
+            <Link href="/collection" className="transition-colors hover:text-amber">
               Collection
             </Link>
             <span className="mx-2">/</span>
@@ -82,13 +85,23 @@ export default function ProductPage({ params }: PageProps) {
         <div className="container-luxe grid items-start gap-12 py-12 md:grid-cols-2 md:gap-16 md:py-16">
           {/* Visuel */}
           <FadeIn className="md:sticky md:top-28">
-            <div className="overflow-hidden rounded-[2rem] border border-white/60 bg-white/50 shadow-card">
-              <BottleVisual
-                theme={product.theme}
-                name={product.name}
-                variant="hero"
-                className="aspect-square w-full"
+            <div
+              className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/60 shadow-card"
+              style={{ backgroundColor: `${product.accent}14` }}
+            >
+              <Image
+                src={product.image}
+                alt={`${product.name} — ${product.family}`}
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
               />
+              {product.bestSeller && (
+                <span className="absolute left-5 top-5 rounded-full bg-ink/85 px-3 py-1 font-sans text-[10px] uppercase tracking-luxe text-ivory backdrop-blur">
+                  Best-seller
+                </span>
+              )}
             </div>
           </FadeIn>
 
@@ -98,35 +111,34 @@ export default function ProductPage({ params }: PageProps) {
             <h1 className="mt-3 font-serif text-4xl leading-tight text-ink sm:text-5xl">
               {product.name}
             </h1>
-            <p className="mt-3 font-sans text-base text-warmgray">
-              {product.tagline}
+            <p className="mt-3 font-sans text-base capitalize text-warmgray">
+              {product.mood.replace(/\.$/, "")}
             </p>
 
-            <div className="mt-6 flex items-baseline gap-3">
-              <span className="font-serif text-3xl text-amber">
-                {formatPrice(product.price)}
-              </span>
-              <span className="font-sans text-sm text-warmgray">
-                · {product.volume} · Eau de parfum
-              </span>
-            </div>
+            {product.inspiration && (
+              <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-champagne/40 px-4 py-1.5 font-sans text-xs uppercase tracking-luxe text-amber">
+                Correspondance olfactive · {product.inspiration}
+              </p>
+            )}
 
             <div className="gold-rule mt-7" />
 
-            <p className="mt-7 font-sans text-base leading-relaxed text-ink/80">
-              {product.description}
-            </p>
+            <div className="mt-7 space-y-4 font-sans text-base leading-relaxed text-ink/80">
+              {product.paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
 
             {/* Pyramide olfactive */}
-            <div className="mt-8 rounded-2xl border border-ink/8 bg-white/60 p-6">
+            <div className="mt-8 rounded-2xl border border-ink/8 bg-white/70 p-6">
               <h2 className="font-sans text-xs uppercase tracking-luxe text-gold">
                 Pyramide olfactive
               </h2>
               <dl className="mt-4 space-y-3">
                 {[
-                  { label: "Tête", notes: product.pyramid.head },
-                  { label: "Cœur", notes: product.pyramid.heart },
-                  { label: "Fond", notes: product.pyramid.base },
+                  { label: "Tête", notes: product.notes.head },
+                  { label: "Cœur", notes: product.notes.heart },
+                  { label: "Fond", notes: product.notes.base },
                 ].map((row) => (
                   <div
                     key={row.label}
@@ -135,7 +147,7 @@ export default function ProductPage({ params }: PageProps) {
                     <dt className="w-16 shrink-0 font-serif text-lg text-ink">
                       {row.label}
                     </dt>
-                    <dd className="font-sans text-sm text-warmgray">
+                    <dd className="font-sans text-sm capitalize text-warmgray">
                       {row.notes.join(" · ")}
                     </dd>
                   </div>
@@ -143,7 +155,7 @@ export default function ProductPage({ params }: PageProps) {
               </dl>
             </div>
 
-            {/* Ajout panier */}
+            {/* Ajout panier (avec contenances) */}
             <div className="mt-8">
               <AddToCartButton product={product} />
             </div>
@@ -181,9 +193,7 @@ export default function ProductPage({ params }: PageProps) {
             {EXPERIENCE.map((item, i) => (
               <FadeIn key={item.title} delay={i * 120}>
                 <div className="h-full rounded-2xl border border-champagne/15 bg-white/5 p-8">
-                  <span className="font-serif text-3xl text-gold">
-                    0{i + 1}
-                  </span>
+                  <span className="font-serif text-3xl text-gold">0{i + 1}</span>
                   <h3 className="mt-4 font-serif text-xl text-ivory">
                     {item.title}
                   </h3>
@@ -200,14 +210,11 @@ export default function ProductPage({ params }: PageProps) {
       {/* Suggestions */}
       <section className="container-luxe py-20 md:py-24">
         <FadeIn>
-          <SectionHeading
-            eyebrow="Vous aimerez aussi"
-            title="À découvrir également"
-          />
+          <SectionHeading eyebrow="Vous aimerez aussi" title="À découvrir également" />
         </FadeIn>
-        <div className="mt-14 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
           {related.map((p, i) => (
-            <FadeIn key={p.slug} delay={i * 120}>
+            <FadeIn key={p.slug} delay={i * 100}>
               <ProductCard product={p} />
             </FadeIn>
           ))}

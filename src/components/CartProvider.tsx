@@ -9,15 +9,17 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import type { Product } from "@/data/products";
+import type { Product, Variant } from "@/data/products";
 
 export interface CartItem {
+  /** Clé de ligne = slug + contenance (sku) */
+  sku: string;
   slug: string;
   name: string;
-  price: number;
+  image: string;
   volume: string;
+  price: number;
   quantity: number;
-  theme: Product["theme"];
 }
 
 interface CartState {
@@ -25,9 +27,9 @@ interface CartState {
 }
 
 type CartAction =
-  | { type: "ADD"; product: Product; quantity: number }
-  | { type: "REMOVE"; slug: string }
-  | { type: "SET_QTY"; slug: string; quantity: number }
+  | { type: "ADD"; product: Product; variant: Variant; quantity: number }
+  | { type: "REMOVE"; sku: string }
+  | { type: "SET_QTY"; sku: string; quantity: number }
   | { type: "CLEAR" }
   | { type: "HYDRATE"; items: CartItem[] };
 
@@ -38,11 +40,11 @@ function reducer(state: CartState, action: CartAction): CartState {
     case "HYDRATE":
       return { items: action.items };
     case "ADD": {
-      const existing = state.items.find((i) => i.slug === action.product.slug);
+      const existing = state.items.find((i) => i.sku === action.variant.sku);
       if (existing) {
         return {
           items: state.items.map((i) =>
-            i.slug === action.product.slug
+            i.sku === action.variant.sku
               ? { ...i, quantity: i.quantity + action.quantity }
               : i,
           ),
@@ -52,22 +54,23 @@ function reducer(state: CartState, action: CartAction): CartState {
         items: [
           ...state.items,
           {
+            sku: action.variant.sku,
             slug: action.product.slug,
             name: action.product.name,
-            price: action.product.price,
-            volume: action.product.volume,
-            theme: action.product.theme,
+            image: action.product.image,
+            volume: action.variant.volume,
+            price: action.variant.price,
             quantity: action.quantity,
           },
         ],
       };
     }
     case "REMOVE":
-      return { items: state.items.filter((i) => i.slug !== action.slug) };
+      return { items: state.items.filter((i) => i.sku !== action.sku) };
     case "SET_QTY":
       return {
         items: state.items.map((i) =>
-          i.slug === action.slug
+          i.sku === action.sku
             ? { ...i, quantity: Math.max(1, action.quantity) }
             : i,
         ),
@@ -83,12 +86,13 @@ interface CartContextValue {
   items: CartItem[];
   count: number;
   total: number;
-  addItem: (product: Product, quantity?: number) => void;
-  removeItem: (slug: string) => void;
-  setQuantity: (slug: string, quantity: number) => void;
+  addItem: (product: Product, variant: Variant, quantity?: number) => void;
+  removeItem: (sku: string) => void;
+  setQuantity: (sku: string, quantity: number) => void;
   clear: () => void;
-  /** S'incrémente à chaque ajout : utile pour déclencher une animation/toast */
+  /** S'incrémente à chaque ajout : utile pour déclencher le toast */
   lastAddedAt: number | null;
+  lastAdded: CartItem | null;
 }
 
 const CartContext = createContext<CartContextValue | null>(null);
@@ -97,6 +101,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, { items: [] });
   const [hydrated, setHydrated] = useState(false);
   const [lastAddedAt, setLastAddedAt] = useState<number | null>(null);
+  const [lastAdded, setLastAdded] = useState<CartItem | null>(null);
 
   // Chargement depuis localStorage au montage
   useEffect(() => {
@@ -130,16 +135,26 @@ export function CartProvider({ children }: { children: ReactNode }) {
       count,
       total,
       lastAddedAt,
-      addItem: (product, quantity = 1) => {
-        dispatch({ type: "ADD", product, quantity });
+      lastAdded,
+      addItem: (product, variant, quantity = 1) => {
+        dispatch({ type: "ADD", product, variant, quantity });
+        setLastAdded({
+          sku: variant.sku,
+          slug: product.slug,
+          name: product.name,
+          image: product.image,
+          volume: variant.volume,
+          price: variant.price,
+          quantity,
+        });
         setLastAddedAt(Date.now());
       },
-      removeItem: (slug) => dispatch({ type: "REMOVE", slug }),
-      setQuantity: (slug, quantity) =>
-        dispatch({ type: "SET_QTY", slug, quantity }),
+      removeItem: (sku) => dispatch({ type: "REMOVE", sku }),
+      setQuantity: (sku, quantity) =>
+        dispatch({ type: "SET_QTY", sku, quantity }),
       clear: () => dispatch({ type: "CLEAR" }),
     };
-  }, [state.items, lastAddedAt]);
+  }, [state.items, lastAddedAt, lastAdded]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

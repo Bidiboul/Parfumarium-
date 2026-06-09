@@ -3,54 +3,60 @@
 import { useMemo, useState } from "react";
 import ProductCard from "./ProductCard";
 import FadeIn from "./FadeIn";
-import { products, type OlfactiveFamily } from "@/data/products";
+import { products, groups } from "@/data/products";
 
-const FAMILIES: (OlfactiveFamily | "Tous")[] = [
-  "Tous",
-  "Ambré",
-  "Boisé",
-  "Floral",
-  "Frais",
-  "Oriental",
-];
+// Libellés courts pour les filtres (le `group` complet reste la valeur)
+const SHORT_LABELS: Record<string, string> = {
+  "Floraux Féminins / Iconiques": "Floraux iconiques",
+  "Floraux Propres / Romantiques": "Floraux romantiques",
+  "Gourmands / Sucrés / Addictifs": "Gourmands",
+  "Boisés / Niches / Luxe / Séduction": "Boisés & Niche",
+  "Frais / Été / Vacances": "Frais & Estivaux",
+};
 
 /** Grille de la collection avec filtres par famille olfactive. */
 export default function CollectionGrid() {
-  const [active, setActive] = useState<(typeof FAMILIES)[number]>("Tous");
+  const [active, setActive] = useState<string>("Tous");
 
   const filtered = useMemo(
     () =>
       active === "Tous"
         ? products
-        : products.filter((p) => p.family === active),
+        : products.filter((p) => p.group === active),
     [active],
   );
+
+  const filters = ["Tous", ...groups];
 
   return (
     <div className="container-luxe py-16 md:py-20">
       {/* Filtres */}
-      <div className="mb-12 flex flex-wrap items-center justify-center gap-3">
-        {FAMILIES.map((family) => (
+      <div className="mb-4 flex flex-wrap items-center justify-center gap-3">
+        {filters.map((group) => (
           <button
-            key={family}
+            key={group}
             type="button"
-            onClick={() => setActive(family)}
+            onClick={() => setActive(group)}
             className={`rounded-full border px-5 py-2 font-sans text-xs uppercase tracking-luxe transition-all duration-300 ${
-              active === family
+              active === group
                 ? "border-ink bg-ink text-ivory"
                 : "border-ink/15 text-ink hover:border-gold hover:text-amber"
             }`}
           >
-            {family}
+            {group === "Tous" ? "Tous" : SHORT_LABELS[group] ?? group}
           </button>
         ))}
       </div>
 
+      <p className="mb-12 text-center font-sans text-xs uppercase tracking-luxe text-warmgray">
+        {filtered.length} parfum{filtered.length > 1 ? "s" : ""}
+      </p>
+
       {/* Grille */}
-      <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {filtered.map((product, i) => (
-          <FadeIn key={product.slug} delay={(i % 3) * 100}>
-            <ProductCard product={product} />
+          <FadeIn key={product.slug} delay={(i % 4) * 90}>
+            <ProductCard product={product} priority={i < 4} />
           </FadeIn>
         ))}
       </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useCart } from "./CartProvider";
@@ -9,13 +10,13 @@ import { useCart } from "./CartProvider";
  * Disparaît automatiquement après quelques secondes.
  */
 export default function CartToast() {
-  const { lastAddedAt, count } = useCart();
+  const { lastAddedAt, lastAdded, count } = useCart();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     if (lastAddedAt === null) return;
     setVisible(true);
-    const t = setTimeout(() => setVisible(false), 3200);
+    const t = setTimeout(() => setVisible(false), 3400);
     return () => clearTimeout(t);
   }, [lastAddedAt]);
 
@@ -28,13 +29,24 @@ export default function CartToast() {
           : "pointer-events-none translate-y-4 opacity-0"
       }`}
     >
-      <div className="flex items-center gap-4 rounded-2xl border border-gold/30 bg-ink/95 px-5 py-4 text-ivory shadow-soft backdrop-blur">
-        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold text-ink">
-          ✓
-        </span>
+      <div className="flex items-center gap-4 rounded-2xl border border-gold/30 bg-ink/95 p-3 pr-5 text-ivory shadow-soft backdrop-blur">
+        {lastAdded && (
+          <span className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-white/10">
+            <Image
+              src={lastAdded.image}
+              alt={lastAdded.name}
+              fill
+              sizes="56px"
+              className="object-cover"
+            />
+          </span>
+        )}
         <div>
-          <p className="font-sans text-sm">Ajouté à votre panier</p>
+          <p className="font-sans text-sm">
+            {lastAdded ? lastAdded.name : "Ajouté au panier"}
+          </p>
           <p className="font-sans text-xs text-champagne/70">
+            {lastAdded ? `${lastAdded.volume} · ` : ""}
             {count} article{count > 1 ? "s" : ""} au total
           </p>
         </div>
