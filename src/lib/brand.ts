@@ -15,7 +15,7 @@
  */
 
 /** Logo complet (lockup vertical). Ex : "/logo.png" */
-export const LOGO_FULL: string | null = null;
+export const LOGO_FULL: string | null = "/logo.png";
 
 /** Monogramme seul. Ex : "/logo-mark.png" (sinon on retombe sur LOGO_FULL) */
-export const LOGO_MARK: string | null = null;
+export const LOGO_MARK: string | null = "/logo-mark.png";

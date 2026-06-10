@@ -20,7 +20,7 @@ export interface HomeBlock {
 export const home = {
   /** Hero principal (grande image + titre + CTA) */
   hero: {
-    image: "/products/562.jpg",
+    image: "/home/hero.jpg",
     eyebrow: "Maison de parfums",
     title: "Élégance intemporelle",
     subtitle:
@@ -41,22 +41,22 @@ export const home = {
     {
       title: "La découverte",
       text: "Chez Parfumarium, nous vous guidons à travers différents univers olfactifs pour trouver la fragrance qui vous correspond vraiment.",
-      image: "/products/590.jpg",
+      image: "/home/decouverte.jpg",
     },
     {
       title: "Le savoir-faire",
       text: "Une collection de parfums rigoureusement sélectionnés pour leur richesse, leur tenue et leur signature olfactive.",
-      image: "/products/8000.jpg",
+      image: "/home/savoir-faire.jpg",
     },
     {
       title: "La personnalisation",
       text: "Prenez le temps de sentir, comparer et choisir le parfum qui raconte votre histoire.",
-      image: "/products/196.jpg",
+      image: "/home/personnalisation.jpg",
     },
     {
       title: "Le concept rechargeable",
       text: "Un parfum que vous aimez mérite d'être rechargé, pas remplacé.",
-      image: "/products/8006.jpg",
+      image: "/home/rechargeable.jpg",
     },
   ] as HomeBlock[],
 
