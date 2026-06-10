@@ -33,9 +33,9 @@ export default function Story() {
           <div className="gold-rule mt-6" />
           <p className="mt-6 font-sans text-base leading-relaxed text-warmgray">
             <span className="font-medium text-gold">Parfumarium</span> est née
-            d'une conviction : l'élégance n'a pas besoin d'être inaccessible.
-            Nous composons des fragrances à la hauteur des grandes maisons, sans
-            les marges qui les éloignent du quotidien.
+            d'une conviction : un parfum se choisit pour ce qu'il révèle de
+            vous. Nous sélectionnons des fragrances pour leur caractère, leur
+            richesse et leur signature olfactive.
           </p>
           <p className="mt-4 font-sans text-base leading-relaxed text-warmgray">
             Des matières sélectionnées avec soin, un travail olfactif patient,

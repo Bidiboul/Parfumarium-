@@ -11,7 +11,7 @@ const REVIEWS = [
   {
     name: "Théo M.",
     location: "Lyon",
-    text: "Velvet Tobacco tient toute la journée et reste élégant du matin au soir. La qualité n'a rien à envier aux grandes maisons.",
+    text: "Velvet Tobacco tient toute la journée et reste élégant du matin au soir. Une tenue et une richesse remarquables.",
     product: "Velvet Tobacco 196",
   },
   {

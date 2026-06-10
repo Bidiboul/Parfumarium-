@@ -24,6 +24,11 @@ const config: Config = {
         warmgray: "#8C857B", // Gris chaud (textes secondaires)
         amber: "#7A4E2D", // Marron ambré (prix, accents chauds)
         sand: "#FAF6EF", // Crème très clair (légère alternance de sections)
+        // Univers floral / sensoriel
+        sage: "#9DAA93", // Vert sauge (accents)
+        "sage-light": "#E7EBE1", // Vert sauge très clair (fonds éditoriaux)
+        forest: "#27302A", // Vert profond (footer)
+        powder: "#E8D4D0", // Rose poudré (accent doux)
       },
       fontFamily: {
         serif: ["var(--font-cormorant)", "Georgia", "serif"],

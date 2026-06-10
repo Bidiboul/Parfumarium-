@@ -4,7 +4,7 @@ const DEFAULT_ITEMS = [
   "60 fragrances d'exception",
   "Un luxe discret",
   "Paiement sécurisé",
-  "Inspiré des grandes maisons",
+  "Une signature olfactive",
 ];
 
 /**

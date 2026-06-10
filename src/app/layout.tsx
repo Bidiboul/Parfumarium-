@@ -26,11 +26,11 @@ const jost = Jost({
 export const metadata: Metadata = {
   metadataBase: new URL("https://parfumarium.example"),
   title: {
-    default: "Parfumarium — L'élégance d'un parfum, sans le prix du luxe",
+    default: "Parfumarium — Élégance intemporelle",
     template: "%s · Parfumarium",
   },
   description:
-    "Parfumarium crée des fragrances raffinées et accessibles. Découvrez des parfums élégants, sensuels et modernes, pensés pour sublimer chaque instant.",
+    "Parfumarium sélectionne des fragrances pour leur caractère, leur tenue et leur signature olfactive. L'art de choisir le parfum qui vous ressemble.",
   keywords: [
     "parfum",
     "fragrance",
@@ -40,17 +40,17 @@ export const metadata: Metadata = {
     "Parfumarium",
   ],
   openGraph: {
-    title: "Parfumarium — L'élégance d'un parfum, sans le prix du luxe",
+    title: "Parfumarium — Élégance intemporelle",
     description:
-      "Des fragrances raffinées, pensées pour sublimer chaque instant. Un luxe discret, conçu pour le quotidien.",
+      "Des fragrances choisies pour révéler votre présence. Une signature olfactive qui vous accompagne.",
     type: "website",
     locale: "fr_FR",
     siteName: "Parfumarium",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Parfumarium",
-    description: "L'élégance d'un parfum, sans le prix du luxe.",
+    title: "Parfumarium — Élégance intemporelle",
+    description: "L'art de choisir le parfum qui vous ressemble.",
   },
 };
 

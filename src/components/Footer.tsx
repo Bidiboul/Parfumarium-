@@ -10,7 +10,7 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="mt-24 bg-ink text-ivory">
+    <footer className="mt-24 bg-forest text-ivory">
       <div className="container-luxe py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-12 md:gap-8">
           {/* Marque */}
@@ -18,9 +18,8 @@ export default function Footer() {
             <Link href="/" aria-label="Parfumarium — accueil" className="inline-block">
               <Logo tone="gold" variant="row" size={48} />
             </Link>
-            <p className="mt-6 max-w-xs font-sans text-sm leading-relaxed text-champagne/70">
-              Un luxe discret, conçu pour le quotidien. Des fragrances raffinées,
-              pensées pour sublimer chaque instant — sans le prix du luxe.
+            <p className="mt-6 max-w-xs font-serif text-lg italic leading-relaxed text-champagne/75">
+              Parfumarium — des fragrances choisies pour leur caractère.
             </p>
             <div className="mt-6 flex gap-5">
               {SOCIALS.map((s) => (
@@ -36,38 +35,44 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Liens navigation */}
+          {/* Boutique */}
           <div className="md:col-span-2">
             <h3 className="mb-5 font-sans text-xs uppercase tracking-luxe text-gold">
-              Maison
+              Boutique
             </h3>
             <ul className="space-y-3 font-sans text-sm text-champagne/75">
               <li><Link href="/" className="transition-colors hover:text-ivory">Accueil</Link></li>
-              <li><Link href="/collection" className="transition-colors hover:text-ivory">Collection</Link></li>
-              <li><Link href="/a-propos" className="transition-colors hover:text-ivory">À propos</Link></li>
+              <li><Link href="/collection" className="transition-colors hover:text-ivory">Catalogue</Link></li>
               <li><Link href="/contact" className="transition-colors hover:text-ivory">Contact</Link></li>
             </ul>
           </div>
 
-          {/* Informations */}
-          <div className="md:col-span-2">
+          {/* Parfumarium */}
+          <div className="md:col-span-3">
             <h3 className="mb-5 font-sans text-xs uppercase tracking-luxe text-gold">
-              Informations
+              Parfumarium
             </h3>
             <ul className="space-y-3 font-sans text-sm text-champagne/75">
-              <li><Link href="/contact" className="transition-colors hover:text-ivory">Expédition</Link></li>
-              <li><Link href="/contact" className="transition-colors hover:text-ivory">Suivi de commande</Link></li>
-              <li><Link href="/contact" className="transition-colors hover:text-ivory">Mentions légales</Link></li>
-              <li><Link href="/contact" className="transition-colors hover:text-ivory">CGV</Link></li>
+              <li><Link href="/a-propos" className="transition-colors hover:text-ivory">Notre univers</Link></li>
+              <li><Link href="/a-propos" className="transition-colors hover:text-ivory">Concept rechargeable</Link></li>
+              <li><Link href="/collection" className="transition-colors hover:text-ivory">Sélection des fragrances</Link></li>
             </ul>
           </div>
 
-          {/* Newsletter */}
-          <div className="md:col-span-4">
-            <Newsletter variant="inline" />
-            <p className="mt-6 font-serif text-lg italic text-champagne/60">
-              « Le parfum est une signature invisible. »
-            </p>
+          {/* Contact + newsletter */}
+          <div className="md:col-span-3">
+            <h3 className="mb-5 font-sans text-xs uppercase tracking-luxe text-gold">
+              Contact
+            </h3>
+            <a
+              href="mailto:bonjour@parfumarium.fr"
+              className="font-sans text-sm text-champagne/75 transition-colors hover:text-ivory"
+            >
+              bonjour@parfumarium.fr
+            </a>
+            <div className="mt-6">
+              <Newsletter variant="inline" />
+            </div>
           </div>
         </div>
 

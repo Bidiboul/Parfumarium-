@@ -1,87 +1,70 @@
+import Image from "next/image";
 import Link from "next/link";
-import { getBestSellers } from "@/data/products";
-import HeroVisual from "./HeroVisual";
-import Logo from "@/components/Logo";
+import { home } from "@/data/homeContent";
 
-// Positions des particules scintillantes (décoratif)
-const SPARKLES = [
-  { top: "12%", left: "8%", size: 6, delay: "0s" },
-  { top: "24%", left: "92%", size: 4, delay: "1.2s" },
-  { top: "68%", left: "6%", size: 5, delay: "2.1s" },
-  { top: "82%", left: "54%", size: 4, delay: "0.6s" },
-  { top: "40%", left: "48%", size: 3, delay: "1.8s" },
-  { top: "58%", left: "88%", size: 6, delay: "2.6s" },
-];
-
+/**
+ * Hero premium : grande image plein écran, léger filtre sombre pour la
+ * lisibilité, texte aligné à gauche et CTA. Contenu éditable dans
+ * src/data/homeContent.ts.
+ */
 export default function Hero() {
-  const featured = getBestSellers()[0];
+  const { hero } = home;
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-sand via-ivory to-ivory pt-[88px]">
-      {/* Halos décoratifs */}
-      <div className="pointer-events-none absolute -right-32 top-10 h-[28rem] w-[28rem] rounded-full bg-champagne/40 blur-3xl" />
-      <div className="pointer-events-none absolute -left-24 bottom-0 h-80 w-80 rounded-full bg-gold/10 blur-3xl" />
+    <section className="relative flex min-h-[88vh] items-center overflow-hidden">
+      {/* Image de fond */}
+      <Image
+        src={hero.image}
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center"
+      />
+      {/* Filtre sombre (plus dense à gauche pour le texte) */}
+      <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/20" />
+      <div className="absolute inset-0 bg-ink/15" />
 
-      {/* Particules scintillantes */}
-      {SPARKLES.map((s, i) => (
-        <span
-          key={i}
-          className="sparkle"
-          style={{
-            top: s.top,
-            left: s.left,
-            width: s.size,
-            height: s.size,
-            animationDelay: s.delay,
-          }}
-          aria-hidden
-        />
-      ))}
-
-      <div className="container-luxe relative grid items-center gap-10 py-16 md:grid-cols-2 md:gap-8 md:py-24 lg:py-28">
-        {/* Texte */}
-        <div className="max-w-xl animate-fade-up">
-          <Logo tone="gold" variant="icon" size={48} className="mb-5 block" />
-          <span className="eyebrow">Maison de parfums · 60 fragrances</span>
-          <h1 className="mt-5 font-serif text-[2.25rem] leading-[1.07] text-ink text-balance sm:text-5xl md:text-6xl lg:text-7xl">
-            L'élégance d'un parfum,
-            <span className="text-shimmer block">sans le prix du luxe.</span>
+      {/* Contenu */}
+      <div className="container-luxe relative z-10 w-full pt-[88px]">
+        <div className="max-w-xl animate-fade-up text-ivory">
+          <span className="font-sans text-xs uppercase tracking-luxe text-gold">
+            {hero.eyebrow}
+          </span>
+          <h1 className="mt-5 font-serif leading-[1.05] text-balance text-[2.7rem] sm:text-6xl lg:text-7xl">
+            {hero.title}
           </h1>
-          <p className="mt-6 max-w-md font-sans text-base leading-relaxed text-warmgray md:text-lg">
-            Découvrez des fragrances raffinées, inspirées des plus grandes
-            créations, pensées pour sublimer chaque instant. Un luxe discret,
-            conçu pour le quotidien.
+          <p className="mt-6 max-w-md font-sans text-base leading-relaxed text-ivory/85 md:text-lg">
+            {hero.subtitle}
           </p>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Link href="/collection" className="btn-primary">
-              Découvrir la collection
-            </Link>
-            <Link href="/a-propos" className="btn-outline">
-              Notre histoire
-            </Link>
-          </div>
-
-          {/* Réassurance */}
-          <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3">
-            {["Expédiée en 72h", "Dès 19,90 €", "Paiement sécurisé"].map(
-              (item) => (
-                <span
-                  key={item}
-                  className="flex items-center gap-2 font-sans text-xs uppercase tracking-luxe text-ink/70"
-                >
-                  <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-                  {item}
-                </span>
-              ),
-            )}
-          </div>
+          <Link
+            href={hero.ctaHref}
+            className="mt-9 inline-flex items-center justify-center gap-2 rounded-full
+              bg-ivory px-9 py-4 font-sans text-sm uppercase tracking-luxe text-ink
+              transition-all duration-500 hover:bg-sage-light hover:shadow-soft
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-gold
+              focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+          >
+            {hero.ctaLabel}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M5 12h14M13 6l6 6-6 6"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </Link>
         </div>
+      </div>
 
-        {/* Visuel */}
-        <div className="relative flex justify-center md:justify-end">
-          {featured && <HeroVisual product={featured} />}
-        </div>
+      {/* Indice de défilement */}
+      <div className="absolute inset-x-0 bottom-7 z-10 flex justify-center">
+        <span className="flex h-10 w-6 items-start justify-center rounded-full border border-ivory/40 p-1.5">
+          <span className="h-2 w-1 animate-slow-float rounded-full bg-ivory/70" />
+        </span>
       </div>
     </section>
   );
