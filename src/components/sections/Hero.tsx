@@ -43,7 +43,7 @@ export default function Hero() {
         <div className="max-w-xl animate-fade-up">
           <Logo tone="gold" variant="icon" size={48} className="mb-5 block" />
           <span className="eyebrow">Maison de parfums · 60 fragrances</span>
-          <h1 className="mt-5 font-serif text-[2.7rem] leading-[1.05] text-ink text-balance sm:text-6xl lg:text-7xl">
+          <h1 className="mt-5 font-serif text-[2.25rem] leading-[1.07] text-ink text-balance sm:text-5xl md:text-6xl lg:text-7xl">
             L'élégance d'un parfum,
             <span className="text-shimmer block">sans le prix du luxe.</span>
           </h1>

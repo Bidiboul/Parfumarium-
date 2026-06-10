@@ -46,9 +46,15 @@ export default function Header() {
       }`}
     >
       <div className="container-luxe flex h-[88px] items-center justify-between">
-        {/* Logo */}
-        <Link href="/" aria-label="Parfumarium — accueil" className="group">
-          <Logo tone="gold" variant="row" size={42} className="transition-opacity group-hover:opacity-80" />
+        {/* Logo — mot complet sur tablette/desktop, icône seule sur mobile */}
+        <Link href="/" aria-label="Parfumarium — accueil" className="group shrink-0">
+          <Logo
+            tone="gold"
+            variant="row"
+            size={40}
+            className="hidden transition-opacity group-hover:opacity-80 sm:inline-flex"
+          />
+          <Logo tone="gold" variant="icon" size={34} className="sm:hidden" />
         </Link>
 
         {/* Navigation desktop */}
@@ -78,9 +84,9 @@ export default function Header() {
             type="button"
             onClick={() => setSearchOpen(true)}
             aria-label="Rechercher un parfum"
-            className="flex h-11 w-11 items-center justify-center rounded-full border
+            className="flex h-10 w-10 items-center justify-center rounded-full border
               border-transparent text-ink transition-all duration-300 hover:border-gold/40
-              hover:text-amber"
+              hover:text-amber sm:h-11 sm:w-11"
           >
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
               <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.5" />
@@ -88,13 +94,13 @@ export default function Header() {
             </svg>
           </button>
 
-          {/* Compte */}
+          {/* Compte (masqué sur mobile : présent dans le menu) */}
           <Link
             href="/compte"
             aria-label="Mon compte"
-            className="flex h-11 w-11 items-center justify-center rounded-full border
+            className="hidden h-11 w-11 items-center justify-center rounded-full border
               border-transparent text-ink transition-all duration-300 hover:border-gold/40
-              hover:text-amber"
+              hover:text-amber sm:flex"
           >
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="8" r="3.6" stroke="currentColor" strokeWidth="1.5" />
@@ -105,9 +111,9 @@ export default function Header() {
           <Link
             href="/panier"
             aria-label={`Panier, ${count} article${count > 1 ? "s" : ""}`}
-            className="relative flex h-11 w-11 items-center justify-center rounded-full
+            className="relative flex h-10 w-10 items-center justify-center rounded-full
               border border-transparent text-ink transition-all duration-300
-              hover:border-gold/40 hover:text-amber"
+              hover:border-gold/40 hover:text-amber sm:h-11 sm:w-11"
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
               <path
@@ -140,7 +146,7 @@ export default function Header() {
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
             aria-expanded={menuOpen}
-            className="flex h-11 w-11 items-center justify-center rounded-full text-ink md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-full text-ink sm:h-11 sm:w-11 md:hidden"
           >
             <span className="relative block h-3.5 w-6">
               <span
@@ -166,7 +172,7 @@ export default function Header() {
       {/* Menu mobile */}
       <div
         className={`overflow-hidden border-t border-ink/8 bg-ivory/95 backdrop-blur-md transition-[max-height,opacity] duration-500 md:hidden ${
-          menuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+          menuOpen ? "max-h-[26rem] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <nav className="container-luxe flex flex-col py-4">

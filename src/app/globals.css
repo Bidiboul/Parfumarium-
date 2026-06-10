@@ -16,6 +16,14 @@
     text-rendering: optimizeLegibility;
   }
 
+  /* Évite tout défilement horizontal parasite sur mobile.
+     `clip` (et non `hidden`) pour ne pas casser les éléments sticky. */
+  html,
+  body {
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
   ::selection {
     @apply bg-gold/30 text-ink;
   }
@@ -221,6 +229,13 @@
     transform-style: preserve-3d;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform;
+  }
+
+  /* Désactive l'inclinaison 3D sur les écrans tactiles (évite les bugs au toucher) */
+  @media (hover: none) {
+    .tilt-card {
+      transform: none !important;
+    }
   }
 }
 
