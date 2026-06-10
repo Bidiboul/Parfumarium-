@@ -46,16 +46,28 @@ export default function Header() {
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <div className="container-luxe flex h-[88px] items-center justify-between">
-        {/* Logo — mot complet sur tablette/desktop, icône seule sur mobile */}
+      {/* Bandeau de marque */}
+      <Link
+        href="/"
+        aria-label="Parfumarium — accueil"
+        className={`flex h-9 items-center justify-center transition-colors duration-500 ${
+          scrolled || menuOpen ? "border-b border-ink/5" : ""
+        }`}
+      >
+        <span className="font-serif text-[15px] uppercase tracking-[0.42em] text-gold sm:text-base sm:tracking-[0.5em]">
+          Parfumarium
+        </span>
+      </Link>
+
+      <div className="container-luxe flex h-[80px] items-center justify-between">
+        {/* Monogramme (le mot est dans le bandeau ci-dessus) */}
         <Link href="/" aria-label="Parfumarium — accueil" className="group shrink-0">
           <Logo
             tone="gold"
-            variant="row"
+            variant="icon"
             size={40}
-            className="hidden transition-opacity group-hover:opacity-80 sm:inline-flex"
+            className="transition-opacity group-hover:opacity-80"
           />
-          <Logo tone="gold" variant="icon" size={34} className="sm:hidden" />
         </Link>
 
         {/* Navigation desktop */}

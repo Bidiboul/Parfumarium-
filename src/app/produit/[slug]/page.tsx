@@ -67,7 +67,7 @@ export default function ProductPage({ params }: PageProps) {
   return (
     <>
       {/* Fil d'ariane + produit */}
-      <section className="bg-gradient-to-b from-sand to-ivory pt-[88px]">
+      <section className="bg-gradient-to-b from-sand to-ivory pt-[116px]">
         <div className="container-luxe pt-8">
           <nav className="font-sans text-xs uppercase tracking-luxe text-warmgray">
             <Link href="/" className="transition-colors hover:text-amber">
@@ -84,7 +84,7 @@ export default function ProductPage({ params }: PageProps) {
 
         <div className="container-luxe grid items-start gap-12 py-12 md:grid-cols-2 md:gap-16 md:py-16">
           {/* Visuel */}
-          <FadeIn className="md:sticky md:top-28">
+          <FadeIn className="md:sticky md:top-32">
             <div
               className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/60 shadow-card"
               style={{ backgroundColor: `${product.accent}14` }}

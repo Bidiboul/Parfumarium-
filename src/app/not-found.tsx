@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <section className="container-luxe flex min-h-[80vh] flex-col items-center justify-center pt-[88px] text-center">
+    <section className="container-luxe flex min-h-[80vh] flex-col items-center justify-center pt-[116px] text-center">
       <span className="eyebrow">Erreur 404</span>
       <h1 className="mt-4 font-serif text-5xl text-ink sm:text-6xl">
         Cette fragrance s'est évaporée

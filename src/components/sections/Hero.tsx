@@ -26,7 +26,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-ink/15" />
 
       {/* Contenu */}
-      <div className="container-luxe relative z-10 w-full pt-[88px]">
+      <div className="container-luxe relative z-10 w-full pt-[116px]">
         <div className="max-w-xl animate-fade-up text-ivory">
           <span className="font-sans text-xs uppercase tracking-luxe text-gold">
             {hero.eyebrow}
