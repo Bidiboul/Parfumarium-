@@ -5,7 +5,7 @@ import CollectionGrid from "@/components/CollectionGrid";
 export const metadata: Metadata = {
   title: "La Collection — Tous nos parfums",
   description:
-    "Explorez la collection Parfumarium : fragrances ambrées, boisées, florales, fraîches et orientales. Des parfums raffinés et accessibles, à découvrir dès maintenant.",
+    "Explorez la collection Parfumarium : fragrances ambrées, boisées, florales, fraîches et orientales. Des parfums choisis pour leur caractère, à découvrir dès maintenant.",
 };
 
 export default function CollectionPage() {

@@ -1,6 +1,8 @@
 "use client";
 
 import { useId } from "react";
+import Image from "next/image";
+import { LOGO_FULL, LOGO_MARK } from "@/lib/brand";
 
 type Tone = "gold" | "ink" | "ivory";
 type Variant = "full" | "row" | "icon";
@@ -38,6 +40,54 @@ export default function Logo({
     tone === "gold" ? "text-gold" : tone === "ink" ? "text-ink" : "text-ivory";
   const ruleColor =
     tone === "gold" ? "#B9975B" : tone === "ink" ? "#161311" : "#E7D8BE";
+
+  // ---- Logo image personnalisé (si fourni dans src/lib/brand.ts) ----
+  // eslint-disable-next-line @next/next/no-img-element
+  if (variant === "full" && LOGO_FULL) {
+    return (
+      <span className={`inline-flex ${className}`}>
+        <Image
+          src={LOGO_FULL}
+          alt="Parfumarium"
+          width={size * 3}
+          height={size * 3}
+          className="h-auto w-auto"
+          style={{ height: size * 2.6, width: "auto" }}
+          priority
+        />
+      </span>
+    );
+  }
+  if (variant === "icon" && (LOGO_MARK ?? LOGO_FULL)) {
+    return (
+      <span className={className}>
+        <Image
+          src={(LOGO_MARK ?? LOGO_FULL) as string}
+          alt="Parfumarium"
+          width={size}
+          height={size}
+          style={{ height: size, width: "auto" }}
+        />
+      </span>
+    );
+  }
+  if (variant === "row" && LOGO_MARK) {
+    return (
+      <span className={`inline-flex items-center gap-2.5 ${className}`}>
+        <Image
+          src={LOGO_MARK}
+          alt=""
+          width={size}
+          height={size}
+          style={{ height: size, width: "auto" }}
+        />
+        <span className={`font-serif text-2xl tracking-[0.12em] ${text} md:text-[26px]`}>
+          PARFUMARIUM
+        </span>
+      </span>
+    );
+  }
+  // ---- Sinon : logo vectoriel par défaut ----
 
   const Mark = (
     <svg

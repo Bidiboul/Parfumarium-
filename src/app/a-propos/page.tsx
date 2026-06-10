@@ -8,7 +8,7 @@ import SectionHeading from "@/components/sections/SectionHeading";
 export const metadata: Metadata = {
   title: "À propos — La maison Parfumarium",
   description:
-    "Découvrez l'histoire et les valeurs de Parfumarium : élégance, accessibilité et raffinement. Une maison qui rend le luxe olfactif accessible à toutes et à tous.",
+    "Parfumarium sélectionne de beaux parfums pour leur caractère et leur signature olfactive. Découvrez notre univers et notre boutique à Vaison-la-Romaine.",
 };
 
 const VALUES = [
@@ -17,8 +17,8 @@ const VALUES = [
     text: "Une esthétique sobre et raffinée, dans le flacon comme dans le sillage.",
   },
   {
-    title: "Accessibilité",
-    text: "Le beau pour tous. Des prix justes, sans jamais transiger sur la qualité.",
+    title: "Le conseil",
+    text: "En boutique, nous prenons le temps de vous accompagner pour trouver la fragrance qui vous ressemble.",
   },
   {
     title: "Émotion",
@@ -39,7 +39,7 @@ const STEPS = [
   {
     year: "02",
     title: "La composition",
-    text: "Nos parfumeurs équilibrent chaque accord avec patience, jusqu'à trouver la note juste.",
+    text: "Nos partenaires parfumeurs équilibrent chaque accord avec patience, jusqu'à trouver la note juste.",
   },
   {
     year: "03",
@@ -53,8 +53,8 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="Notre histoire"
-        title="Le luxe, repensé pour le quotidien"
-        subtitle="Parfumarium est née d'une conviction simple : l'élégance n'a pas besoin d'être inaccessible."
+        title="L'art de choisir son parfum"
+        subtitle="Parfumarium réunit de belles fragrances, choisies pour leur caractère et leur signature olfactive."
       />
 
       {/* Manifeste */}
@@ -62,26 +62,26 @@ export default function AboutPage() {
         <div className="grid gap-12 md:grid-cols-2 md:gap-16">
           <FadeIn>
             <h2 className="font-serif text-3xl leading-tight text-balance text-ink sm:text-4xl">
-              Une maison fondée sur une idée juste.
+              Une maison dédiée au beau parfum.
             </h2>
             <div className="gold-rule mt-6" />
           </FadeIn>
           <FadeIn delay={120}>
             <div className="space-y-5 font-sans text-base leading-relaxed text-warmgray">
               <p>
-                Pendant trop longtemps, le parfum d'exception a rimé avec prix
-                inaccessible. Nous avons voulu briser cette équation. Pourquoi
-                l'émotion d'une belle fragrance devrait-elle être réservée à
-                quelques-uns ?
+                Parfumarium est née d'une passion simple : celle des belles
+                fragrances. Nous sélectionnons chaque parfum pour sa richesse,
+                sa tenue et sa signature olfactive, afin de composer une
+                collection qui a du caractère.
               </p>
               <p>
-                Parfumarium compose des parfums à la hauteur des grandes
-                maisons, en supprimant ce qui ne se sent pas : marges
-                excessives, intermédiaires, publicité tapageuse. Ne reste que
-                l'essentiel — la qualité du jus et la beauté du geste.
+                Nous croyons qu'un parfum se choisit pour ce qu'il révèle de
+                vous. C'est pourquoi nous prenons le temps de vous guider à
+                travers différents univers, en boutique comme en ligne, pour
+                trouver celui qui vous ressemble vraiment.
               </p>
               <p className="font-serif text-xl italic text-amber">
-                « Un luxe discret, conçu pour le quotidien. »
+                « L'art de choisir le parfum qui vous ressemble. »
               </p>
             </div>
           </FadeIn>
@@ -140,6 +140,51 @@ export default function AboutPage() {
               </div>
             </FadeIn>
           ))}
+        </div>
+      </section>
+
+      {/* Boutique */}
+      <section className="bg-sage-light py-20 md:py-24">
+        <div className="container-luxe grid items-center gap-12 md:grid-cols-2 md:gap-16">
+          <FadeIn>
+            <span className="eyebrow">Notre boutique</span>
+            <h2 className="mt-4 font-serif text-3xl leading-tight text-balance text-ink sm:text-4xl">
+              Rencontrons-nous à Vaison-la-Romaine
+            </h2>
+            <div className="gold-rule mt-6" />
+            <p className="mt-6 font-sans text-base leading-relaxed text-warmgray">
+              Retrouvez Parfumarium dans notre boutique de la Grand Rue, à
+              Vaison-la-Romaine. Nous sommes ravis d'y accueillir nos client·e·s
+              pour un accompagnement personnalisé : prendre le temps de sentir,
+              comparer et choisir, conseillé·e par notre équipe.
+            </p>
+            <div className="mt-8 space-y-2 font-sans text-sm text-ink">
+              <p className="flex items-center gap-3">
+                <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                Grand Rue, 84110 Vaison-la-Romaine
+              </p>
+              <p className="flex items-center gap-3">
+                <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                Accompagnement personnalisé en boutique
+              </p>
+            </div>
+            <Link href="/contact" className="btn-outline mt-9">
+              Nous trouver
+            </Link>
+          </FadeIn>
+
+          <FadeIn delay={120}>
+            <div className="rounded-[2rem] border border-champagne bg-white/70 p-10 text-center md:p-14">
+              <Logo tone="gold" variant="icon" size={52} className="mx-auto mb-6" />
+              <p className="font-serif text-2xl italic leading-relaxed text-ink">
+                « Le parfum se vit avant de se choisir. »
+              </p>
+              <p className="mt-6 font-sans text-sm leading-relaxed text-warmgray">
+                Poussez la porte de notre boutique : chaque fragrance s'y
+                découvre au calme, à votre rythme.
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </section>
 

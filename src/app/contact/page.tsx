@@ -11,9 +11,8 @@ export const metadata: Metadata = {
 
 const INFOS = [
   { label: "E-mail", value: "bonjour@parfumarium.fr", href: "mailto:bonjour@parfumarium.fr" },
-  { label: "Téléphone", value: "+33 1 23 45 67 89", href: "tel:+33123456789" },
-  { label: "Adresse", value: "18 rue des Senteurs, 75008 Paris" },
-  { label: "Horaires", value: "Lun. – Ven. · 9h – 18h" },
+  { label: "Boutique", value: "Grand Rue, 84110 Vaison-la-Romaine" },
+  { label: "En boutique", value: "Accompagnement personnalisé par notre équipe" },
 ];
 
 const FAQ = [

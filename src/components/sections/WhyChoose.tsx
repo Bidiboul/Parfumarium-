@@ -15,8 +15,8 @@ const FEATURES = [
     ),
   },
   {
-    title: "Prix accessibles",
-    text: "Le juste prix, sans compromis sur la qualité. L'élégance n'a pas besoin d'être inaccessible.",
+    title: "Conseil en boutique",
+    text: "À Vaison-la-Romaine, notre équipe vous accompagne pour trouver la fragrance qui vous ressemble.",
     icon: (
       <>
         <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.3" />
