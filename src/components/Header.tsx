@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useCart } from "./CartProvider";
 import Logo from "./Logo";
 import SearchDialog from "./SearchDialog";
+import Drawer from "./Drawer";
 
 const NAV_LINKS = [
   { href: "/", label: "Accueil" },
@@ -169,19 +170,20 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Menu mobile */}
-      <div
-        className={`overflow-hidden border-t border-ink/8 bg-ivory/95 backdrop-blur-md transition-[max-height,opacity] duration-500 md:hidden ${
-          menuOpen ? "max-h-[26rem] opacity-100" : "max-h-0 opacity-0"
-        }`}
+      {/* Menu mobile — tiroir latéral */}
+      <Drawer
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        side="right"
+        title="Menu"
       >
-        <nav className="container-luxe flex flex-col py-4">
+        <nav className="flex flex-col px-2 py-2">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`border-b border-ink/5 py-4 font-sans text-sm uppercase tracking-luxe ${
-                isActive(link.href) ? "text-amber" : "text-ink"
+              className={`rounded-xl px-4 py-4 font-sans text-sm uppercase tracking-luxe transition-colors ${
+                isActive(link.href) ? "bg-cream text-amber" : "text-ink hover:bg-sand"
               }`}
             >
               {link.label}
@@ -189,14 +191,36 @@ export default function Header() {
           ))}
           <Link
             href="/compte"
-            className={`py-4 font-sans text-sm uppercase tracking-luxe ${
-              isActive("/compte") ? "text-amber" : "text-ink"
+            className={`mt-1 flex items-center gap-3 rounded-xl px-4 py-4 font-sans text-sm uppercase tracking-luxe transition-colors ${
+              isActive("/compte") ? "bg-cream text-amber" : "text-ink hover:bg-sand"
             }`}
           >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="8" r="3.6" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M5 20c0-3.4 3.1-5.5 7-5.5s7 2.1 7 5.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
             Mon compte
           </Link>
         </nav>
-      </div>
+
+        {/* Accès direct paniers / recherche */}
+        <div className="mt-4 border-t border-champagne px-6 py-6">
+          <button
+            type="button"
+            onClick={() => {
+              setMenuOpen(false);
+              setSearchOpen(true);
+            }}
+            className="flex w-full items-center gap-3 font-sans text-sm uppercase tracking-luxe text-ink"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.5" />
+              <path d="m20 20-3.2-3.2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+            Rechercher un parfum
+          </button>
+        </div>
+      </Drawer>
 
       {/* Recherche */}
       <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
