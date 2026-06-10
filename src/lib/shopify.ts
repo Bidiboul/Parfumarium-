@@ -189,5 +189,15 @@ export async function createCheckout(
   if (!url) {
     throw new Error("Impossible de créer le panier Shopify.");
   }
-  return url;
+
+  // En headless, le domaine public (parfumarium.fr) est servi par Vercel.
+  // On force le domaine Shopify (.myshopify.com) sur l'URL de paiement pour
+  // éviter que le checkout n'atterrisse sur le site et renvoie une 404.
+  try {
+    const parsed = new URL(url);
+    if (DOMAIN) parsed.host = DOMAIN;
+    return parsed.toString();
+  } catch {
+    return url;
+  }
 }
