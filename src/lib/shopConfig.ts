@@ -11,7 +11,7 @@
  */
 
 export const SHOP_DOMAIN =
-  process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN ?? "a5pryz-q7.myshopify.com";
+  process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN ?? "parfumarium.shop";
 
 /** Page « mes commandes / mon profil » (Shopify, sécurisée) */
 export const accountUrl = `https://${SHOP_DOMAIN}/account`;

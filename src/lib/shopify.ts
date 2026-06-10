@@ -16,6 +16,14 @@ const DOMAIN = process.env.SHOPIFY_STORE_DOMAIN;
 const TOKEN = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
 const VERSION = process.env.SHOPIFY_API_VERSION || "2024-10";
 
+/**
+ * Domaine "joli" affiché pendant le paiement. Doit être un domaine
+ * connecté à Shopify (idéalement défini comme domaine PRINCIPAL dans
+ * Shopify → Paramètres → Domaines). Surchargeable via SHOPIFY_CHECKOUT_DOMAIN.
+ */
+const CHECKOUT_DOMAIN =
+  process.env.SHOPIFY_CHECKOUT_DOMAIN || "parfumarium.shop";
+
 /** Le mode headless est-il configuré ? */
 export function isShopifyConfigured(): boolean {
   return Boolean(DOMAIN && TOKEN);
@@ -191,11 +199,11 @@ export async function createCheckout(
   }
 
   // En headless, le domaine public (parfumarium.fr) est servi par Vercel.
-  // On force le domaine Shopify (.myshopify.com) sur l'URL de paiement pour
-  // éviter que le checkout n'atterrisse sur le site et renvoie une 404.
+  // On réécrit l'hôte vers le domaine de paiement Shopify (parfumarium.shop)
+  // pour un checkout sécurisé sur une belle adresse, sans 404.
   try {
     const parsed = new URL(url);
-    if (DOMAIN) parsed.host = DOMAIN;
+    if (CHECKOUT_DOMAIN) parsed.host = CHECKOUT_DOMAIN;
     return parsed.toString();
   } catch {
     return url;
