@@ -39,13 +39,14 @@ export default function Header() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled || menuOpen
-          ? "border-b border-ink/8 bg-white/90 backdrop-blur-md"
-          : "border-b border-transparent bg-transparent"
-      }`}
-    >
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+          scrolled || menuOpen
+            ? "border-b border-ink/8 bg-white/90 backdrop-blur-md"
+            : "border-b border-transparent bg-transparent"
+        }`}
+      >
       {/* Bandeau de marque */}
       <Link
         href="/"
@@ -181,6 +182,7 @@ export default function Header() {
           </button>
         </div>
       </div>
+      </header>
 
       {/* Menu mobile — tiroir latéral */}
       <Drawer
@@ -236,6 +238,6 @@ export default function Header() {
 
       {/* Recherche */}
       <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
-    </header>
+    </>
   );
 }
