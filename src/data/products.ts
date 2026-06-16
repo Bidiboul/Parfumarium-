@@ -1095,8 +1095,8 @@ export const products: Product[] = [
 export const groups: string[] = [
   "Floraux / Fruités / Chyprés",
   "Gourmands / Sucrés / Addictifs",
-  "Boisés / Cuir / Oud / Musqués",
   "Frais / Agrumes / Aromatiques",
+  "Boisés / Cuir / Oud / Musqués",
 ];
 
 export function getProductBySlug(slug: string): Product | undefined {

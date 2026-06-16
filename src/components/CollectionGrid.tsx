@@ -8,10 +8,10 @@ import { products, groups } from "@/data/products";
 
 // Libellés courts pour les filtres (le `group` complet reste la valeur)
 const SHORT_LABELS: Record<string, string> = {
-  "Floraux / Fruités / Chyprés": "Floraux & Fruités",
-  "Gourmands / Sucrés / Addictifs": "Gourmands",
-  "Boisés / Cuir / Oud / Musqués": "Boisés & Cuir",
-  "Frais / Agrumes / Aromatiques": "Frais & Agrumes",
+  "Floraux / Fruités / Chyprés": "Floraux / Fruités",
+  "Gourmands / Sucrés / Addictifs": "Gourmand",
+  "Frais / Agrumes / Aromatiques": "Frais",
+  "Boisés / Cuir / Oud / Musqués": "Niche",
 };
 
 const labelFor = (group: string) =>
