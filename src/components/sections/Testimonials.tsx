@@ -11,14 +11,14 @@ const REVIEWS = [
   {
     name: "Théo M.",
     location: "Lyon",
-    text: "Velvet Tobacco tient toute la journée et reste élégant du matin au soir. Une tenue et une richesse remarquables.",
-    product: "Velvet Tobacco 196",
+    text: "Tobacco Vanilla tient toute la journée et reste élégant du matin au soir. Une tenue et une richesse remarquables.",
+    product: "Tobacco Vanilla 196",
   },
   {
     name: "Inès R.",
     location: "Bordeaux",
     text: "Le flacon est superbe, l'odeur sublime et l'emballage soigné. J'ai eu l'impression d'ouvrir un vrai cadeau de luxe.",
-    product: "Coffee Rose 562",
+    product: "Crystal Rouge 1035",
   },
 ];
 
