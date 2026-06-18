@@ -11,6 +11,9 @@ interface ProductCardProps {
   priority?: boolean;
 }
 
+// Parfums récemment ajoutés à la collection (badge « Nouveauté »)
+const NEW_CODES = new Set(["7000", "7001", "7007", "7015", "7016"]);
+
 /**
  * Carte produit premium : photo du flacon, nom, famille, notes, prix.
  * Léger effet 3D (tilt) qui suit la souris + reflet doré + zoom de l'image.
@@ -50,11 +53,15 @@ export default function ProductCard({ product, priority }: ProductCardProps) {
         hover:shadow-card-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-gold
         focus-visible:ring-offset-2 focus-visible:ring-offset-ivory"
     >
-      {product.bestSeller && (
+      {product.bestSeller ? (
         <span className="absolute left-4 top-4 z-20 rounded-full bg-ink/85 px-3 py-1 font-sans text-[10px] uppercase tracking-luxe text-ivory backdrop-blur">
           Best-seller
         </span>
-      )}
+      ) : NEW_CODES.has(product.code) ? (
+        <span className="absolute left-4 top-4 z-20 rounded-full bg-gold px-3 py-1 font-sans text-[10px] uppercase tracking-luxe text-ink backdrop-blur">
+          Nouveauté
+        </span>
+      ) : null}
 
       {/* Reflet doré qui suit la souris */}
       <span

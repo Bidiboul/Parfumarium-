@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --header-height: 116px;
+    --header-height: 152px;
   }
 
   html {

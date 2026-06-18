@@ -1,6 +1,7 @@
 import FadeIn from "@/components/FadeIn";
 import Newsletter from "@/components/Newsletter";
 import Hero from "@/components/sections/Hero";
+import Reassurance from "@/components/sections/Reassurance";
 import Editorial from "@/components/sections/Editorial";
 import FourBlocks from "@/components/sections/FourBlocks";
 import Approche from "@/components/sections/Approche";
@@ -12,6 +13,9 @@ export default function HomePage() {
     <>
       {/* 1. Hero premium (image + titre + CTA) */}
       <Hero />
+
+      {/* Barre de réassurance */}
+      <Reassurance />
 
       {/* 2. Section éditoriale (phrase de marque) */}
       <Editorial />

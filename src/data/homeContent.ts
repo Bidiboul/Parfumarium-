@@ -21,12 +21,15 @@ export const home = {
   /** Hero principal (grande image + titre + CTA) */
   hero: {
     image: "/home/hero.jpg",
-    eyebrow: "Maison de parfums",
-    title: "Élégance intemporelle",
+    eyebrow: "Maison de parfums · Vaison-la-Romaine",
+    title:
+      "Des fragrances élégantes et intemporelles pour affirmer votre signature olfactive.",
     subtitle:
-      "Des fragrances sélectionnées pour leur caractère, leur tenue et leur signature olfactive.",
-    ctaLabel: "Acheter maintenant",
+      "Découvrez une sélection de parfums raffinés, pensés pour durer et marquer les esprits.",
+    ctaLabel: "Découvrir la collection",
     ctaHref: "/collection",
+    ctaSecondaryLabel: "Voir les best-sellers",
+    ctaSecondaryHref: "/#best-sellers",
   },
 
   /** Section éditoriale (phrase de marque) */

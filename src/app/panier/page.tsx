@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useCart } from "@/components/CartProvider";
 import { formatPrice } from "@/data/products";
 
-const SHIPPING_THRESHOLD = 50;
+const SHIPPING_THRESHOLD = 60;
 const SHIPPING_COST = 4.9;
 
 export default function CartPage() {
@@ -63,7 +63,7 @@ export default function CartPage() {
   // Écran de confirmation (simulation de commande)
   if (ordered) {
     return (
-      <section className="container-luxe flex min-h-[70vh] flex-col items-center justify-center pt-[116px] text-center">
+      <section className="container-luxe flex min-h-[70vh] flex-col items-center justify-center pt-[152px] text-center">
         <span className="flex h-16 w-16 items-center justify-center rounded-full bg-gold text-3xl text-ink">
           ✓
         </span>
@@ -84,7 +84,7 @@ export default function CartPage() {
   // Panier vide
   if (count === 0) {
     return (
-      <section className="container-luxe flex min-h-[70vh] flex-col items-center justify-center pt-[116px] text-center">
+      <section className="container-luxe flex min-h-[70vh] flex-col items-center justify-center pt-[152px] text-center">
         <span className="eyebrow">Votre panier</span>
         <h1 className="mt-4 font-serif text-4xl text-ink">
           Votre panier est vide
@@ -101,7 +101,7 @@ export default function CartPage() {
   }
 
   return (
-    <section className="bg-gradient-to-b from-sand to-ivory pt-[116px]">
+    <section className="bg-gradient-to-b from-sand to-ivory pt-[152px]">
       <div className="container-luxe py-14 md:py-20">
         <div className="flex items-end justify-between">
           <div>
@@ -203,7 +203,7 @@ export default function CartPage() {
 
           {/* Récapitulatif */}
           <aside className="lg:col-span-4">
-            <div className="sticky top-32 rounded-2xl border border-champagne bg-white p-7 shadow-card">
+            <div className="sticky top-40 rounded-2xl border border-champagne bg-white p-7 shadow-card">
               <h2 className="font-serif text-2xl text-ink">Récapitulatif</h2>
               <div className="gold-rule mt-4" />
 

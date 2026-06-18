@@ -47,6 +47,15 @@ export default function Header() {
             : "border-b border-transparent bg-transparent"
         }`}
       >
+      {/* Bannière promotionnelle */}
+      <div className="flex h-9 items-center justify-center bg-forest px-4 text-center">
+        <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-champagne sm:text-xs">
+          Livraison offerte dès 60&nbsp;€
+          <span className="mx-2 text-gold">·</span>
+          Expédition en 72h
+        </p>
+      </div>
+
       {/* Bandeau de marque */}
       <Link
         href="/"

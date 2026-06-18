@@ -42,11 +42,23 @@ export default function Testimonials() {
           <SectionHeading
             eyebrow="Ils nous font confiance"
             title="Ce que disent nos client·e·s"
-            subtitle="Des fragrances qui se vivent, et qui se racontent."
+            subtitle="Des fragrances raffinées qui se vivent, et qui se racontent."
           />
         </FadeIn>
 
-        <div className="mt-14 grid gap-7 md:grid-cols-3">
+        {/* Note globale */}
+        <FadeIn className="mt-8 flex justify-center">
+          <div className="inline-flex flex-col items-center gap-2 rounded-full border border-champagne bg-white px-8 py-4 shadow-card sm:flex-row sm:gap-4">
+            <Stars />
+            <p className="font-sans text-sm text-ink">
+              <span className="font-serif text-xl text-amber">4,8/5</span>
+              <span className="mx-2 text-champagne">·</span>
+              Clients satisfaits
+            </p>
+          </div>
+        </FadeIn>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
           {REVIEWS.map((review, i) => (
             <FadeIn key={review.name} delay={i * 120}>
               <figure className="flex h-full flex-col rounded-2xl border border-ink/8 bg-ivory p-8 shadow-card">

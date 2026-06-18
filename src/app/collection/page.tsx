@@ -3,9 +3,9 @@ import PageHero from "@/components/PageHero";
 import CollectionGrid from "@/components/CollectionGrid";
 
 export const metadata: Metadata = {
-  title: "La Collection — Tous nos parfums",
+  title: "La Collection — Parfums homme & femme",
   description:
-    "Explorez la collection Parfumarium : fragrances ambrées, boisées, florales, fraîches et orientales. Des parfums choisis pour leur caractère, à découvrir dès maintenant.",
+    "Découvrez la collection Parfumarium : parfums élégants pour homme et femme, fragrances raffinées et longue tenue. Familles florales, gourmandes, fraîches et boisées (niche).",
 };
 
 export default function CollectionPage() {
@@ -13,8 +13,8 @@ export default function CollectionPage() {
     <>
       <PageHero
         eyebrow="La Collection"
-        title="Des fragrances pensées pour marquer les esprits"
-        subtitle="Six signatures, autant d'émotions. Trouvez le parfum qui vous ressemble, du plus lumineux au plus intense."
+        title="Des parfums raffinés, pensés pour marquer les esprits"
+        subtitle="Pour homme, pour femme et mixtes : trouvez la fragrance longue tenue qui deviendra votre signature olfactive."
       />
       <CollectionGrid />
     </>

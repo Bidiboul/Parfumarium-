@@ -24,25 +24,28 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://parfumarium.example"),
+  metadataBase: new URL("https://parfumarium.fr"),
   title: {
-    default: "Parfumarium — Élégance intemporelle",
+    default: "Parfumarium — Parfums élégants & fragrances raffinées",
     template: "%s · Parfumarium",
   },
   description:
-    "Parfumarium sélectionne des fragrances pour leur caractère, leur tenue et leur signature olfactive. L'art de choisir le parfum qui vous ressemble.",
+    "Parfumarium — parfums élégants pour homme et femme. Des fragrances raffinées et longue tenue, pensées pour affirmer votre signature olfactive. Boutique à Vaison-la-Romaine.",
   keywords: [
-    "parfum",
-    "fragrance",
-    "parfum de luxe abordable",
-    "eau de parfum",
     "parfum élégant",
+    "parfum homme",
+    "parfum femme",
+    "fragrance raffinée",
+    "parfum longue tenue",
+    "parfum premium",
+    "signature olfactive",
+    "eau de parfum",
     "Parfumarium",
   ],
   openGraph: {
-    title: "Parfumarium — Élégance intemporelle",
+    title: "Parfumarium — Parfums élégants & fragrances raffinées",
     description:
-      "Des fragrances choisies pour révéler votre présence. Une signature olfactive qui vous accompagne.",
+      "Des parfums premium et longue tenue, pour homme et femme. Affirmez votre signature olfactive.",
     type: "website",
     locale: "fr_FR",
     siteName: "Parfumarium",
