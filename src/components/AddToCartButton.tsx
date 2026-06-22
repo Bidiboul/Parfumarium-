@@ -35,27 +35,45 @@ export default function AddToCartButton({ product }: { product: Product }) {
           Contenance
         </p>
         <div className="flex flex-wrap gap-2.5">
-          {product.variants.map((v, i) => (
-            <button
-              key={v.sku}
-              type="button"
-              onClick={() => setVariantIndex(i)}
-              className={`flex min-w-[5.5rem] flex-col items-center rounded-xl border px-4 py-3 transition-all duration-300 ${
-                i === variantIndex
-                  ? "border-ink bg-ink text-ivory"
-                  : "border-ink/15 text-ink hover:border-gold"
-              }`}
-            >
-              <span className="font-sans text-sm font-medium">{v.volume}</span>
-              <span
-                className={`font-serif text-base ${
-                  i === variantIndex ? "text-gold" : "text-amber"
+          {product.variants.map((v, i) => {
+            const soldOut = v.available === false;
+            return (
+              <button
+                key={v.sku}
+                type="button"
+                disabled={soldOut}
+                onClick={() => !soldOut && setVariantIndex(i)}
+                className={`flex min-w-[5.5rem] flex-col items-center rounded-xl border px-4 py-3 transition-all duration-300 ${
+                  soldOut
+                    ? "cursor-not-allowed border-ink/10 bg-ink/[0.03] text-warmgray/60"
+                    : i === variantIndex
+                      ? "border-ink bg-ink text-ivory"
+                      : "border-ink/15 text-ink hover:border-gold"
                 }`}
               >
-                {formatPrice(v.price)}
-              </span>
-            </button>
-          ))}
+                <span
+                  className={`font-sans text-sm font-medium ${
+                    soldOut ? "line-through" : ""
+                  }`}
+                >
+                  {v.volume}
+                </span>
+                {soldOut ? (
+                  <span className="font-sans text-[10px] uppercase tracking-luxe text-warmgray/70">
+                    Rupture
+                  </span>
+                ) : (
+                  <span
+                    className={`font-serif text-base ${
+                      i === variantIndex ? "text-gold" : "text-amber"
+                    }`}
+                  >
+                    {formatPrice(v.price)}
+                  </span>
+                )}
+              </button>
+            );
+          })}
         </div>
       </div>
 
