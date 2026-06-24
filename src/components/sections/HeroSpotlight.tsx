@@ -17,7 +17,7 @@ export default function HeroSpotlight() {
   const [closed, setClosed] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setShown(true), 1100);
+    const t = setTimeout(() => setShown(true), 650);
     return () => clearTimeout(t);
   }, []);
 
@@ -25,7 +25,7 @@ export default function HeroSpotlight() {
 
   return (
     <div
-      className={`absolute right-3 top-[168px] z-20 w-[13.5rem] sm:right-8 sm:top-[184px] sm:w-[16rem] md:right-10 ${
+      className={`absolute right-3 top-[158px] z-20 w-[13rem] sm:right-8 sm:top-[176px] sm:w-[16rem] md:right-10 ${
         shown ? "animate-spotlight-in" : "opacity-0"
       }`}
     >
