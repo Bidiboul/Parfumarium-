@@ -64,7 +64,7 @@ export default function Header() {
           scrolled || menuOpen ? "border-b border-ink/5" : ""
         }`}
       >
-        <span className="font-serif text-[15px] uppercase tracking-[0.42em] text-gold sm:text-base sm:tracking-[0.5em]">
+        <span className="font-serif text-[15px] uppercase tracking-[0.42em] text-ink sm:text-base sm:tracking-[0.5em]">
           Parfumarium
         </span>
       </Link>

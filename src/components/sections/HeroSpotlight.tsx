@@ -7,9 +7,9 @@ import { getProductBySlug } from "@/data/products";
 import { home } from "@/data/homeContent";
 
 /**
- * Sceau rond « Parfum du moment » qui surgit dans le hero (effet bounce).
- * Style cachet/médaillon premium : flacon au centre, fins liserés dorés,
- * texte incurvé sur deux arcs. Cliquable, refermable.
+ * Médaillon rond « Parfum du moment » qui surgit dans le hero (effet bounce).
+ * Photo du flacon dans un cercle à liseré doré + label en bas sur un léger
+ * voile sombre. Cliquable, refermable.
  */
 export default function HeroSpotlight() {
   const product = getProductBySlug(home.spotlight.productSlug);
@@ -29,81 +29,51 @@ export default function HeroSpotlight() {
         shown ? "animate-spotlight-in" : "opacity-0"
       }`}
     >
-      <div className="relative h-24 w-24 sm:h-[7.5rem] sm:w-[7.5rem]">
+      <div className="relative h-[6.5rem] w-[6.5rem] sm:h-[7.5rem] sm:w-[7.5rem]">
         {/* Fermer */}
         <button
           type="button"
           onClick={() => setClosed(true)}
           aria-label="Fermer"
-          className="absolute -right-1 -top-1 z-20 flex h-6 w-6 items-center justify-center rounded-full border border-ink/10 bg-ivory text-ink shadow-soft transition-colors hover:text-amber"
+          className="absolute -right-1.5 -top-1.5 z-20 flex h-6 w-6 items-center justify-center rounded-full border border-ink/10 bg-ivory text-ink shadow-soft transition-colors hover:text-amber"
         >
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none">
             <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           </svg>
         </button>
 
+        {/* Pastille clignotante */}
+        <span className="absolute right-1 top-1 z-20 flex h-2.5 w-2.5">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-70" />
+          <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-gold" />
+        </span>
+
         <Link
           href={`/produit/${product.slug}`}
           aria-label={`${home.spotlight.label} : ${product.name}`}
-          className="group relative block h-full w-full rounded-full bg-ivory shadow-card-hover transition-transform duration-500 hover:scale-[1.04]"
+          className="group block h-full w-full rounded-full bg-gradient-to-br from-gold-soft via-gold to-amber p-[2.5px] shadow-card-hover transition-transform duration-500 hover:scale-[1.05]"
         >
-          {/* Liserés + texte incurvé */}
-          <svg
-            viewBox="0 0 120 120"
-            className="absolute inset-0 h-full w-full"
-            aria-hidden
-          >
-            <defs>
-              <path id="hs-top" d="M 18,60 A 42,42 0 0 1 102,60" fill="none" />
-              <path id="hs-bot" d="M 22,60 A 38,38 0 0 0 98,60" fill="none" />
-            </defs>
-            {/* Liserés dorés */}
-            <circle cx="60" cy="60" r="57" fill="none" stroke="#B9975B" strokeWidth="1" />
-            <circle cx="60" cy="60" r="52" fill="none" stroke="#B9975B" strokeOpacity="0.45" strokeWidth="0.6" />
-            {/* Texte haut */}
-            <text
-              fill="#7A4E2D"
-              fontSize="9"
-              letterSpacing="2.2"
-              textAnchor="middle"
-              style={{ fontFamily: "var(--font-jost), sans-serif", fontWeight: 500 }}
-            >
-              <textPath href="#hs-top" startOffset="50%">
-                PARFUM DU MOMENT
-              </textPath>
-            </text>
-            {/* Texte bas */}
-            <text
-              fill="#B9975B"
-              fontSize="7.5"
-              letterSpacing="3"
-              textAnchor="middle"
-              style={{ fontFamily: "var(--font-jost), sans-serif" }}
-            >
-              <textPath href="#hs-bot" startOffset="50%">
-                ✦ DÉCOUVRIR ✦
-              </textPath>
-            </text>
-          </svg>
-
-          {/* Pastille clignotante (sur l'anneau, en haut) */}
-          <span className="absolute left-1/2 top-[3px] z-10 flex h-2.5 w-2.5 -translate-x-1/2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-70" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-gold" />
-          </span>
-
-          {/* Flacon au centre */}
-          <span
-            className="absolute inset-[26%] overflow-hidden rounded-full ring-1 ring-gold/60"
-            style={{ backgroundColor: `${product.accent}1f` }}
-          >
+          <span className="relative block h-full w-full overflow-hidden rounded-full ring-1 ring-ivory/70">
+            {/* Photo du flacon */}
             <Image
               src={product.image}
               alt={product.name}
               fill
-              sizes="72px"
+              sizes="120px"
               className="object-cover transition-transform duration-700 group-hover:scale-110"
             />
+            {/* Voile sombre en bas pour le label */}
+            <span className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/85 via-ink/45 to-transparent" />
+            {/* Label */}
+            <span className="absolute inset-x-0 bottom-3 flex flex-col items-center px-2 text-center leading-none text-ivory">
+              <span className="text-[8px] tracking-[0.22em] text-gold">✦</span>
+              <span className="mt-1 font-sans text-[8.5px] font-medium uppercase tracking-[0.16em]">
+                Parfum
+              </span>
+              <span className="font-sans text-[8.5px] font-medium uppercase tracking-[0.16em]">
+                du moment
+              </span>
+            </span>
           </span>
         </Link>
       </div>
