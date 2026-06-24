@@ -224,6 +224,28 @@
     clip-path: inset(0 0 0 0);
   }
 
+  /* Apparition « bounce » de la carte Parfum du moment */
+  @keyframes spotlight-in {
+    0% {
+      opacity: 0;
+      transform: translateY(26px) scale(0.82);
+    }
+    55% {
+      opacity: 1;
+      transform: translateY(-9px) scale(1.05);
+    }
+    75% {
+      transform: translateY(3px) scale(0.99);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  .animate-spotlight-in {
+    animation: spotlight-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
   /* Carte 3D : base */
   .tilt-card {
     transform-style: preserve-3d;

@@ -32,6 +32,13 @@ export const home = {
     ctaSecondaryHref: "/#best-sellers",
   },
 
+  /** Petite carte « Parfum du moment » qui apparaît dans le hero */
+  spotlight: {
+    label: "Parfum du moment",
+    /** slug du parfum mis en avant (voir src/data/products.ts) */
+    productSlug: "crystal-rouge-1035",
+  },
+
   /** Section éditoriale (phrase de marque) */
   editorial: {
     text: "Parfumarium sélectionne des fragrances pour leur qualité olfactive et leur caractère, afin de proposer une expérience parfum unique.",

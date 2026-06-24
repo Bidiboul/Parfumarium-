@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { home } from "@/data/homeContent";
+import HeroSpotlight from "./HeroSpotlight";
 
 /**
  * Hero premium : grande image plein écran, léger filtre sombre pour la
@@ -71,6 +72,9 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      {/* Carte « Parfum du moment » (bounce à l'arrivée) */}
+      <HeroSpotlight />
 
       {/* Indice de défilement */}
       <div className="absolute inset-x-0 bottom-7 z-10 flex justify-center">
