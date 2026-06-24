@@ -25,7 +25,7 @@ export default function HeroSpotlight() {
 
   return (
     <div
-      className={`absolute bottom-5 right-4 z-20 w-[16rem] sm:bottom-10 sm:right-8 md:right-10 ${
+      className={`absolute right-3 top-[168px] z-20 w-[13.5rem] sm:right-8 sm:top-[184px] sm:w-[16rem] md:right-10 ${
         shown ? "animate-spotlight-in" : "opacity-0"
       }`}
     >
