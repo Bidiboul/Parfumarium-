@@ -12,7 +12,7 @@ interface ProductCardProps {
 }
 
 // Parfums récemment ajoutés à la collection (badge « Nouveauté »)
-const NEW_CODES = new Set(["7000", "7001", "7007", "7015", "7016"]);
+const NEW_CODES = new Set(["7000", "7001", "7007", "7015", "7016", "553"]);
 
 /**
  * Carte produit premium : photo du flacon, nom, famille, notes, prix.

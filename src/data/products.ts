@@ -1091,6 +1091,27 @@ export const products: Product[] = [
     price: 39.99,
     variants: [{ volume: "15 ML", price: 19.9, sku: "PARF-559-15ML", available: false }, { volume: "30 ML", price: 39.99, sku: "PARF-559-30ML" }, { volume: "50 ML", price: 59.9, sku: "PARF-559-50ML" }, { volume: "100 ML", price: 89.9, sku: "PARF-559-100ML" }],
   },
+  {
+    slug: "oud-intense-553",
+    name: "Oud Intense 553",
+    code: "553",
+    family: "Boisé ambré",
+    group: "Boisés / Cuir / Oud / Musqués",
+    inspiration: "Bois de Oud Intense",
+    gender: "unisex",
+    mood: "Opulente, boisée et mystérieuse.",
+    shortDescription: "Une fragrance opulente, boisée et mystérieuse, pour les amateurs de parfums profonds et sophistiqués.",
+    paragraphs: ["Oud Intense 553 est une fragrance opulente, boisée et mystérieuse, pensée pour celles et ceux qui aiment les parfums profonds, puissants et sophistiqués.", "L’ouverture épicée mêle le poivre, la cardamome et le bois de rose, apportant une première impression chaude et élégante. Le cœur dévoile toute la richesse du bois d’agar, accompagné du bois de santal et du vétiver, pour une signature boisée intense et raffinée. En fond, la fève tonka, la vanille et l’ambre apportent une touche douce, sensuelle et enveloppante."],
+    notes: {
+      head: ["Poivre", "cardamome", "bois de rose"],
+      heart: ["Bois d’agar", "bois de santal", "vétiver"],
+      base: ["Fève tonka", "vanille", "ambre"],
+    },
+    image: "/products/553.jpg",
+    accent: "#6E4A2E",
+    price: 39.99,
+    variants: [{ volume: "15 ML", price: 19.9, sku: "PARF-553-15ML", available: false }, { volume: "30 ML", price: 39.99, sku: "PARF-553-30ML" }, { volume: "50 ML", price: 59.9, sku: "PARF-553-50ML" }, { volume: "100 ML", price: 89.9, sku: "PARF-553-100ML" }],
+  },
 ];
 
 /** Grandes familles utilisées pour les filtres de la collection */
