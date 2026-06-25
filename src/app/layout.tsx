@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CartToast from "@/components/CartToast";
 import ScrollProgress from "@/components/ScrollProgress";
+import { Analytics } from "@vercel/analytics/next";
 
 // Police titres : serif élégante et raffinée
 const cormorant = Cormorant_Garamond({
@@ -72,6 +73,7 @@ export default function RootLayout({
           <Footer />
           <CartToast />
         </CartProvider>
+        <Analytics />
       </body>
     </html>
   );
