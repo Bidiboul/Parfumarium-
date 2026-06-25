@@ -65,10 +65,11 @@ export default function Footer() {
               Informations
             </h3>
             <ul className="space-y-3 font-sans text-sm text-champagne/75">
-              <li><Link href="/contact" className="transition-colors hover:text-ivory">Livraison</Link></li>
-              <li><Link href="/contact" className="transition-colors hover:text-ivory">Mentions légales</Link></li>
-              <li><Link href="/contact" className="transition-colors hover:text-ivory">CGV</Link></li>
-              <li><Link href="/contact" className="transition-colors hover:text-ivory">Confidentialité</Link></li>
+              <li><Link href="/livraison" className="transition-colors hover:text-ivory">Livraison</Link></li>
+              <li><Link href="/retours" className="transition-colors hover:text-ivory">Retours</Link></li>
+              <li><Link href="/cgv" className="transition-colors hover:text-ivory">CGV</Link></li>
+              <li><Link href="/mentions-legales" className="transition-colors hover:text-ivory">Mentions légales</Link></li>
+              <li><Link href="/confidentialite" className="transition-colors hover:text-ivory">Confidentialité</Link></li>
             </ul>
           </div>
 
@@ -78,10 +79,10 @@ export default function Footer() {
               Contact
             </h3>
             <a
-              href="mailto:bonjour@parfumarium.fr"
+              href="mailto:parfumarium.contact@gmail.com"
               className="font-sans text-sm text-champagne/75 transition-colors hover:text-ivory"
             >
-              bonjour@parfumarium.fr
+              parfumarium.contact@gmail.com
             </a>
             <div className="mt-6">
               <Newsletter variant="inline" />

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const INFOS = [
-  { label: "E-mail", value: "bonjour@parfumarium.fr", href: "mailto:bonjour@parfumarium.fr" },
+  { label: "E-mail", value: "parfumarium.contact@gmail.com", href: "mailto:parfumarium.contact@gmail.com" },
   { label: "Boutique", value: "Grand Rue, 84110 Vaison-la-Romaine" },
   { label: "En boutique", value: "Accompagnement personnalisé par notre équipe" },
 ];
