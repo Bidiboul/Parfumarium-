@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { track } from "@vercel/analytics";
 import { useCart } from "@/components/CartProvider";
 import { formatPrice } from "@/data/products";
 
@@ -27,6 +28,11 @@ export default function CartPage() {
   const handleCheckout = async () => {
     setLoading(true);
     setError(null);
+    // Suivi e-commerce (Vercel Analytics)
+    track("begin_checkout", {
+      items: count,
+      total: Number(grandTotal.toFixed(2)),
+    });
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
@@ -44,6 +50,7 @@ export default function CartPage() {
 
       if (data.url) {
         // Redirection vers le checkout Shopify (paiement réel)
+        track("checkout_redirect", { total: Number(grandTotal.toFixed(2)) });
         window.location.href = data.url;
         return;
       }

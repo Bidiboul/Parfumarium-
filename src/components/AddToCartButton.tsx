@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@vercel/analytics";
 import type { Product } from "@/data/products";
 import { formatPrice } from "@/data/products";
 import { useCart } from "./CartProvider";
@@ -23,6 +24,13 @@ export default function AddToCartButton({ product }: { product: Product }) {
 
   const handleAdd = () => {
     addItem(product, variant, qty);
+    // Suivi e-commerce (Vercel Analytics)
+    track("add_to_cart", {
+      product: product.name,
+      volume: variant.volume,
+      price: variant.price,
+      quantity: qty,
+    });
     setAdded(true);
     setTimeout(() => setAdded(false), 2200);
   };
