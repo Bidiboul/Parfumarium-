@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getProductBySlug } from "@/data/products";
 import { home } from "@/data/homeContent";
+import { useT } from "@/i18n/dict";
 
 /**
  * Médaillon rond « Parfum du moment » qui surgit dans le hero (effet bounce).
@@ -12,6 +13,7 @@ import { home } from "@/data/homeContent";
  * voile sombre. Cliquable, refermable.
  */
 export default function HeroSpotlight() {
+  const t = useT();
   const product = getProductBySlug(home.spotlight.productSlug);
   const [shown, setShown] = useState(false);
   const [closed, setClosed] = useState(false);
@@ -50,7 +52,7 @@ export default function HeroSpotlight() {
 
         <Link
           href={`/produit/${product.slug}`}
-          aria-label={`${home.spotlight.label} : ${product.name}`}
+          aria-label={`${t.spotlight.label} : ${product.name}`}
           className="group block h-full w-full rounded-full bg-gradient-to-br from-gold-soft via-gold to-amber p-[2.5px] shadow-card-hover transition-transform duration-500 hover:scale-[1.05]"
         >
           <span className="relative block h-full w-full overflow-hidden rounded-full ring-1 ring-ivory/70">
@@ -65,13 +67,10 @@ export default function HeroSpotlight() {
             {/* Voile sombre en bas pour le label */}
             <span className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/85 via-ink/45 to-transparent" />
             {/* Label */}
-            <span className="absolute inset-x-0 bottom-3 flex flex-col items-center px-2 text-center leading-none text-ivory">
+            <span className="absolute inset-x-0 bottom-2.5 flex flex-col items-center px-2 text-center leading-tight text-ivory">
               <span className="text-[8px] tracking-[0.22em] text-gold">✦</span>
-              <span className="mt-1 font-sans text-[8.5px] font-medium uppercase tracking-[0.16em]">
-                Parfum
-              </span>
-              <span className="font-sans text-[8.5px] font-medium uppercase tracking-[0.16em]">
-                du moment
+              <span className="mt-1 font-sans text-[8px] font-medium uppercase tracking-[0.14em]">
+                {t.spotlight.label}
               </span>
             </span>
           </span>

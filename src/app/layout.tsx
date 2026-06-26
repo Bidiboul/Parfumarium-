@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/i18n/LanguageProvider";
 import { CartProvider } from "@/components/CartProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -67,6 +68,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${cormorant.variable} ${jost.variable}`}>
       <body>
+        <LanguageProvider>
         <CartProvider>
           <ScrollProgress />
           <Header />
@@ -74,6 +76,7 @@ export default function RootLayout({
           <Footer />
           <CartToast />
         </CartProvider>
+        </LanguageProvider>
         <Analytics />
         <SpeedInsights />
       </body>

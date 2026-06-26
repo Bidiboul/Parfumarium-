@@ -5,6 +5,9 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { products } from "@/data/products";
 import { formatPrice } from "@/data/products";
+import { productsEn } from "@/data/productsEn";
+import { useLang } from "@/i18n/LanguageProvider";
+import { useT } from "@/i18n/dict";
 
 interface SearchDialogProps {
   open: boolean;
@@ -24,6 +27,9 @@ function normalize(s: string): string {
  * correspondance olfactive… Ouvert depuis la loupe du header.
  */
 export default function SearchDialog({ open, onClose }: SearchDialogProps) {
+  const { lang } = useLang();
+  const th = useT().header;
+  const tc = useT().card;
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -55,6 +61,7 @@ export default function SearchDialog({ open, onClose }: SearchDialogProps) {
     if (q.length < 2) return [];
     return products
       .filter((p) => {
+        const en = productsEn[p.slug];
         const haystack = normalize(
           [
             p.name,
@@ -64,6 +71,9 @@ export default function SearchDialog({ open, onClose }: SearchDialogProps) {
             ...p.notes.head,
             ...p.notes.heart,
             ...p.notes.base,
+            ...(en
+              ? [en.family, ...en.notes.head, ...en.notes.heart, ...en.notes.base]
+              : []),
           ].join(" "),
         );
         return haystack.includes(q);
@@ -101,7 +111,7 @@ export default function SearchDialog({ open, onClose }: SearchDialogProps) {
               ref={inputRef}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Rechercher un parfum, une note, une famille…"
+              placeholder={th.searchPlaceholder}
               className="w-full bg-transparent py-5 font-sans text-base text-ink placeholder:text-warmgray/70 focus:outline-none"
             />
             <button
@@ -109,7 +119,7 @@ export default function SearchDialog({ open, onClose }: SearchDialogProps) {
               onClick={onClose}
               className="shrink-0 font-sans text-xs uppercase tracking-luxe text-warmgray transition-colors hover:text-amber"
             >
-              Échap
+              {th.esc}
             </button>
           </div>
 
@@ -117,11 +127,11 @@ export default function SearchDialog({ open, onClose }: SearchDialogProps) {
           <div className="max-h-[55vh] overflow-y-auto">
             {query.trim().length < 2 ? (
               <p className="px-5 py-8 text-center font-sans text-sm text-warmgray">
-                Tapez au moins 2 lettres pour lancer la recherche.
+                {th.searchHint}
               </p>
             ) : results.length === 0 ? (
               <p className="px-5 py-8 text-center font-sans text-sm text-warmgray">
-                Aucun parfum ne correspond à « {query} ».
+                {th.searchNoResults(query)}
               </p>
             ) : (
               <ul className="divide-y divide-champagne/60">
@@ -140,11 +150,11 @@ export default function SearchDialog({ open, onClose }: SearchDialogProps) {
                           {p.name}
                         </span>
                         <span className="block truncate font-sans text-xs text-warmgray">
-                          {p.family}
+                          {lang === "en" && productsEn[p.slug] ? productsEn[p.slug].family : p.family}
                         </span>
                       </span>
                       <span className="shrink-0 font-serif text-base text-amber">
-                        dès {formatPrice(p.price)}
+                        {tc.from} {formatPrice(p.price)}
                       </span>
                     </Link>
                   </li>

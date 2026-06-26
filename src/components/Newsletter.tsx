@@ -1,17 +1,15 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useT } from "@/i18n/dict";
 
 interface NewsletterProps {
-  /** Variante "panel" (section claire encadrée) ou "inline" (footer) */
   variant?: "panel" | "inline";
 }
 
-/**
- * Bloc d'inscription à la newsletter. Simulation côté client (pas de backend).
- * Branchez votre service d'emailing dans `handleSubmit`.
- */
+/** Bloc d'inscription à la newsletter. Simulation côté client (pas de backend). */
 export default function Newsletter({ variant = "panel" }: NewsletterProps) {
+  const t = useT().newsletter;
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
 
@@ -27,12 +25,10 @@ export default function Newsletter({ variant = "panel" }: NewsletterProps) {
     return (
       <form onSubmit={handleSubmit} className="w-full">
         <label className="mb-3 block font-sans text-xs uppercase tracking-luxe text-champagne/80">
-          La lettre Parfumarium
+          {t.footerLabel}
         </label>
         {done ? (
-          <p className="font-serif text-lg text-champagne">
-            Merci. Vos prochaines découvertes arrivent bientôt.
-          </p>
+          <p className="font-serif text-lg text-champagne">{t.footerSuccess}</p>
         ) : (
           <div className="flex items-center gap-2 border-b border-champagne/30 pb-2">
             <input
@@ -40,17 +36,14 @@ export default function Newsletter({ variant = "panel" }: NewsletterProps) {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Votre adresse e-mail"
-              className="w-full bg-transparent font-sans text-sm text-ivory
-                placeholder:text-champagne/50 focus:outline-none"
+              placeholder={t.placeholder}
+              className="w-full bg-transparent font-sans text-sm text-ivory placeholder:text-champagne/50 focus:outline-none"
             />
             <button
               type="submit"
-              aria-label="S'inscrire"
-              className="shrink-0 font-sans text-xs uppercase tracking-luxe text-gold
-                transition-colors hover:text-gold-soft"
+              className="shrink-0 font-sans text-xs uppercase tracking-luxe text-gold transition-colors hover:text-gold-soft"
             >
-              S'inscrire
+              {t.footerCta}
             </button>
           </div>
         )}
@@ -60,47 +53,34 @@ export default function Newsletter({ variant = "panel" }: NewsletterProps) {
 
   return (
     <div className="relative overflow-hidden rounded-3xl border border-champagne bg-cream px-6 py-16 text-center md:px-16 md:py-20">
-      {/* Halo doré décoratif */}
       <div className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-gold/15 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-champagne/40 blur-3xl" />
 
       <div className="relative mx-auto max-w-xl">
-        <span className="eyebrow">Restons en contact</span>
-        <h2 className="mt-4 font-serif text-3xl text-ink md:text-4xl">
-          Recevez nos fragrances en avant-première
-        </h2>
+        <span className="eyebrow">{t.eyebrow}</span>
+        <h2 className="mt-4 font-serif text-3xl text-ink md:text-4xl">{t.title}</h2>
         <p className="mx-auto mt-4 max-w-md font-sans text-sm leading-relaxed text-warmgray">
-          Nouveautés, éditions limitées et offres privées. Un rendez-vous
-          olfactif, sans jamais encombrer votre boîte de réception.
+          {t.text}
         </p>
 
         {done ? (
-          <p className="mt-8 font-serif text-xl text-gold">
-            Merci de nous rejoindre. À très vite.
-          </p>
+          <p className="mt-8 font-serif text-xl text-gold">{t.success}</p>
         ) : (
-          <form
-            onSubmit={handleSubmit}
-            className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row"
-          >
+          <form onSubmit={handleSubmit} className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row">
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Votre adresse e-mail"
-              className="w-full rounded-full border border-ink/15 bg-white px-6 py-3.5
-                font-sans text-sm text-ink placeholder:text-warmgray/70 focus:border-gold
-                focus:outline-none focus:ring-1 focus:ring-gold"
+              placeholder={t.placeholder}
+              className="w-full rounded-full border border-ink/15 bg-white px-6 py-3.5 font-sans text-sm text-ink placeholder:text-warmgray/70 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold"
             />
             <button type="submit" className="btn-primary shrink-0">
-              Je m'inscris
+              {t.button}
             </button>
           </form>
         )}
-        <p className="mt-4 font-sans text-[11px] text-warmgray/70">
-          En vous inscrivant, vous acceptez de recevoir nos communications. Désinscription en un clic.
-        </p>
+        <p className="mt-4 font-sans text-[11px] text-warmgray/70">{t.legal}</p>
       </div>
     </div>
   );

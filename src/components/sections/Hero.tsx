@@ -1,19 +1,22 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { home } from "@/data/homeContent";
+import { useLang } from "@/i18n/LanguageProvider";
+import { L } from "@/i18n/dict";
 import HeroSpotlight from "./HeroSpotlight";
 
 /**
- * Hero premium : grande image plein écran, léger filtre sombre pour la
- * lisibilité, texte aligné à gauche et CTA. Contenu éditable dans
- * src/data/homeContent.ts.
+ * Hero premium : grande image plein écran, filtre sombre, texte à gauche, CTA.
+ * Contenu éditable (bilingue) dans src/data/homeContent.ts.
  */
 export default function Hero() {
+  const { lang } = useLang();
   const { hero } = home;
 
   return (
     <section className="relative flex min-h-[88vh] items-center overflow-hidden">
-      {/* Image de fond */}
       <Image
         src={hero.image}
         alt=""
@@ -22,21 +25,19 @@ export default function Hero() {
         sizes="100vw"
         className="object-cover object-center"
       />
-      {/* Filtre sombre (plus dense à gauche pour le texte) */}
       <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/20" />
       <div className="absolute inset-0 bg-ink/15" />
 
-      {/* Contenu */}
       <div className="container-luxe relative z-10 w-full pt-[152px]">
         <div className="max-w-2xl animate-fade-up text-ivory">
           <span className="font-sans text-xs uppercase tracking-luxe text-gold">
-            {hero.eyebrow}
+            {L(hero.eyebrow, lang)}
           </span>
           <h1 className="mt-5 max-w-xl font-serif leading-[1.08] text-balance text-[2rem] sm:text-4xl lg:text-5xl">
-            {hero.title}
+            {L(hero.title, lang)}
           </h1>
           <p className="mt-5 max-w-md font-sans text-base leading-relaxed text-ivory/85 md:text-lg">
-            {hero.subtitle}
+            {L(hero.subtitle, lang)}
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -48,15 +49,9 @@ export default function Hero() {
                 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold
                 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
             >
-              {hero.ctaLabel}
+              {L(hero.ctaLabel, lang)}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M5 12h14M13 6l6 6-6 6"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </Link>
             <Link
@@ -67,16 +62,14 @@ export default function Hero() {
                 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold
                 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
             >
-              {hero.ctaSecondaryLabel}
+              {L(hero.ctaSecondaryLabel, lang)}
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Carte « Parfum du moment » (bounce à l'arrivée) */}
       <HeroSpotlight />
 
-      {/* Indice de défilement */}
       <div className="absolute inset-x-0 bottom-7 z-10 flex justify-center">
         <span className="flex h-10 w-6 items-start justify-center rounded-full border border-ivory/40 p-1.5">
           <span className="h-2 w-1 animate-slow-float rounded-full bg-ivory/70" />

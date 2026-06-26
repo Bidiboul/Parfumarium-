@@ -5,34 +5,28 @@ import ProductCard from "./ProductCard";
 import FadeIn from "./FadeIn";
 import Drawer from "./Drawer";
 import { products, groups } from "@/data/products";
-
-// Libellés courts pour les filtres (le `group` complet reste la valeur)
-const SHORT_LABELS: Record<string, string> = {
-  "Floraux / Fruités / Chyprés": "Floraux / Fruités",
-  "Gourmands / Sucrés / Addictifs": "Gourmand",
-  "Frais / Agrumes / Aromatiques": "Frais",
-  "Boisés / Cuir / Oud / Musqués": "Niche",
-};
-
-const labelFor = (group: string) =>
-  group === "Tous" ? "Toutes les familles" : SHORT_LABELS[group] ?? group;
+import { useT } from "@/i18n/dict";
 
 /** Grille de la collection avec filtres par famille (pills + tiroir mobile). */
 export default function CollectionGrid() {
-  const [active, setActive] = useState<string>("Tous");
+  const t = useT();
+  const [active, setActive] = useState<string>("__all__");
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const filters = ["Tous", ...groups];
+  const filters = ["__all__", ...groups];
+  const labelFor = (g: string) =>
+    g === "__all__" ? t.collection.all : (t.families as Record<string, string>)[g] ?? g;
+  const countWord = (n: number) =>
+    n > 1 ? t.collection.parfums : t.collection.parfum;
 
-  // Nombre de parfums par famille (pour les badges)
   const counts = useMemo(() => {
-    const map: Record<string, number> = { Tous: products.length };
+    const map: Record<string, number> = { __all__: products.length };
     for (const g of groups) map[g] = products.filter((p) => p.group === g).length;
     return map;
   }, []);
 
   const filtered = useMemo(
-    () => (active === "Tous" ? products : products.filter((p) => p.group === active)),
+    () => (active === "__all__" ? products : products.filter((p) => p.group === active)),
     [active],
   );
 
@@ -56,15 +50,15 @@ export default function CollectionGrid() {
                 : "border-ink/15 text-ink hover:border-gold hover:text-amber"
             }`}
           >
-            {group === "Tous" ? "Tous" : SHORT_LABELS[group] ?? group}
+            {labelFor(group)}
           </button>
         ))}
       </div>
 
-      {/* Filtre mobile : barre + bouton ouvrant le tiroir */}
+      {/* Filtre mobile */}
       <div className="mb-6 flex items-center justify-between gap-3 md:hidden">
         <p className="font-sans text-xs uppercase tracking-luxe text-warmgray">
-          {filtered.length} parfum{filtered.length > 1 ? "s" : ""}
+          {filtered.length} {countWord(filtered.length)}
         </p>
         <button
           type="button"
@@ -78,12 +72,10 @@ export default function CollectionGrid() {
         </button>
       </div>
 
-      {/* Compteur desktop */}
       <p className="mb-12 hidden text-center font-sans text-xs uppercase tracking-luxe text-warmgray md:block">
-        {filtered.length} parfum{filtered.length > 1 ? "s" : ""}
+        {filtered.length} {countWord(filtered.length)}
       </p>
 
-      {/* Grille */}
       <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {filtered.map((product, i) => (
           <FadeIn key={product.slug} delay={(i % 4) * 90}>
@@ -94,16 +86,15 @@ export default function CollectionGrid() {
 
       {filtered.length === 0 && (
         <p className="py-16 text-center font-serif text-xl text-warmgray">
-          Aucun parfum dans cette famille pour le moment.
+          {t.collection.empty}
         </p>
       )}
 
-      {/* Tiroir latéral des familles (mobile) */}
       <Drawer
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
         side="left"
-        title="Familles olfactives"
+        title={t.collection.families}
       >
         <ul className="px-2 py-2">
           {filters.map((group) => {

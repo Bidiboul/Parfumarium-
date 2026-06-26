@@ -5,12 +5,14 @@ import { track } from "@vercel/analytics";
 import type { Product } from "@/data/products";
 import { formatPrice } from "@/data/products";
 import { useCart } from "./CartProvider";
+import { useT } from "@/i18n/dict";
 
 /**
  * Sélecteur de contenance + quantité + bouton d'ajout au panier (page produit).
  */
 export default function AddToCartButton({ product }: { product: Product }) {
   const { addItem } = useCart();
+  const t = useT().product;
   // Variante par défaut : 30 ML si dispo, sinon la première
   const defaultIndex = Math.max(
     0,
@@ -40,7 +42,7 @@ export default function AddToCartButton({ product }: { product: Product }) {
       {/* Contenance */}
       <div>
         <p className="mb-3 font-sans text-xs uppercase tracking-luxe text-ink/70">
-          Contenance
+          {t.contenance}
         </p>
         <div className="flex flex-wrap gap-2.5">
           {product.variants.map((v, i) => {
@@ -68,7 +70,7 @@ export default function AddToCartButton({ product }: { product: Product }) {
                 </span>
                 {soldOut ? (
                   <span className="font-sans text-[10px] uppercase tracking-luxe text-warmgray/70">
-                    Rupture
+                    {t.rupture}
                   </span>
                 ) : (
                   <span
@@ -112,9 +114,7 @@ export default function AddToCartButton({ product }: { product: Product }) {
           onClick={handleAdd}
           className="btn-primary flex-1 sm:flex-none sm:min-w-[280px]"
         >
-          {added
-            ? "✓ Ajouté au panier"
-            : `Ajouter — ${formatPrice(variant.price * qty)}`}
+          {added ? t.added : `${t.add} — ${formatPrice(variant.price * qty)}`}
         </button>
       </div>
     </div>

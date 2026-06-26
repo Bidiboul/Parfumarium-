@@ -1,10 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import ProductCard from "@/components/ProductCard";
 import SectionHeading from "./SectionHeading";
 import { getBestSellers } from "@/data/products";
+import { useT } from "@/i18n/dict";
 
 export default function BestSellers() {
+  const t = useT();
   const bestSellers = getBestSellers().slice(0, 4);
 
   return (
@@ -14,9 +18,9 @@ export default function BestSellers() {
     >
       <FadeIn>
         <SectionHeading
-          eyebrow="Les plus convoités"
-          title="Nos best-sellers"
-          subtitle="Les fragrances raffinées qui ont conquis nos client·e·s — des parfums longue tenue, pensés pour marquer les esprits."
+          eyebrow={t.bestSellers.eyebrow}
+          title={t.bestSellers.title}
+          subtitle={t.bestSellers.subtitle}
         />
       </FadeIn>
 
@@ -30,7 +34,7 @@ export default function BestSellers() {
 
       <FadeIn className="mt-14 flex justify-center">
         <Link href="/collection" className="btn-outline">
-          Voir toute la collection
+          {t.bestSellers.cta}
         </Link>
       </FadeIn>
     </section>

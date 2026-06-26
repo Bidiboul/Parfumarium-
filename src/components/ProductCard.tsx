@@ -5,6 +5,9 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import type { Product } from "@/data/products";
 import { formatPrice } from "@/data/products";
+import { useLang } from "@/i18n/LanguageProvider";
+import { useT } from "@/i18n/dict";
+import { localizeProduct } from "@/i18n/localizeProduct";
 
 interface ProductCardProps {
   product: Product;
@@ -18,7 +21,10 @@ const NEW_CODES = new Set(["7000", "7001", "7007", "7015", "7016", "553"]);
  * Carte produit premium : photo du flacon, nom, famille, notes, prix.
  * Léger effet 3D (tilt) qui suit la souris + reflet doré + zoom de l'image.
  */
-export default function ProductCard({ product, priority }: ProductCardProps) {
+export default function ProductCard({ product: raw, priority }: ProductCardProps) {
+  const { lang } = useLang();
+  const t = useT().card;
+  const product = localizeProduct(raw, lang);
   const ref = useRef<HTMLAnchorElement | null>(null);
   const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
   const [glare, setGlare] = useState({ x: 50, y: 0, on: false });
@@ -55,11 +61,11 @@ export default function ProductCard({ product, priority }: ProductCardProps) {
     >
       {product.bestSeller ? (
         <span className="absolute left-4 top-4 z-20 rounded-full bg-ink/85 px-3 py-1 font-sans text-[10px] uppercase tracking-luxe text-ivory backdrop-blur">
-          Best-seller
+          {t.bestSeller}
         </span>
       ) : NEW_CODES.has(product.code) ? (
         <span className="absolute left-4 top-4 z-20 rounded-full bg-gold px-3 py-1 font-sans text-[10px] uppercase tracking-luxe text-ink backdrop-blur">
-          Nouveauté
+          {t.nouveaute}
         </span>
       ) : null}
 
@@ -89,7 +95,7 @@ export default function ProductCard({ product, priority }: ProductCardProps) {
         {/* Bouton flottant qui apparaît au survol */}
         <span className="absolute inset-x-0 bottom-0 z-10 translate-y-full bg-gradient-to-t from-ink/80 to-transparent p-4 text-center transition-transform duration-500 group-hover:translate-y-0">
           <span className="inline-flex items-center gap-2 rounded-full bg-ivory px-5 py-2 font-sans text-xs uppercase tracking-luxe text-ink">
-            Voir le parfum
+            {t.view}
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
               <path
                 d="M5 12h14M13 6l6 6-6 6"
@@ -118,12 +124,12 @@ export default function ProductCard({ product, priority }: ProductCardProps) {
         <div className="mt-5 -mx-6 -mb-6 flex items-center justify-between border-t border-champagne bg-cream px-6 py-4">
           <span className="font-serif text-xl text-amber">
             <span className="font-sans text-[11px] uppercase tracking-luxe text-warmgray">
-              dès{" "}
+              {t.from}{" "}
             </span>
             {formatPrice(product.price)}
           </span>
           <span className="font-sans text-xs uppercase tracking-luxe text-ink transition-colors duration-300 group-hover:text-gold">
-            {product.variants.length} formats
+            {product.variants.length} {t.formats}
           </span>
         </div>
       </div>
