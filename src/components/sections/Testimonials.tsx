@@ -11,8 +11,8 @@ const REVIEWS = [
   {
     name: "Théo M.",
     location: "Lyon",
-    text: "Tobacco Vanilla tient toute la journée et reste élégant du matin au soir. Une tenue et une richesse remarquables.",
-    product: "Tobacco Vanilla 196",
+    text: "Tabac Vanilla tient toute la journée et reste élégant du matin au soir. Une tenue et une richesse remarquables.",
+    product: "Tabac Vanilla 196",
   },
   {
     name: "Inès R.",

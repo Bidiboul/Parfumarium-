@@ -796,27 +796,6 @@ export const products: Product[] = [
     variants: [{ volume: "15 ML", price: 19.9, sku: "PARF-1003-15ML", available: false }, { volume: "30 ML", price: 39.99, sku: "PARF-1003-30ML" }, { volume: "50 ML", price: 59.9, sku: "PARF-1003-50ML" }, { volume: "100 ML", price: 89.9, sku: "PARF-1003-100ML" }],
   },
   {
-    slug: "night-treasure-182",
-    name: "Night Treasure 182",
-    code: "182",
-    family: "Vanille Orientale pour Femme",
-    group: "Gourmands / Sucrés / Addictifs",
-    inspiration: "La Nuit Trésor",
-    gender: "female",
-    mood: "Nocturne, sucrée et passionnée.",
-    shortDescription: "Nocturne, sucrée et passionnée.",
-    paragraphs: ["Night Treasure 182 est une fragrance nocturne, sucrée et passionnée.", "En ouverture, poire, bergamote, mandarine orange ; le cœur dévoile vanille, orchidée, rose noire, fruit de la passion, fraise ; sur un fond de patchouli, papyrus d’égypte, encens, litchi, praliné, vanille, caramel, café, coumarine, réglisse."],
-    notes: {
-      head: ["Poire", "bergamote", "mandarine orange"],
-      heart: ["Vanille", "orchidée", "rose noire", "fruit de la passion", "fraise"],
-      base: ["Patchouli", "papyrus d’Égypte", "encens", "litchi", "praliné", "vanille", "caramel", "café", "coumarine", "réglisse"],
-    },
-    image: "/products/182.jpg",
-    accent: "#9A5E2C",
-    price: 39.99,
-    variants: [{ volume: "15 ML", price: 19.9, sku: "PARF-182-15ML", available: false }, { volume: "30 ML", price: 39.99, sku: "PARF-182-30ML" }, { volume: "50 ML", price: 59.9, sku: "PARF-182-50ML" }, { volume: "100 ML", price: 89.9, sku: "PARF-182-100ML" }],
-  },
-  {
     slug: "belle-vanilla-1038",
     name: "Belle Vanilla 1038",
     code: "1038",
@@ -945,7 +924,7 @@ export const products: Product[] = [
   },
   {
     slug: "portofino-neroli-1037",
-    name: "Portofino Neroli 1037",
+    name: "Porto Nero 1037",
     code: "1037",
     family: "Agrumes Aromatique",
     group: "Frais / Agrumes / Aromatiques",
@@ -953,7 +932,7 @@ export const products: Product[] = [
     gender: "unisex",
     mood: "Méditerranéenne, fraîche et lumineuse.",
     shortDescription: "Méditerranéenne, fraîche et lumineuse.",
-    paragraphs: ["Portofino Neroli 1037 est une fragrance méditerranéenne, fraîche et lumineuse.", "En ouverture, bergamote, mandarine, citron, lavande, myrte, romarin, orange amère ; le cœur dévoile fleur d’oranger d’afrique, jasmin, néroli, fleur d’oranger de chine ; sur un fond de ambre, musc ambrette, angélique."],
+    paragraphs: ["Porto Nero 1037 est une fragrance méditerranéenne, fraîche et lumineuse.", "En ouverture, bergamote, mandarine, citron, lavande, myrte, romarin, orange amère ; le cœur dévoile fleur d’oranger d’afrique, jasmin, néroli, fleur d’oranger de chine ; sur un fond de ambre, musc ambrette, angélique."],
     notes: {
       head: ["Bergamote", "mandarine", "citron", "lavande", "myrte", "romarin", "orange amère"],
       heart: ["Fleur d’oranger d’Afrique", "jasmin", "néroli", "fleur d’oranger de Chine"],
@@ -1009,7 +988,7 @@ export const products: Product[] = [
   },
   {
     slug: "tobacco-vanilla-196",
-    name: "Tobacco Vanilla 196",
+    name: "Tabac Vanilla 196",
     code: "196",
     family: "Orientale épicée",
     group: "Gourmands / Sucrés / Addictifs",
@@ -1017,7 +996,7 @@ export const products: Product[] = [
     gender: "unisex",
     mood: "Tabac, vanillée et chaleureuse.",
     shortDescription: "Tabac, vanillée et chaleureuse.",
-    paragraphs: ["Tobacco Vanilla 196 est une fragrance tabac, vanillée et chaleureuse.", "En ouverture, feuilles de tabac, notes épicées ; le cœur dévoile fève tonka, fleur de tabac, vanille, cacao ; sur un fond de noix, notes boisées."],
+    paragraphs: ["Tabac Vanilla 196 est une fragrance tabac, vanillée et chaleureuse.", "En ouverture, feuilles de tabac, notes épicées ; le cœur dévoile fève tonka, fleur de tabac, vanille, cacao ; sur un fond de noix, notes boisées."],
     notes: {
       head: ["Feuilles de tabac", "notes épicées"],
       heart: ["Fève tonka", "fleur de tabac", "vanille", "cacao"],
