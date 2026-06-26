@@ -11,66 +11,37 @@ export const metadata: Metadata = {
 export default function ConfidentialitePage() {
   return (
     <LegalPage
-      eyebrow="Vos données"
-      title="Politique de confidentialité"
-      intro="La protection de vos données personnelles est une priorité. Cette politique décrit les données que nous collectons, les finalités de leur traitement et les droits dont vous disposez, conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés."
+      title={{ fr: "Politique de confidentialité", en: "Privacy Policy" }}
+      intro={{
+        fr: "Cette politique décrit les données que nous collectons, les finalités de leur traitement et vos droits, conformément au RGPD et à la loi Informatique et Libertés.",
+        en: "This policy describes the data we collect, the purposes of its processing and your rights, in accordance with the GDPR and French data protection law.",
+      }}
       sections={[
-        {
-          title: "Responsable du traitement",
-          blocks: [
-            `Le responsable du traitement est ${company.name}, ${company.address}. Pour toute question relative à vos données : ${company.email}.`,
+        { title: { fr: "Responsable du traitement", en: "Data controller" }, blocks: [{ fr: `Le responsable du traitement est ${company.name}, ${company.address}. Contact : ${company.email}.`, en: `The data controller is ${company.name}, ${company.address}. Contact: ${company.email}.` }] },
+        { title: { fr: "Données collectées", en: "Data collected" }, blocks: [
+          { fr: "Nous collectons les données nécessaires au traitement de vos commandes et à la relation client :", en: "We collect the data necessary to process your orders and manage the customer relationship:" },
+          [
+            { fr: "identité et coordonnées (nom, e-mail, téléphone, adresses) ;", en: "identity and contact details (name, email, phone, addresses);" },
+            { fr: "données de commande (produits, montants, historique) ;", en: "order data (products, amounts, history);" },
+            { fr: "données de navigation (cookies, statistiques) ;", en: "browsing data (cookies, statistics);" },
+            { fr: "préférences et inscriptions à la newsletter.", en: "preferences and newsletter sign-ups." },
           ],
-        },
-        {
-          title: "Données collectées",
-          blocks: [
-            "Nous collectons les données strictement nécessaires au traitement de vos commandes et à la relation client, notamment :",
-            [
-              "identité et coordonnées (nom, prénom, e-mail, téléphone, adresses de livraison et de facturation) ;",
-              "données de commande (produits, montants, historique) ;",
-              "données de connexion et de navigation (cookies, statistiques) ;",
-              "le cas échéant, vos préférences et inscriptions à la newsletter.",
-            ],
-            "Les données de paiement (carte bancaire) sont traitées directement par notre prestataire de paiement et ne sont pas conservées par nos soins.",
-          ],
-        },
-        {
-          title: "Finalités & bases légales",
-          blocks: [
-            [
-              "Gestion des commandes, paiements et livraisons (exécution du contrat) ;",
-              "service client et gestion des réclamations (intérêt légitime / exécution du contrat) ;",
-              "envoi de communications commerciales et newsletter (consentement) ;",
-              "respect de nos obligations légales et comptables (obligation légale) ;",
-              "amélioration du site et mesure d'audience (intérêt légitime / consentement pour les cookies non essentiels).",
-            ],
-          ],
-        },
-        {
-          title: "Destinataires",
-          blocks: [
-            `Vos données sont destinées à nos services internes et à nos sous-traitants techniques, notamment ${ecommerce.name} (plateforme e-commerce et paiement) ainsi qu'aux transporteurs en charge de la livraison. Nous ne vendons jamais vos données à des tiers.`,
-          ],
-        },
-        {
-          title: "Durée de conservation",
-          blocks: [
-            "Vos données sont conservées le temps nécessaire aux finalités décrites, puis archivées conformément aux durées légales (notamment dix ans pour les documents comptables). Les données liées à la prospection sont conservées trois ans à compter du dernier contact.",
-          ],
-        },
-        {
-          title: "Vos droits",
-          blocks: [
-            "Conformément au RGPD, vous disposez des droits d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité de vos données, ainsi que du droit de définir des directives relatives à leur sort après votre décès.",
-            `Pour exercer ces droits, écrivez-nous à ${company.email}. Vous pouvez également introduire une réclamation auprès de la CNIL (cnil.fr).`,
-          ],
-        },
-        {
-          title: "Cookies",
-          blocks: [
-            "Le site utilise des cookies nécessaires à son fonctionnement ainsi que, sous réserve de votre consentement, des cookies de mesure d'audience et de personnalisation. Vous pouvez à tout moment paramétrer vos préférences ou les refuser via votre navigateur.",
-          ],
-        },
+          { fr: "Les données de paiement sont traitées par notre prestataire de paiement et ne sont pas conservées par nos soins.", en: "Payment data is processed by our payment provider and is not stored by us." },
+        ] },
+        { title: { fr: "Finalités & bases légales", en: "Purposes & legal bases" }, blocks: [[
+          { fr: "Gestion des commandes, paiements et livraisons (exécution du contrat) ;", en: "Managing orders, payments and deliveries (contract performance);" },
+          { fr: "service client (intérêt légitime / contrat) ;", en: "customer service (legitimate interest / contract);" },
+          { fr: "communications et newsletter (consentement) ;", en: "communications and newsletter (consent);" },
+          { fr: "obligations légales et comptables (obligation légale) ;", en: "legal and accounting obligations (legal obligation);" },
+          { fr: "amélioration du site et mesure d'audience (intérêt légitime / consentement).", en: "site improvement and audience measurement (legitimate interest / consent)." },
+        ]] },
+        { title: { fr: "Destinataires", en: "Recipients" }, blocks: [{ fr: `Vos données sont destinées à nos services et à nos sous-traitants techniques, notamment ${ecommerce.name} et les transporteurs. Nous ne vendons jamais vos données.`, en: `Your data is shared with our teams and technical processors, notably ${ecommerce.name} and carriers. We never sell your data.` }] },
+        { title: { fr: "Durée de conservation", en: "Retention period" }, blocks: [{ fr: "Vos données sont conservées le temps nécessaire puis archivées selon les durées légales (notamment dix ans pour la comptabilité). Les données de prospection sont conservées trois ans après le dernier contact.", en: "Your data is kept for as long as necessary, then archived according to legal periods (notably ten years for accounting). Marketing data is kept for three years after the last contact." }] },
+        { title: { fr: "Vos droits", en: "Your rights" }, blocks: [
+          { fr: "Vous disposez des droits d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité de vos données.", en: "You have the rights of access, rectification, erasure, restriction, objection and portability of your data." },
+          { fr: `Pour les exercer : ${company.email}. Vous pouvez introduire une réclamation auprès de la CNIL (cnil.fr).`, en: `To exercise them: ${company.email}. You may lodge a complaint with the CNIL (cnil.fr).` },
+        ] },
+        { title: { fr: "Cookies", en: "Cookies" }, blocks: [{ fr: "Le site utilise des cookies nécessaires à son fonctionnement et, sous réserve de votre consentement, des cookies de mesure d'audience. Vous pouvez les paramétrer ou les refuser via votre navigateur.", en: "The site uses cookies necessary for its operation and, subject to your consent, audience measurement cookies. You can configure or refuse them via your browser." }] },
       ]}
     />
   );
