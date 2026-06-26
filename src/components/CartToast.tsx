@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useCart } from "./CartProvider";
+import { useT } from "@/i18n/dict";
 
 /**
  * Notification discrète affichée en bas à droite à chaque ajout au panier.
@@ -11,6 +12,7 @@ import { useCart } from "./CartProvider";
  */
 export default function CartToast() {
   const { lastAddedAt, lastAdded, count } = useCart();
+  const t = useT();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -43,18 +45,18 @@ export default function CartToast() {
         )}
         <div>
           <p className="font-sans text-sm">
-            {lastAdded ? lastAdded.name : "Ajouté au panier"}
+            {lastAdded ? lastAdded.name : t.product.added}
           </p>
           <p className="font-sans text-xs text-champagne/70">
             {lastAdded ? `${lastAdded.volume} · ` : ""}
-            {count} article{count > 1 ? "s" : ""} au total
+            {count} {count > 1 ? t.cart.articles : t.cart.article}
           </p>
         </div>
         <Link
           href="/panier"
           className="ml-2 font-sans text-xs uppercase tracking-luxe text-gold transition-colors hover:text-gold-soft"
         >
-          Voir
+          {t.card.view.split(" ")[0]}
         </Link>
       </div>
     </div>

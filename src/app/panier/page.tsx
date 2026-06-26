@@ -6,12 +6,15 @@ import { useState } from "react";
 import { track } from "@vercel/analytics";
 import { useCart } from "@/components/CartProvider";
 import { formatPrice } from "@/data/products";
+import { useT } from "@/i18n/dict";
 
 const SHIPPING_THRESHOLD = 60;
 const SHIPPING_COST = 4.9;
 
 export default function CartPage() {
   const { items, total, count, setQuantity, removeItem, clear } = useCart();
+  const t = useT().cart;
+  const tp = useT().product;
   const [ordered, setOrdered] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -61,7 +64,7 @@ export default function CartPage() {
       // Mode démonstration (Shopify non configuré)
       setOrdered(true);
     } catch {
-      setError("Une erreur est survenue. Veuillez réessayer.");
+      setError(t.genericError);
     } finally {
       setLoading(false);
     }
@@ -75,14 +78,13 @@ export default function CartPage() {
           ✓
         </span>
         <h1 className="mt-6 font-serif text-4xl text-ink">
-          Merci pour votre commande
+          {t.thanksTitle}
         </h1>
         <p className="mt-4 max-w-md font-sans text-warmgray">
-          Ceci est une démonstration : aucun paiement n'a été effectué. Votre
-          sélection serait expédiée sous 72h, dans un écrin soigné.
+          {t.thanksText}
         </p>
         <Link href="/collection" className="btn-primary mt-9">
-          Continuer mes découvertes
+          {t.continueDiscover}
         </Link>
       </section>
     );
@@ -92,16 +94,15 @@ export default function CartPage() {
   if (count === 0) {
     return (
       <section className="container-luxe flex min-h-[70vh] flex-col items-center justify-center pt-[152px] text-center">
-        <span className="eyebrow">Votre panier</span>
+        <span className="eyebrow">{t.title}</span>
         <h1 className="mt-4 font-serif text-4xl text-ink">
-          Votre panier est vide
+          {t.emptyTitle}
         </h1>
         <p className="mt-4 max-w-md font-sans text-warmgray">
-          Laissez-vous tenter par l'une de nos fragrances. L'élégance n'attend
-          que vous.
+          {t.emptyText}
         </p>
         <Link href="/collection" className="btn-primary mt-9">
-          Découvrir la collection
+          {t.discoverCollection}
         </Link>
       </section>
     );
@@ -112,15 +113,15 @@ export default function CartPage() {
       <div className="container-luxe py-14 md:py-20">
         <div className="flex items-end justify-between">
           <div>
-            <span className="eyebrow">Votre sélection</span>
-            <h1 className="mt-3 font-serif text-4xl text-ink sm:text-5xl">Panier</h1>
+            <span className="eyebrow">{t.sel}</span>
+            <h1 className="mt-3 font-serif text-4xl text-ink sm:text-5xl">{t.title}</h1>
           </div>
           <button
             type="button"
             onClick={clear}
             className="font-sans text-xs uppercase tracking-luxe text-warmgray transition-colors hover:text-amber"
           >
-            Vider le panier
+            {t.clear}
           </button>
         </div>
 
@@ -156,16 +157,16 @@ export default function CartPage() {
                           {item.name}
                         </Link>
                         <p className="mt-0.5 font-sans text-xs uppercase tracking-luxe text-warmgray">
-                          {item.volume} · Eau de parfum
+                          {item.volume} · {tp.edp}
                         </p>
                       </div>
                       <button
                         type="button"
                         onClick={() => removeItem(item.sku)}
-                        aria-label={`Retirer ${item.name}`}
+                        aria-label={`${t.remove} ${item.name}`}
                         className="font-sans text-xs uppercase tracking-luxe text-warmgray transition-colors hover:text-amber"
                       >
-                        Retirer
+                        {t.remove}
                       </button>
                     </div>
 
@@ -204,42 +205,42 @@ export default function CartPage() {
               href="/collection"
               className="mt-6 inline-flex items-center gap-2 font-sans text-xs uppercase tracking-luxe text-ink transition-colors hover:text-amber"
             >
-              ← Continuer mes achats
+              ← {t.continueShopping}
             </Link>
           </div>
 
           {/* Récapitulatif */}
           <aside className="lg:col-span-4">
             <div className="sticky top-40 rounded-2xl border border-champagne bg-white p-7 shadow-card">
-              <h2 className="font-serif text-2xl text-ink">Récapitulatif</h2>
+              <h2 className="font-serif text-2xl text-ink">{t.summary}</h2>
               <div className="gold-rule mt-4" />
 
               {remaining > 0 && (
                 <p className="mt-5 rounded-xl bg-cream px-4 py-3 font-sans text-xs text-warmgray">
-                  Plus que{" "}
+                  {t.remainingA}{" "}
                   <span className="font-medium text-amber">
                     {formatPrice(remaining)}
                   </span>{" "}
-                  pour la livraison offerte.
+                  {" "}{t.remainingB}
                 </p>
               )}
 
               <dl className="mt-6 space-y-3 font-sans text-sm">
                 <div className="flex justify-between text-warmgray">
                   <dt>
-                    Sous-total ({count} article{count > 1 ? "s" : ""})
+                    {t.subtotal} ({count} {count > 1 ? t.articles : t.article})
                   </dt>
                   <dd className="text-ink">{formatPrice(total)}</dd>
                 </div>
                 <div className="flex justify-between text-warmgray">
-                  <dt>Livraison</dt>
+                  <dt>{t.shipping}</dt>
                   <dd className="text-ink">
-                    {shipping === 0 ? "Offerte" : formatPrice(shipping)}
+                    {shipping === 0 ? t.offered : formatPrice(shipping)}
                   </dd>
                 </div>
                 <div className="my-4 h-px bg-champagne" />
                 <div className="flex justify-between font-serif text-xl text-ink">
-                  <dt>Total</dt>
+                  <dt>{t.total}</dt>
                   <dd className="text-amber">{formatPrice(grandTotal)}</dd>
                 </div>
               </dl>
@@ -250,7 +251,7 @@ export default function CartPage() {
                 disabled={loading}
                 className="btn-primary mt-7 w-full disabled:cursor-not-allowed disabled:opacity-70"
               >
-                {loading ? "Redirection en cours…" : "Passer la commande"}
+                {loading ? t.redirecting : t.placeOrder}
               </button>
               {error && (
                 <p className="mt-3 text-center font-sans text-xs text-amber">
@@ -258,7 +259,7 @@ export default function CartPage() {
                 </p>
               )}
               <p className="mt-4 text-center font-sans text-[11px] text-warmgray/70">
-                Paiement 100% sécurisé · Livraison gérée par Shopify
+                {t.securePay}
               </p>
             </div>
           </aside>
