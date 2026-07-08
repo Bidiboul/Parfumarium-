@@ -1,0 +1,52 @@
+<div class="page-hero">
+  <div class="container">
+    <span class="eyebrow">{{ 'collection.eyebrow' | t }}</span>
+    <h1>{{ section.settings.title | default: collection.title }}</h1>
+    <hr class="gold-rule">
+    {%- if section.settings.subtitle != blank -%}<p class="sub">{{ section.settings.subtitle }}</p>{%- endif -%}
+  </div>
+</div>
+
+<div class="container section" style="padding-top:48px">
+  <div class="filters">
+    <a href="{{ collection.url }}" class="{% unless current_tags %}is-active{% endunless %}">{{ 'collection.all' | t }}</a>
+    {%- assign families = section.settings.filter_tags | split: ',' -%}
+    {%- for pair in families -%}
+      {%- assign parts = pair | split: '|' -%}
+      {%- assign tag = parts[0] | strip -%}
+      {%- assign label = parts[1] | strip | default: tag -%}
+      <a href="{{ collection.url }}/{{ tag | handleize }}"
+         class="{% if current_tags contains tag %}is-active{% endif %}">{{ label }}</a>
+    {%- endfor -%}
+  </div>
+  <p class="count">{{ collection.products_count }} {{ 'collection.products' | t }}</p>
+
+  {%- paginate collection.products by 60 -%}
+    <div class="product-grid">
+      {%- for product in collection.products -%}
+        {% render 'product-card', product: product %}
+      {%- else -%}
+        <p class="center serif" style="grid-column:1/-1;font-size:20px;color:var(--warmgray)">{{ 'collection.empty' | t }}</p>
+      {%- endfor -%}
+    </div>
+    {%- if paginate.pages > 1 -%}
+      <div class="center mt-40">{{ paginate | default_pagination }}</div>
+    {%- endif -%}
+  {%- endpaginate -%}
+</div>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Titre (optionnel)", "default": "Des parfums raffinés, pensés pour marquer les esprits" },
+    { "type": "textarea", "id": "subtitle", "label": "Sous-titre", "default": "Pour homme, pour femme et mixtes : trouvez la fragrance longue tenue qui deviendra votre signature olfactive." },
+    {
+      "type": "textarea",
+      "id": "filter_tags",
+      "label": "Filtres familles (tag|Libellé, séparés par des virgules)",
+      "default": "Floraux / Fruités / Chyprés|Floraux / Fruités, Gourmands / Sucrés / Addictifs|Gourmand, Frais / Agrumes / Aromatiques|Frais, Boisés / Cuir / Oud / Musqués|Niche"
+    }
+  ]
+}
+{% endschema %}

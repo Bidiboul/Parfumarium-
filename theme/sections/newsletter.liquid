@@ -1,0 +1,31 @@
+<section class="section">
+  <div class="container">
+    <div class="newsletter-panel reveal">
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2>{{ section.settings.title }}</h2>
+      <p>{{ section.settings.text }}</p>
+      {% form 'customer' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="newsletter-form">
+          <input type="email" name="contact[email]" placeholder="{{ 'newsletter.placeholder' | t }}" required>
+          <button type="submit" class="btn btn-primary">{{ 'newsletter.submit' | t }}</button>
+        </div>
+        {%- if form.posted_successfully? -%}
+          <p style="margin-top:16px;color:var(--gold);font-family:var(--serif);font-size:18px">{{ 'newsletter.success' | t }}</p>
+        {%- endif -%}
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Restons en contact" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Recevez nos fragrances en avant-première" },
+    { "type": "textarea", "id": "text", "label": "Texte", "default": "Nouveautés, éditions limitées et offres privées. Un rendez-vous olfactif, sans jamais encombrer votre boîte de réception." }
+  ],
+  "presets": [{ "name": "Newsletter" }]
+}
+{% endschema %}

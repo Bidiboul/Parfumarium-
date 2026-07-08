@@ -1,0 +1,76 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <a class="footer__logo" href="{{ routes.root_url }}">
+          <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" height="46">
+        </a>
+        <p class="footer__tagline">{{ section.settings.tagline }}</p>
+      </div>
+
+      <div>
+        <h3>{{ 'footer.shop' | t }}</h3>
+        <ul>
+          {%- for link in section.settings.menu_shop.links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <div>
+        <h3>Parfumarium</h3>
+        <ul>
+          {%- for link in section.settings.menu_maison.links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <div>
+        <h3>{{ 'footer.info' | t }}</h3>
+        <ul>
+          {%- for link in section.settings.menu_legal.links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <div>
+        <h3>{{ 'footer.contact' | t }}</h3>
+        <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+        <div style="margin-top:22px">
+          <h3>{{ 'footer.newsletter' | t }}</h3>
+          {% form 'customer' %}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="newsletter-inline">
+              <input type="email" name="contact[email]" placeholder="{{ 'newsletter.placeholder' | t }}" required>
+              <button type="submit">{{ 'newsletter.submit' | t }}</button>
+            </div>
+            {%- if form.posted_successfully? -%}
+              <p style="margin-top:10px;color:var(--gold);font-size:13px">{{ 'newsletter.success' | t }}</p>
+            {%- endif -%}
+          {% endform %}
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'footer.rights' | t }}</span>
+      <span>{{ section.settings.bottom_note }}</span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Pied de page",
+  "settings": [
+    { "type": "text", "id": "tagline", "label": "Phrase de marque", "default": "Parfumarium — des fragrances choisies pour leur caractère." },
+    { "type": "text", "id": "email", "label": "E-mail de contact", "default": "parfumarium.contact@gmail.com" },
+    { "type": "text", "id": "bottom_note", "label": "Note bas de page", "default": "Conçu avec soin en France · Paiement sécurisé · Expédition 72h" },
+    { "type": "link_list", "id": "menu_shop", "label": "Menu Boutique", "default": "main-menu" },
+    { "type": "link_list", "id": "menu_maison", "label": "Menu Maison", "default": "main-menu" },
+    { "type": "link_list", "id": "menu_legal", "label": "Menu Informations (légal)", "default": "footer" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,13 @@
+<div class="container center" style="padding:120px 0">
+  <span class="eyebrow">{{ 'errors.404_eyebrow' | t }}</span>
+  <h1 class="serif" style="font-size:clamp(2.2rem,5vw,3.4rem);font-weight:500;margin-top:14px">{{ 'errors.404_title' | t }}</h1>
+  <p style="color:var(--warmgray);max-width:460px;margin:18px auto 0">{{ 'errors.404_text' | t }}</p>
+  <div style="display:flex;gap:12px;justify-content:center;margin-top:34px;flex-wrap:wrap">
+    <a class="btn btn-primary" href="{{ routes.root_url }}">{{ 'errors.404_home' | t }}</a>
+    <a class="btn btn-outline" href="{{ routes.all_products_collection_url }}">{{ 'errors.404_collection' | t }}</a>
+  </div>
+</div>
+
+{% schema %}
+{ "name": "404", "settings": [] }
+{% endschema %}

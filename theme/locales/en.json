@@ -1,0 +1,79 @@
+{
+  "general": {
+    "search": "Search",
+    "account": "My account",
+    "cart": "Cart",
+    "close": "Close",
+    "home": "Home",
+    "collection": "Collection",
+    "information": "Information"
+  },
+  "footer": {
+    "shop": "Shop",
+    "info": "Information",
+    "contact": "Contact",
+    "newsletter": "The Parfumarium letter",
+    "rights": "All rights reserved."
+  },
+  "newsletter": {
+    "placeholder": "Your email address",
+    "submit": "Sign up",
+    "success": "Thank you for joining us. See you soon."
+  },
+  "collection": {
+    "eyebrow": "The Collection",
+    "all": "All",
+    "products": "fragrances",
+    "empty": "No fragrance in this family for now.",
+    "view_all": "View the full collection"
+  },
+  "product": {
+    "from": "from",
+    "view": "View fragrance",
+    "best_seller": "Best-seller",
+    "new": "New",
+    "edp": "Eau de parfum",
+    "add": "Add to cart",
+    "sold_out": "Sold out",
+    "reassure_1": "Dispatched in 72h",
+    "reassure_2": "Secure payment",
+    "reassure_3": "Crafted with care",
+    "related_eyebrow": "You may also like",
+    "related_title": "Also worth discovering"
+  },
+  "cart": {
+    "selection": "Your selection",
+    "title": "Cart",
+    "empty_title": "Your cart is empty",
+    "empty_text": "Treat yourself to one of our fragrances. Elegance is waiting for you.",
+    "discover": "Discover the collection",
+    "remove": "Remove",
+    "update": "Update",
+    "summary": "Summary",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "checkout": "Checkout",
+    "secure": "100% secure payment",
+    "freeship_before": "Only",
+    "freeship_after": "away from free shipping."
+  },
+  "search": {
+    "title": "Search a fragrance",
+    "placeholder": "A fragrance, a note, a family…",
+    "results": "result(s) for"
+  },
+  "contact": {
+    "name": "Your name",
+    "email": "Your email",
+    "message": "How can we help you?",
+    "send": "Send message",
+    "success": "Thank you! Your message has been sent, we will reply within 24 business hours."
+  },
+  "errors": {
+    "404_eyebrow": "Error 404",
+    "404_title": "This fragrance has evaporated",
+    "404_text": "The page you are looking for does not exist or has moved. Let our creations guide you instead.",
+    "404_home": "Back to home",
+    "404_collection": "View the collection"
+  }
+}

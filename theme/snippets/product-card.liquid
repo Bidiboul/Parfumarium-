@@ -1,0 +1,27 @@
+{%- comment -%} Carte produit premium — usage: {% render 'product-card', product: product %} {%- endcomment -%}
+<a class="pcard" href="{{ product.url }}">
+  {%- if product.tags contains 'best-seller' -%}
+    <span class="pcard__badge pcard__badge--dark">{{ 'product.best_seller' | t }}</span>
+  {%- elsif product.tags contains 'nouveaute' -%}
+    <span class="pcard__badge pcard__badge--gold">{{ 'product.new' | t }}</span>
+  {%- endif -%}
+
+  <div class="pcard__imgwrap">
+    {%- if product.featured_image -%}
+      {{ product.featured_image | image_url: width: 720 | image_tag: loading: 'lazy', alt: product.title }}
+    {%- endif -%}
+  </div>
+
+  <div class="pcard__body">
+    <span class="pcard__type">{{ product.type | default: 'Eau de parfum' }}</span>
+    <h3 class="pcard__title">{{ product.title }}</h3>
+  </div>
+
+  <div class="pcard__foot">
+    <span class="pcard__price">
+      <small>{{ 'product.from' | t }}</small>
+      {{ product.price_min | money }}
+    </span>
+    <span class="pcard__cta">{{ 'product.view' | t }} →</span>
+  </div>
+</a>

@@ -1,0 +1,79 @@
+{
+  "general": {
+    "search": "Rechercher",
+    "account": "Mon compte",
+    "cart": "Panier",
+    "close": "Fermer",
+    "home": "Accueil",
+    "collection": "Collection",
+    "information": "Informations"
+  },
+  "footer": {
+    "shop": "Boutique",
+    "info": "Informations",
+    "contact": "Contact",
+    "newsletter": "La lettre Parfumarium",
+    "rights": "Tous droits réservés."
+  },
+  "newsletter": {
+    "placeholder": "Votre adresse e-mail",
+    "submit": "Je m'inscris",
+    "success": "Merci de nous rejoindre. À très vite."
+  },
+  "collection": {
+    "eyebrow": "La Collection",
+    "all": "Tous",
+    "products": "parfums",
+    "empty": "Aucun parfum dans cette famille pour le moment.",
+    "view_all": "Voir toute la collection"
+  },
+  "product": {
+    "from": "dès",
+    "view": "Voir le parfum",
+    "best_seller": "Best-seller",
+    "new": "Nouveauté",
+    "edp": "Eau de parfum",
+    "add": "Ajouter au panier",
+    "sold_out": "Rupture",
+    "reassure_1": "Expédiée en 72h",
+    "reassure_2": "Paiement sécurisé",
+    "reassure_3": "Fabriqué avec soin",
+    "related_eyebrow": "Vous aimerez aussi",
+    "related_title": "À découvrir également"
+  },
+  "cart": {
+    "selection": "Votre sélection",
+    "title": "Panier",
+    "empty_title": "Votre panier est vide",
+    "empty_text": "Laissez-vous tenter par l'une de nos fragrances. L'élégance n'attend que vous.",
+    "discover": "Découvrir la collection",
+    "remove": "Retirer",
+    "update": "Mettre à jour",
+    "summary": "Récapitulatif",
+    "subtotal": "Sous-total",
+    "total": "Total",
+    "checkout": "Passer la commande",
+    "secure": "Paiement 100% sécurisé",
+    "freeship_before": "Plus que",
+    "freeship_after": "pour la livraison offerte."
+  },
+  "search": {
+    "title": "Rechercher un parfum",
+    "placeholder": "Un parfum, une note, une famille…",
+    "results": "résultat(s) pour"
+  },
+  "contact": {
+    "name": "Votre nom",
+    "email": "Votre e-mail",
+    "message": "Comment pouvons-nous vous aider ?",
+    "send": "Envoyer le message",
+    "success": "Merci ! Votre message a bien été envoyé, nous vous répondrons sous 24h ouvrées."
+  },
+  "errors": {
+    "404_eyebrow": "Erreur 404",
+    "404_title": "Cette fragrance s'est évaporée",
+    "404_text": "La page que vous cherchez n'existe pas ou a été déplacée. Laissez-vous plutôt guider par nos créations.",
+    "404_home": "Retour à l'accueil",
+    "404_collection": "Voir la collection"
+  }
+}

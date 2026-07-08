@@ -1,0 +1,29 @@
+<div class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Contact</span>
+    <h1>{{ page.title }}</h1>
+    <hr class="gold-rule">
+  </div>
+</div>
+
+<div class="container section" style="max-width:760px">
+  {%- if page.content != blank -%}<div class="rte" style="padding-top:0">{{ page.content }}</div>{%- endif -%}
+  {% form 'contact' %}
+    {%- if form.posted_successfully? -%}
+      <p style="background:var(--cream);border:1px solid var(--gold);border-radius:12px;padding:16px;margin-bottom:20px">{{ 'contact.success' | t }}</p>
+    {%- endif -%}
+    <div style="display:grid;gap:16px">
+      <input type="text" name="contact[name]" placeholder="{{ 'contact.name' | t }}" required
+             style="border:1px solid rgba(22,19,17,0.15);border-radius:12px;padding:13px 16px;font:inherit;font-size:14px">
+      <input type="email" name="contact[email]" placeholder="{{ 'contact.email' | t }}" required
+             style="border:1px solid rgba(22,19,17,0.15);border-radius:12px;padding:13px 16px;font:inherit;font-size:14px">
+      <textarea name="contact[body]" rows="6" placeholder="{{ 'contact.message' | t }}" required
+             style="border:1px solid rgba(22,19,17,0.15);border-radius:12px;padding:13px 16px;font:inherit;font-size:14px;resize:vertical"></textarea>
+      <button type="submit" class="btn btn-primary" style="justify-self:start">{{ 'contact.send' | t }}</button>
+    </div>
+  {% endform %}
+</div>
+
+{% schema %}
+{ "name": "Contact", "settings": [] }
+{% endschema %}

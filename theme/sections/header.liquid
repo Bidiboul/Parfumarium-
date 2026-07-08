@@ -1,0 +1,60 @@
+<header class="header">
+  <div class="container header__inner">
+    <a class="header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+      <img src="{{ 'logo-mark.png' | asset_url }}" alt="{{ shop.name }}" width="40" height="52">
+    </a>
+
+    <nav class="header__nav">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}" {% if link.current %}aria-current="page"{% endif %}>{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <div class="header__actions">
+      <a class="header__icon" href="{{ routes.search_url }}" aria-label="{{ 'general.search' | t }}">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><path d="m20 20-3.2-3.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+      <a class="header__icon" href="{{ routes.account_url }}" aria-label="{{ 'general.account' | t }}">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.6" stroke="currentColor" stroke-width="1.5"/><path d="M5 20c0-3.4 3.1-5.5 7-5.5s7 2.1 7 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+      <a class="header__icon" href="{{ routes.cart_url }}" aria-label="{{ 'general.cart' | t }}" style="position:relative">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 12H7L6 8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M9 8a3 3 0 0 1 6 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        {%- if cart.item_count > 0 -%}<span class="cart-count">{{ cart.item_count }}</span>{%- endif -%}
+      </a>
+      <button class="header__icon header__burger" data-drawer-open="menu-drawer" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="menu-drawer">
+  <div class="drawer__bg" data-drawer-close></div>
+  <aside class="drawer__panel">
+    <div class="drawer__head">
+      <span>Menu</span>
+      <button data-drawer-close aria-label="{{ 'general.close' | t }}">✕</button>
+    </div>
+    <nav class="drawer__nav">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+      <a href="{{ routes.account_url }}">{{ 'general.account' | t }}</a>
+      <a href="{{ routes.search_url }}">{{ 'general.search' | t }}</a>
+    </nav>
+  </aside>
+</div>
+
+{% schema %}
+{
+  "name": "En-tête",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu principal",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

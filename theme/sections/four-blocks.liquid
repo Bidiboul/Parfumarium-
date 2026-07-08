@@ -1,0 +1,48 @@
+<section class="section">
+  <div class="container">
+    <div class="blocks">
+      {%- for block in section.blocks -%}
+        <article class="block-card reveal" {{ block.shopify_attributes }}>
+          {%- if block.settings.image -%}
+            {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: block.settings.title }}
+          {%- endif -%}
+          <div class="block-card__veil"></div>
+          <div class="block-card__body">
+            <hr class="gold-rule">
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.text }}</p>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "4 blocs image",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Bloc",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Titre", "default": "La découverte" },
+        { "type": "textarea", "id": "text", "label": "Texte", "default": "Chez Parfumarium, nous vous guidons à travers différents univers olfactifs." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "4 blocs image",
+      "blocks": [
+        { "type": "item", "settings": { "title": "La découverte", "text": "Chez Parfumarium, nous vous guidons à travers différents univers olfactifs pour trouver la fragrance qui vous correspond vraiment." } },
+        { "type": "item", "settings": { "title": "Le savoir-faire", "text": "Une collection de parfums rigoureusement sélectionnés pour leur richesse, leur tenue et leur signature olfactive." } },
+        { "type": "item", "settings": { "title": "La personnalisation", "text": "Prenez le temps de sentir, comparer et choisir le parfum qui raconte votre histoire." } },
+        { "type": "item", "settings": { "title": "Le concept rechargeable", "text": "Un parfum que vous aimez mérite d'être rechargé, pas remplacé." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

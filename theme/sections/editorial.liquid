@@ -1,0 +1,19 @@
+<section class="section section--sage editorial">
+  <div class="container reveal">
+    <hr class="gold-rule" style="margin:0 auto">
+    <p class="lead">{{ section.settings.text }}</p>
+    <a class="more" href="{{ section.settings.cta_url }}">{{ section.settings.cta_label }} →</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Éditorial",
+  "settings": [
+    { "type": "textarea", "id": "text", "label": "Texte", "default": "Parfumarium sélectionne des fragrances pour leur qualité olfactive et leur caractère, afin de proposer une expérience parfum unique." },
+    { "type": "text", "id": "cta_label", "label": "Lien", "default": "Découvrir nos fragrances" },
+    { "type": "url", "id": "cta_url", "label": "URL" }
+  ],
+  "presets": [{ "name": "Éditorial" }]
+}
+{% endschema %}

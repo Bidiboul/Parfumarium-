@@ -1,0 +1,62 @@
+<section class="section section--sand">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2>{{ section.settings.title }}</h2>
+      <hr class="gold-rule">
+    </div>
+    <div class="center" style="margin:-16px 0 36px">
+      <span style="display:inline-flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--champagne);border-radius:999px;padding:14px 30px;box-shadow:var(--shadow-card)">
+        <span style="color:var(--gold)">★★★★★</span>
+        <span class="serif" style="font-size:20px;color:var(--amber)">{{ section.settings.rating }}</span>
+        <span style="font-size:14px">{{ section.settings.rating_label }}</span>
+      </span>
+    </div>
+    <div class="blocks" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+      {%- for block in section.blocks -%}
+        <figure class="reveal" style="background:#fff;border:1px solid rgba(22,19,17,0.08);border-radius:16px;padding:30px;box-shadow:var(--shadow-card)" {{ block.shopify_attributes }}>
+          <span style="color:var(--gold)">★★★★★</span>
+          <blockquote class="serif" style="font-style:italic;font-size:18px;line-height:1.5;margin:16px 0 20px">« {{ block.settings.text }} »</blockquote>
+          <figcaption style="border-top:1px solid rgba(22,19,17,0.08);padding-top:16px;font-size:14px">
+            <strong>{{ block.settings.name }}</strong>
+            <div style="font-size:12px;color:var(--warmgray)">{{ block.settings.meta }}</div>
+          </figcaption>
+        </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Avis clients",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Ils nous font confiance" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Ce que disent nos client·e·s" },
+    { "type": "text", "id": "rating", "label": "Note", "default": "4,8/5" },
+    { "type": "text", "id": "rating_label", "label": "Libellé note", "default": "Clients satisfaits" }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Avis",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Texte" },
+        { "type": "text", "id": "name", "label": "Prénom" },
+        { "type": "text", "id": "meta", "label": "Ville · Parfum" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Avis clients",
+      "blocks": [
+        { "type": "review", "settings": { "text": "Un sillage incroyable pour ce prix. On me demande sans cesse quel est mon parfum. Creamy Milk est devenu ma signature.", "name": "Camille L.", "meta": "Paris · Creamy Milk 590" } },
+        { "type": "review", "settings": { "text": "Tabac Vanilla tient toute la journée et reste élégant du matin au soir. Une tenue et une richesse remarquables.", "name": "Théo M.", "meta": "Lyon · Tabac Vanilla 196" } },
+        { "type": "review", "settings": { "text": "Le flacon est superbe, l'odeur sublime et l'emballage soigné. J'ai eu l'impression d'ouvrir un vrai cadeau de luxe.", "name": "Inès R.", "meta": "Bordeaux · Crystal Rouge 1035" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

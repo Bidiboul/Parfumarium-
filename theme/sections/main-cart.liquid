@@ -1,0 +1,64 @@
+<div class="page-hero" style="padding-bottom:36px">
+  <div class="container">
+    <span class="eyebrow">{{ 'cart.selection' | t }}</span>
+    <h1>{{ 'cart.title' | t }}</h1>
+  </div>
+</div>
+
+<div class="container section" style="padding-top:20px">
+  {%- if cart.item_count == 0 -%}
+    <div class="center" style="padding:60px 0">
+      <h2 class="serif" style="font-size:30px;font-weight:500">{{ 'cart.empty_title' | t }}</h2>
+      <p style="color:var(--warmgray);margin-top:12px">{{ 'cart.empty_text' | t }}</p>
+      <a class="btn btn-primary mt-40" href="{{ routes.all_products_collection_url }}">{{ 'cart.discover' | t }}</a>
+    </div>
+  {%- else -%}
+    <form action="{{ routes.cart_url }}" method="post" style="display:grid;gap:36px;align-items:start" class="cart-grid">
+      <style>@media(min-width:900px){.cart-grid{grid-template-columns:2fr 1fr}}</style>
+      <div>
+        {%- for item in cart.items -%}
+          <div class="cart-item">
+            <a href="{{ item.url }}">{{ item.image | image_url: width: 200 | image_tag: alt: item.product.title }}</a>
+            <div style="flex:1">
+              <div style="display:flex;justify-content:space-between;gap:12px">
+                <div>
+                  <a class="serif" style="font-size:20px" href="{{ item.url }}">{{ item.product.title }}</a>
+                  <p style="font-size:12px;text-transform:uppercase;letter-spacing:var(--track);color:var(--warmgray);margin-top:2px">{{ item.variant.title }} · {{ 'product.edp' | t }}</p>
+                </div>
+                <a href="{{ item.url_to_remove }}" style="font-size:12px;text-transform:uppercase;letter-spacing:var(--track);color:var(--warmgray)">{{ 'cart.remove' | t }}</a>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px">
+                <div class="qty">
+                  <button type="button" onclick="var i=this.nextElementSibling;i.value=Math.max(0,+i.value-1)">−</button>
+                  <input type="number" name="updates[]" value="{{ item.quantity }}" min="0">
+                  <button type="button" onclick="var i=this.previousElementSibling;i.value=+i.value+1">+</button>
+                </div>
+                <span class="serif" style="font-size:18px;color:var(--amber)">{{ item.final_line_price | money }}</span>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+        <button type="submit" name="update" class="btn btn-outline" style="margin-top:10px">{{ 'cart.update' | t }}</button>
+      </div>
+
+      <aside class="cart-summary">
+        <h2>{{ 'cart.summary' | t }}</h2>
+        <hr class="gold-rule" style="margin-top:14px">
+        {%- assign threshold = 6000 -%}
+        {%- if cart.total_price < threshold -%}
+          <p class="freeship">{{ 'cart.freeship_before' | t }} <strong style="color:var(--amber)">{{ threshold | minus: cart.total_price | money }}</strong> {{ 'cart.freeship_after' | t }}</p>
+        {%- endif -%}
+        <dl>
+          <div><dt>{{ 'cart.subtotal' | t }} ({{ cart.item_count }})</dt><dd>{{ cart.total_price | money }}</dd></div>
+          <div class="total"><dt>{{ 'cart.total' | t }}</dt><dd>{{ cart.total_price | money }}</dd></div>
+        </dl>
+        <button type="submit" name="checkout" class="btn btn-primary" style="width:100%;margin-top:22px">{{ 'cart.checkout' | t }}</button>
+        <p style="text-align:center;font-size:11px;color:var(--warmgray);margin-top:14px">{{ 'cart.secure' | t }}</p>
+      </aside>
+    </form>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{ "name": "Panier", "settings": [] }
+{% endschema %}

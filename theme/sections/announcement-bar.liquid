@@ -1,0 +1,16 @@
+<div class="announcement">{{ section.settings.text }}</div>
+<a class="brandband" href="{{ routes.root_url }}">Parfumarium</a>
+
+{% schema %}
+{
+  "name": "Bandeau annonce",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Texte de l'annonce",
+      "default": "Livraison offerte dès 60 € · Expédition en 72h"
+    }
+  ]
+}
+{% endschema %}

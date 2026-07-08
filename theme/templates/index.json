@@ -1,0 +1,39 @@
+{
+  "sections": {
+    "hero": { "type": "hero" },
+    "reassurance": {
+      "type": "reassurance",
+      "blocks": {
+        "r1": { "type": "item", "settings": { "title": "Expédition en 72h", "text": "Préparée avec soin et expédiée rapidement." } },
+        "r2": { "type": "item", "settings": { "title": "Paiement sécurisé", "text": "Transactions protégées et chiffrées." } },
+        "r3": { "type": "item", "settings": { "title": "Parfums sélectionnés", "text": "Choisis pour leur tenue et leur caractère." } },
+        "r4": { "type": "item", "settings": { "title": "Conseil & boutique", "text": "Une équipe disponible, à Vaison-la-Romaine." } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4"]
+    },
+    "editorial": { "type": "editorial" },
+    "blocks4": {
+      "type": "four-blocks",
+      "blocks": {
+        "b1": { "type": "item", "settings": { "title": "La découverte", "text": "Chez Parfumarium, nous vous guidons à travers différents univers olfactifs pour trouver la fragrance qui vous correspond vraiment." } },
+        "b2": { "type": "item", "settings": { "title": "Le savoir-faire", "text": "Une collection de parfums rigoureusement sélectionnés pour leur richesse, leur tenue et leur signature olfactive." } },
+        "b3": { "type": "item", "settings": { "title": "La personnalisation", "text": "Prenez le temps de sentir, comparer et choisir le parfum qui raconte votre histoire." } },
+        "b4": { "type": "item", "settings": { "title": "Le concept rechargeable", "text": "Un parfum que vous aimez mérite d'être rechargé, pas remplacé." } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"]
+    },
+    "approche": { "type": "approche" },
+    "featured": { "type": "featured-products" },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "t1": { "type": "review", "settings": { "text": "Un sillage incroyable pour ce prix. On me demande sans cesse quel est mon parfum. Creamy Milk est devenu ma signature.", "name": "Camille L.", "meta": "Paris · Creamy Milk 590" } },
+        "t2": { "type": "review", "settings": { "text": "Tabac Vanilla tient toute la journée et reste élégant du matin au soir. Une tenue et une richesse remarquables.", "name": "Théo M.", "meta": "Lyon · Tabac Vanilla 196" } },
+        "t3": { "type": "review", "settings": { "text": "Le flacon est superbe, l'odeur sublime et l'emballage soigné. J'ai eu l'impression d'ouvrir un vrai cadeau de luxe.", "name": "Inès R.", "meta": "Bordeaux · Crystal Rouge 1035" } }
+      },
+      "block_order": ["t1", "t2", "t3"]
+    },
+    "newsletter": { "type": "newsletter" }
+  },
+  "order": ["hero", "reassurance", "editorial", "blocks4", "approche", "featured", "testimonials", "newsletter"]
+}

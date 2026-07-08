@@ -1,0 +1,41 @@
+<section class="reassure">
+  <div class="container reassure__grid">
+    {%- for block in section.blocks -%}
+      <div class="reassure__item" {{ block.shopify_attributes }}>
+        <span class="reassure__ico">✦</span>
+        <div>
+          <p class="reassure__title">{{ block.settings.title }}</p>
+          <p class="reassure__text">{{ block.settings.text }}</p>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Réassurance",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Élément",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Titre", "default": "Expédition en 72h" },
+        { "type": "text", "id": "text", "label": "Texte", "default": "Préparée avec soin et expédiée rapidement." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Réassurance",
+      "blocks": [
+        { "type": "item", "settings": { "title": "Expédition en 72h", "text": "Préparée avec soin et expédiée rapidement." } },
+        { "type": "item", "settings": { "title": "Paiement sécurisé", "text": "Transactions protégées et chiffrées." } },
+        { "type": "item", "settings": { "title": "Parfums sélectionnés", "text": "Choisis pour leur tenue et leur caractère." } },
+        { "type": "item", "settings": { "title": "Conseil & boutique", "text": "Une équipe disponible, à Vaison-la-Romaine." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
