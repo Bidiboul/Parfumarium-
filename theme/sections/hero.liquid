@@ -13,9 +13,9 @@
       <h1 class="hero__title">{{ section.settings.title }}</h1>
       <p class="hero__sub">{{ section.settings.subtitle }}</p>
       <div class="hero__ctas">
-        <a class="btn btn-ivory" href="{{ section.settings.cta_url }}">{{ section.settings.cta_label }} →</a>
+        <a class="btn btn-ivory" href="{{ section.settings.cta_url | default: routes.all_products_collection_url }}">{{ section.settings.cta_label }} →</a>
         {%- if section.settings.cta2_label != blank -%}
-          <a class="btn btn-ghost-light" href="{{ section.settings.cta2_url }}">{{ section.settings.cta2_label }}</a>
+          <a class="btn btn-ghost-light" href="{{ section.settings.cta2_url | default: '#best-sellers' }}">{{ section.settings.cta2_label }}</a>
         {%- endif -%}
       </div>
     </div>

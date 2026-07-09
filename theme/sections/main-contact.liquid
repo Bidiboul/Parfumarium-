@@ -1,29 +1,122 @@
+{%- comment -%} Page contact premium : coordonnées + formulaire + FAQ {%- endcomment -%}
+
 <div class="page-hero">
   <div class="container">
-    <span class="eyebrow">Contact</span>
-    <h1>{{ page.title }}</h1>
+    <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+    <h1>{{ section.settings.title | default: page.title }}</h1>
     <hr class="gold-rule">
+    <p class="sub">{{ section.settings.subtitle }}</p>
   </div>
 </div>
 
-<div class="container section" style="max-width:760px">
-  {%- if page.content != blank -%}<div class="rte" style="padding-top:0">{{ page.content }}</div>{%- endif -%}
-  {% form 'contact' %}
-    {%- if form.posted_successfully? -%}
-      <p style="background:var(--cream);border:1px solid var(--gold);border-radius:12px;padding:16px;margin-bottom:20px">{{ 'contact.success' | t }}</p>
-    {%- endif -%}
-    <div style="display:grid;gap:16px">
-      <input type="text" name="contact[name]" placeholder="{{ 'contact.name' | t }}" required
-             style="border:1px solid rgba(22,19,17,0.15);border-radius:12px;padding:13px 16px;font:inherit;font-size:14px">
-      <input type="email" name="contact[email]" placeholder="{{ 'contact.email' | t }}" required
-             style="border:1px solid rgba(22,19,17,0.15);border-radius:12px;padding:13px 16px;font:inherit;font-size:14px">
-      <textarea name="contact[body]" rows="6" placeholder="{{ 'contact.message' | t }}" required
-             style="border:1px solid rgba(22,19,17,0.15);border-radius:12px;padding:13px 16px;font:inherit;font-size:14px;resize:vertical"></textarea>
-      <button type="submit" class="btn btn-primary" style="justify-self:start">{{ 'contact.send' | t }}</button>
+<div class="container section" style="padding-top:48px">
+  <div class="contact-grid">
+    {%- comment -%} Coordonnées {%- endcomment -%}
+    <div>
+      <h2 class="serif" style="font-size:26px;font-weight:500">{{ section.settings.coords_title }}</h2>
+      <hr class="gold-rule" style="margin-top:16px">
+      <ul class="info-list">
+        <li>
+          <span class="info-list__label">E-mail</span>
+          <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+        </li>
+        <li>
+          <span class="info-list__label">{{ section.settings.shop_label }}</span>
+          <span>{{ section.settings.address }}</span>
+        </li>
+        <li>
+          <span class="info-list__label">{{ section.settings.advice_label }}</span>
+          <span>{{ section.settings.advice_text }}</span>
+        </li>
+      </ul>
+
+      <div class="contact-quote">
+        <img src="{{ 'logo-mark.png' | asset_url }}" alt="" width="34" height="44">
+        <p class="serif">« Le parfum se vit avant de se choisir. »</p>
+      </div>
     </div>
-  {% endform %}
+
+    {%- comment -%} Formulaire {%- endcomment -%}
+    <div class="contact-panel">
+      <h2 class="serif" style="font-size:26px;font-weight:500">{{ section.settings.form_title }}</h2>
+      <p style="font-size:14px;color:var(--warmgray);margin-top:6px">{{ section.settings.form_subtitle }}</p>
+
+      {% form 'contact' %}
+        {%- if form.posted_successfully? -%}
+          <div class="contact-success">
+            <span>✓</span>
+            <div>
+              <strong>{{ 'contact.success_title' | t }}</strong>
+              <p>{{ 'contact.success' | t }}</p>
+            </div>
+          </div>
+        {%- else -%}
+          <div class="contact-fields">
+            <div class="field-row">
+              <div class="field">
+                <label for="c-name">{{ 'contact.name_label' | t }}</label>
+                <input id="c-name" type="text" name="contact[name]" placeholder="{{ 'contact.name' | t }}" required>
+              </div>
+              <div class="field">
+                <label for="c-email">{{ 'contact.email_label' | t }}</label>
+                <input id="c-email" type="email" name="contact[email]" placeholder="{{ 'contact.email' | t }}" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="c-body">{{ 'contact.message_label' | t }}</label>
+              <textarea id="c-body" name="contact[body]" rows="6" placeholder="{{ 'contact.message' | t }}" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">{{ 'contact.send' | t }}</button>
+          </div>
+        {%- endif -%}
+      {% endform %}
+    </div>
+  </div>
+
+  {%- comment -%} FAQ {%- endcomment -%}
+  {%- if section.blocks.size > 0 -%}
+    <div class="section-head" style="margin-top:80px">
+      <h2>{{ section.settings.faq_title }}</h2>
+      <hr class="gold-rule">
+    </div>
+    <div class="faq-grid">
+      {%- for block in section.blocks -%}
+        <div class="faq-card" {{ block.shopify_attributes }}>
+          <h3 class="serif">{{ block.settings.q }}</h3>
+          <p>{{ block.settings.a }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
 </div>
 
 {% schema %}
-{ "name": "Contact", "settings": [] }
+{
+  "name": "Contact",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Contact" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Parlons parfum" },
+    { "type": "textarea", "id": "subtitle", "label": "Sous-titre", "default": "Une question, une envie, un conseil olfactif ? Notre équipe est à votre écoute." },
+    { "type": "text", "id": "coords_title", "label": "Titre coordonnées", "default": "Nos coordonnées" },
+    { "type": "text", "id": "email", "label": "E-mail", "default": "parfumarium.contact@gmail.com" },
+    { "type": "text", "id": "shop_label", "label": "Libellé boutique", "default": "Boutique" },
+    { "type": "text", "id": "address", "label": "Adresse", "default": "Grand Rue, 84110 Vaison-la-Romaine" },
+    { "type": "text", "id": "advice_label", "label": "Libellé conseil", "default": "En boutique" },
+    { "type": "text", "id": "advice_text", "label": "Texte conseil", "default": "Accompagnement personnalisé par notre équipe" },
+    { "type": "text", "id": "form_title", "label": "Titre formulaire", "default": "Écrivez-nous" },
+    { "type": "text", "id": "form_subtitle", "label": "Sous-titre formulaire", "default": "Réponse garantie sous 24 heures ouvrées." },
+    { "type": "text", "id": "faq_title", "label": "Titre FAQ", "default": "Questions fréquentes" }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "q", "label": "Question" },
+        { "type": "textarea", "id": "a", "label": "Réponse" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Contact" }]
+}
 {% endschema %}

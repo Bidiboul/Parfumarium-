@@ -32,16 +32,39 @@
   <div class="drawer__bg" data-drawer-close></div>
   <aside class="drawer__panel">
     <div class="drawer__head">
-      <span>Menu</span>
-      <button data-drawer-close aria-label="{{ 'general.close' | t }}">✕</button>
+      <span class="drawer__brand">
+        <img src="{{ 'logo-mark.png' | asset_url }}" alt="">
+        <span>Parfumarium</span>
+      </span>
+      <button class="drawer__close" data-drawer-close aria-label="{{ 'general.close' | t }}">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
     </div>
+
     <nav class="drawer__nav">
       {%- for link in section.settings.menu.links -%}
-        <a href="{{ link.url }}">{{ link.title }}</a>
+        <a href="{{ link.url }}">
+          <span><span class="idx">{{ forloop.index | prepend: '0' }}</span>{{ link.title }}</span>
+          <span class="arrow">→</span>
+        </a>
       {%- endfor -%}
-      <a href="{{ routes.account_url }}">{{ 'general.account' | t }}</a>
-      <a href="{{ routes.search_url }}">{{ 'general.search' | t }}</a>
     </nav>
+
+    <div class="drawer__foot">
+      <a href="{{ routes.account_url }}">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.6" stroke="currentColor" stroke-width="1.5"/><path d="M5 20c0-3.4 3.1-5.5 7-5.5s7 2.1 7 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        {{ 'general.account' | t }}
+      </a>
+      <a href="{{ routes.search_url }}">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><path d="m20 20-3.2-3.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        {{ 'general.search' | t }}
+      </a>
+      <a href="{{ routes.cart_url }}">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 12H7L6 8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M9 8a3 3 0 0 1 6 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        {{ 'general.cart' | t }}{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}
+      </a>
+    </div>
+    <p class="drawer__note">✦ &nbsp;Des fragrances choisies pour leur caractère&nbsp; ✦</p>
   </aside>
 </div>
 

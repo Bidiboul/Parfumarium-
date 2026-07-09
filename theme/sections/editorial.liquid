@@ -2,7 +2,7 @@
   <div class="container reveal">
     <hr class="gold-rule" style="margin:0 auto">
     <p class="lead">{{ section.settings.text }}</p>
-    <a class="more" href="{{ section.settings.cta_url }}">{{ section.settings.cta_label }} →</a>
+    <a class="more" href="{{ section.settings.cta_url | default: routes.all_products_collection_url }}">{{ section.settings.cta_label }} →</a>
   </div>
 </section>
 

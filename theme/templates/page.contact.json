@@ -1,1 +1,14 @@
-{ "sections": { "main": { "type": "main-contact" } }, "order": ["main"] }
+{
+  "sections": {
+    "main": {
+      "type": "main-contact",
+      "blocks": {
+        "f1": { "type": "faq", "settings": { "q": "Quels sont les délais d'expédition ?", "a": "Vos commandes sont préparées et expédiées sous 72h en France métropolitaine." } },
+        "f2": { "type": "faq", "settings": { "q": "Comment choisir ma contenance ?", "a": "Chaque parfum existe en 30, 50 et 100 ml. Le 30 ml est idéal pour découvrir, le 100 ml pour adopter une signature au quotidien." } },
+        "f3": { "type": "faq", "settings": { "q": "Vos parfums sont-ils testés sur les animaux ?", "a": "Jamais. Toutes nos créations sont cruelty-free et formulées dans le respect de normes strictes." } }
+      },
+      "block_order": ["f1", "f2", "f3"]
+    }
+  },
+  "order": ["main"]
+}

@@ -67,7 +67,11 @@
     "email": "Votre e-mail",
     "message": "Comment pouvons-nous vous aider ?",
     "send": "Envoyer le message",
-    "success": "Merci ! Votre message a bien été envoyé, nous vous répondrons sous 24h ouvrées."
+    "success": "Merci ! Votre message a bien été envoyé, nous vous répondrons sous 24h ouvrées.",
+    "success_title": "Message envoyé",
+    "name_label": "Nom complet",
+    "email_label": "E-mail",
+    "message_label": "Message"
   },
   "errors": {
     "404_eyebrow": "Erreur 404",
